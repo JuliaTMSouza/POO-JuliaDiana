@@ -27,5 +27,5 @@ void Lote::SetUsuario(Pessoa usuário) {
 }
 
 void Lote::Log() {
-
+//olhar como criar parametro opcional
 }
