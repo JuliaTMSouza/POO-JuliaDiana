@@ -4,10 +4,10 @@
   #include <iostream>
   #include <string>
 
- /*
-  #include "Categoria.h"
-  #include "Lotes.h"
-*/
+  #include "Categoria.hpp"
+  #include "Lote.hpp"
+  #include "Valor.hpp"
+
 
   using namespace std;
 
@@ -17,34 +17,36 @@
       static int LoteAtual;
 
     protected:
-      float Valor;
       string Nome;
       int LoteMinimo;
       int EstoqueMinimo;
       int Codigo;
-      /*
-      Lotes Lote;
-      Categorias Categoria;
-      */
+      Lote Lotes;
+      Categoria CategoriaProduto;
+      Valor ValorProduto;
+
+      void SetCodigoAtual();
+      void SetLoteAtual();
 
     public:
-      float GetValor();
       string GetNome();
-      string GetDescricao();
       int GetLoteMinimo();
       int GetEstoqueMinimo();
       int GetCodigo();
       int GetCodigoAtual();
       int GetLoteAtual();
+      Lote GetLote();
+      Categoria GetCategoria();
+      Valor GetValor();
 
-      void SetValor(float Valor);
       void SetNome(string Nome) {}
-      void SetDescricao(string Descricao);
       void SetLoteMinimo(int LoteMinimo) {}
       void SetEstoqueMinimo(int EstoqueMinimo);
       void SetCodigo();
-      void SetCodigoAtual();
-      void SetLoteAtual();
+      void SetLote();
+      void SetCategoria(Categoria CategoriaProduto);
+      void SetValor(Valor ValorProduto);
+
   };
 
 #endif
