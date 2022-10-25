@@ -4,8 +4,12 @@
 using namespace std;
 
 
-float Produto::GetValor() {
-    return this->Valor;
+void Produto::SetCodigoAtual() {
+    this->CodigoAtual++;
+}
+
+void Produto::SetLoteAtual() {
+    this->LoteAtual++;
 }
 
 string Produto::GetNome() {
@@ -32,8 +36,16 @@ int Produto::GetLoteAtual() {
     return this->LoteAtual;
 }
 
-void Produto::SetValor(float Valor) {
-    this->Valor = Valor;
+Lote Produto::GetLote() {
+    return this->Lotes;
+}
+
+Categoria Produto::GetCategoria() {
+    return this->CategoriaProduto;
+}
+
+Valor Produto::GetValor() {
+    return this->ValorProduto;
 }
 
 void Produto::SetNome(string Nome) {
@@ -53,10 +65,15 @@ void Produto::SetCodigo() {
     SetCodigoAtual();
 }
 
-void Produto::SetCodigoAtual() {
-    this->CodigoAtual++;
+void Produto::SetLote() {
+    this->Lotes.SetNumero(GetLoteAtual());
+    SetLoteAtual();
 }
 
-void Produto::SetLoteAtual() {
-    this->LoteAtual++;
+void Produto::SetCategoria(Categoria CategoriaProduto) {
+    this->CategoriaProduto = CategoriaProduto;
+}
+
+void Produto::SetValor(Valor ValorProduto) {
+    this->ValorProduto = ValorProduto;
 }
