@@ -8,7 +8,7 @@ int Lote::GetQuantidade() {
     return this->Quantidade;
 }
 
-string Lote::GetDataProducao() {
+Date Lote::GetDataProducao() {
     return this->DataProducao;
 }
 
@@ -20,7 +20,7 @@ void Lote::SetQuantidade(int Quantidade) {
     this->Quantidade = Quantidade;
 }
 
-void Lote::SetDataProducao(string DataProducao) {
+void Lote::SetDataProducao(Date DataProducao) {
     this->DataProducao = DataProducao;
 }
 

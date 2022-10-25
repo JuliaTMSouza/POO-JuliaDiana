@@ -1,22 +1,22 @@
 #ifndef LOTE_H
 #define LOTE_H
 
-  #include <string>
+  #include "Date.hpp"
 
   using namespace std;
 
   class Lote {
     protected:
       int Quantidade;
-      string DataProducao;
-      int número;
+      Date DataProducao;
+      int Numero;
 
     public:
       int GetQuantidade();
-      string GetDataProducao();
+      Date GetDataProducao();
       int GetNumero();
       void SetQuantidade(int Quantidade);
-      void SetDataProducao(string DataProducao);
+      void SetDataProducao(Date DataProducao);
       void SetNumero(int Numero);
   };
 

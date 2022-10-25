@@ -3,18 +3,20 @@
 
   #include <string>
 
+  #include "Produto.hpp"
+
   using namespace std;
 
   class Estoque {
     protected:
       int Quantidade;
-      Produto Produto;
+      Produto Produtos;
 
     public:
       int GetQuantidade();
       Produto GetProduto();
       void SetQuantidade(int Quantidade);
-      void SetProduto(Produto Produto);
+      void SetProduto(Produto Produtos);
   };
 
 #endif

@@ -3,25 +3,25 @@
 
 using namespace std;
 
-Admissao::Admissao(string DataAdmissao)
+Admissao::Admissao(Date DataAdmissao)
 {
     this->DataAdmissao = DataAdmissao;
     this->DataDemissao = "";
     cout << "Novo membro adicionado" << endl;
 }
 
-string Admissao::GetDataAdmissao() {
+Date Admissao::GetDataAdmissao() {
     return this->DataAdmissao;
 }
 
-string Admissao::GetDataDemissao() {
+Date Admissao::GetDataDemissao() {
     return this->DataDemissao;
 }
 
-void Admissao::SetDataAdmissao(string DataAdmissao) {
+void Admissao::SetDataAdmissao(Date DataAdmissao) {
     this->DataAdmissao = DataAdmissao;
 }
 
-void Admissao::SetDataDemissao(string DataDemissao) {
+void Admissao::SetDataDemissao(Date DataDemissao) {
     this->DataDemissao = DataDemissao;
 }

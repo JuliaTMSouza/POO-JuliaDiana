@@ -1,7 +1,6 @@
 #ifndef EMPRESA_H
 #define EMPRESA_H
 
-  #include <string>
   #include <stdbool.h>
 
   #include "Departamento.hpp"

@@ -2,25 +2,25 @@
 #define ADIMISSAO_H
 
   #include <iostream>
-  #include <string>
+  #include "Date.hpp"
 
   using namespace std;
 
   class Admissao {
     protected:
-      string DataAdmissao;
-      string DataDemissao;
+      Date DataAdmissao;
+      Date DataDemissao;
 
     public:
-      Admissao(string DataAdmissao);
+      Admissao(Date DataAdmissao);
 
-      string GetDataAdmissao();
-      string GetDataDemissao();
+      Date GetDataAdmissao();
+      Date GetDataDemissao();
 
-      void SetDataAdmissao(string DataAdmissao);
+      void SetDataAdmissao(Date DataAdmissao);
 
     private:
-      void SetDataDemissao(string DataDemissao);
+      void SetDataDemissao(Date DataDemissao);
   };
 
 #endif

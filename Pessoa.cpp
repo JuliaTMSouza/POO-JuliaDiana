@@ -38,6 +38,10 @@ string Pessoa::GetEmail() {
     return this->Email;
 }
 
+Permissao Pessoa::GetPermissoes() {
+    return this->Permissoes;
+}
+
 void Pessoa::SetNome(string Nome) {
     this->Nome = Nome;
 }
@@ -48,4 +52,8 @@ void Pessoa::SetEmail(string Email) {
 
 void Pessoa::SetCPF_CNPJ(string CPF_CNPJ, bool Tipo) {
     if(ValidarCPF_CNPJ(CPF_CNPJ, Tipo)) this->CPF_CNPJ = CPF_CNPJ;
+}
+
+void Pessoa::SetPermissoes(Permissao Permissoes) {
+    this->Permissoes = Permissoes;
 }

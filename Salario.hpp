@@ -3,22 +3,26 @@
 
   #include <iostream>
   #include <string>
+  #include "Date.hpp"
 
   using namespace std;
 
   class Salario {
     protected:
       float Valor;
-      string DataSalario;
+      Date DataSalario;
       string Descricao;
 
     public:
+      Salario();
+      void Promocao(Dissidio NovaPromocao);
+
       float GetValor();
-      string GetDataSalario();
+      Date GetDataSalario();
       string GetDescricao();
       
       void SetValor(float Valor);
-      void SetDataSalario(string DataSalario) {}
+      void SetDataSalario(Date DataSalario) {}
       void SetDescricao(string Descricao);
   };
 
