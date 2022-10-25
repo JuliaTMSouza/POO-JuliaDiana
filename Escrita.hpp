@@ -16,6 +16,7 @@
       void SetAtributoAnterior(string AtributoAnterior);
       string GetAtributoAtual();
       void SetAtributoAtual(string AtributoAtual);
+      Escrita(Date, string, Pessoa, string, string);
   };
 
 #endif

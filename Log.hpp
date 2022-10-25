@@ -19,7 +19,6 @@
       void SetData(Date Data);
       void SetEntidade(string Entidade);
       void SetUsuario(Pessoa Usuario);
-      void Log();
   };
 
 #endif

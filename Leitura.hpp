@@ -13,6 +13,7 @@
     public:
       string GetInformacAoacessada();
       void SetInformacaoAcessada(string InformacaoAcessada);
+      Leitura(Date, string, Pessoa, string);
   };
 
 #endif

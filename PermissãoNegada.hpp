@@ -13,6 +13,7 @@
     public:
       string GetMensagem();
       void SetMensagem(string Mensagem);
+      PermissaoNegada(Date, string, Pessoa, string, string);
   };
 
 #endif

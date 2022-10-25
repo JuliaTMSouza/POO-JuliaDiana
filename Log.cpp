@@ -25,7 +25,3 @@ void Log::SetEntidade(string Entidade) {
 void Lote::SetUsuario(Pessoa usuário) {
     this->Usuario = usuario;
 }
-
-void Lote::Log() {
-//olhar como criar parametro opcional
-}
