@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 
 #include "Pessoa.hpp"
 #include "Funcionario.hpp"
@@ -18,9 +19,18 @@ using namespace std;
 int main()
 {
     //Exemplo de construtor 
-    Cargo novoCar = Cargo() ;
-    novoCar.SetNome("Vendedor");
-    novoCar.SetEscopo("Cuidar da precificação de projetos e negociação com os clientes");
+    //Cargo novoCar = Cargo() ;
+    //novoCar.SetNome("Vendedor");
+    //novoCar.SetEscopo("Cuidar da precificação de projetos e negociação com os clientes");
+    Funcionario Jorge;
+    Jorge.SetNome("Jorge");
+    Jorge.SetEmail("jorge@gmail.com.br");
+    Jorge.SetMatricula("JorgeLima");
+    Jorge.SetEndereco("Rua entre as árvores, 47");
+    cout << Jorge.GetNome() << endl;
+    cout << Jorge.GetEmail() << endl;
+    cout << Jorge.GetMatricula() << endl;
+    cout << Jorge.GetEndereco() << endl;
 
     return 0;
 

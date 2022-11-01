@@ -24,6 +24,7 @@ bool Pessoa::ValidarCPF_CNPJ(string CPF_CNPJ, bool Tipo) {
 
         return true;
     }
+    return false;
 }
 
 string Pessoa::GetCPF_CNPJ() {
