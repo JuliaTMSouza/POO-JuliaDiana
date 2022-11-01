@@ -1,0 +1,8 @@
+Problemas que temos pra resolver:
+
+Funções sigleton nas classes Empresa e Logado
+
+Acho que a função "SetLogado" não deve existir. Teoricamente a gente não pode
+alterar se a pessoa está logada ou não. Teria que ter uma função deslogar talvez.
+Outra coisa ainda sobre isso, a gnt teria que criar uma função que desloga? Ou seria 
+destrutor?
