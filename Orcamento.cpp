@@ -9,11 +9,7 @@ int Orcamento::GetQuantidade() {
 Date Orcamento::GetData() {
     return this->Data;
 }
-/* 
-Produto Orcamento::GetProdutos() {
-    return this->Produtos;
-}
-*/
+
 void Orcamento::SetQuantidade(int Quantidade) {
     this->Quantidade = Quantidade;
 }
@@ -21,8 +17,3 @@ void Orcamento::SetQuantidade(int Quantidade) {
 void Orcamento::SetData(Date Data) {
     this->Data = Data;
 }
-/*
-void Orcamento::SetProdutos(Produto Produtos) {
-    this->Produtos = Produtos;
-}
-*/

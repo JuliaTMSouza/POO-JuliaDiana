@@ -18,11 +18,11 @@ Produto Vendas::GetDadosProduto() {
     return this->DadosProduto;
 }
 
-Pagamento GetTipoPagamento(){
+Pagamentos Vendas::GetTipoPagamento(){
     return this->TipoPagamento;
 }
 
-Orcamento GetOrcamentoAtual(){
+Orcamento Vendas::GetOrcamentoAtual(){
     return this->OrcamentoAtual;
 }
 
@@ -42,7 +42,7 @@ void Vendas::SetData(Date Data) {
     this->Data = Data;
 }
 
-void Vendas::SetTipoPagamento(Pagamento TipoPagamento) {
+void Vendas::SetTipoPagamento(Pagamentos TipoPagamento) {
     this->TipoPagamento = TipoPagamento;
 }
 

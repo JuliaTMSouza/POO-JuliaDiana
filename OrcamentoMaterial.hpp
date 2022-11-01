@@ -1,6 +1,7 @@
 #ifndef ORCAMENTOMATERIAL_H
 #define ORCAMENTOMATERIAL_H
 
+  #include "Orcamento.hpp"
   #include "MateriaPrima.hpp"
 
   using namespace std;

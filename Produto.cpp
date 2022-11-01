@@ -20,8 +20,8 @@ int Produto::GetLoteMinimo() {
     return this->LoteMinimo;
 }
 
-int Produto::GetEstoqueMinimo() {
-    return this->EstoqueMinimo;
+int Produto::GetEstoqueAtual() {
+    return this->EstoqueAtual;
 }
 
 int Produto::GetCodigo() {
@@ -48,11 +48,11 @@ Valor Produto::GetValor() {
     return this->ValorProduto;
 }
 
-Producao GetMateriasPrima() {
+Producao Produto::GetMateriasPrima() {
     return this->MateriasPrima;
 }
 
-int GetQtdMateriaPrima() {
+int Produto::GetQtdMateriaPrima() {
     return this->QtdMateriaPrima;
 }
 
@@ -64,8 +64,8 @@ void Produto::SetLoteMinimo(int LoteMinimo) {
     this->LoteMinimo = LoteMinimo;
 }
 
-void Produto::SetEstoqueMinimo(int EstoqueMinimo) {
-    this->EstoqueMinimo = EstoqueMinimo;
+void Produto::SetEstoqueAtual(int EstoqueAtual) {
+    this->EstoqueAtual = EstoqueAtual;
 }
 
 void Produto::SetCodigo() {
@@ -86,10 +86,10 @@ void Produto::SetValor(Valor ValorProduto) {
     this->ValorProduto = ValorProduto;
 }
 
-void SetMateriasPrima(Producao MateriasPrimaProduto) {
-    this->MateriasPrimaProduto = MateriasPrimaProduto;
+void Produto::SetMateriasPrima(Producao MateriasPrima) {
+    this->MateriasPrima = MateriasPrima;
 }
 
-void SetQtdMateriaPrima(int QtdMateriaPrima) {
+void Produto::SetQtdMateriaPrima(int QtdMateriaPrima) {
     this->QtdMateriaPrima = QtdMateriaPrima;
 }

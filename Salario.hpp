@@ -4,6 +4,7 @@
   #include <iostream>
   #include <string>
   #include "Date.hpp"
+  #include "Dissidio.hpp"
 
   using namespace std;
 

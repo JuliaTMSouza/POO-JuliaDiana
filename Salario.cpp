@@ -29,5 +29,6 @@ void Salario::SetDescricao(string Descricao) {
 
 //PROVAVALMENTE TEREMOS QUE ARRUMAR ISSO
 void Salario::Promocao(Dissidio NovaPromocao){
-    this->Valor *= NovaPromocao
+
+    this->Valor *= NovaPromocao.GetPorcentagem();
 }

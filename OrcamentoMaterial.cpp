@@ -1,19 +1,19 @@
-#include "Producao.hpp"
+#include "OrcamentoMaterial.hpp"
 
 using namespace std;
 
-int Producao::GetQuantidadeNecessaria() {
+int OrcamentoMaterial::GetQuantidadeNecessaria() {
     return this->QuantidadeNecessaria;
 }
 
-MateriaPrima Producao::GetMateriasPrimas() {
+MateriaPrima OrcamentoMaterial::GetMateriasPrimas() {
     return this->MateriasPrimas;
 }
 
-void Producao::SetQuantidadeNecessaria(int QuantidadeNecessaria) {
+void OrcamentoMaterial::SetQuantidadeNecessaria(int QuantidadeNecessaria) {
     this->QuantidadeNecessaria = QuantidadeNecessaria;
 }
 
-void Producao::SetMateriasPrimas(MateriaPrima MateriasPrimas) {
+void OrcamentoMaterial::SetMateriasPrimas(MateriaPrima MateriasPrimas) {
     this->MateriasPrimas = MateriasPrimas;
 }

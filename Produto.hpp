@@ -7,6 +7,7 @@
   #include "Categoria.hpp"
   #include "Lote.hpp"
   #include "Valor.hpp"
+  #include "Producao.hpp"
 
 
   using namespace std;
@@ -50,7 +51,7 @@
       void SetLote();
       void SetCategoria(Categoria CategoriaProduto);
       void SetValor(Valor ValorProduto);
-      void SetMateriasPrima(Producao MateriasPrimaProduto);
+      void SetMateriasPrima(Producao MateriasPrima);
       void SetQtdMateriaPrima(int QtdMateriaPrima);
 
   };

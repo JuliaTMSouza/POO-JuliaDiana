@@ -3,9 +3,9 @@
 
   #include <string>
   #include "Cliente.hpp"
- // #include "Date.hpp"
+  #include "Date.hpp"
   #include "Produto.hpp"
-  #include "Pagamento.hpp"
+  #include "Pagamentos.hpp"
   #include "Orcamento.hpp"
 
   using namespace std;
@@ -16,7 +16,7 @@
       Date Data;
       Cliente DadosCliente;
       Produto DadosProduto;
-      Pagamento TipoPagamento;
+      Pagamentos TipoPagamento;
       Orcamento OrcamentoAtual;
 
       //void ValidaOrcamento();
@@ -26,14 +26,14 @@
       Produto GetDadosProduto();
       Cliente GetDadosCliente();
       Date GetData();
-      Pagamento GetTipoPagamento();
+      Pagamentos GetTipoPagamento();
       Orcamento GetOrcamentoAtual();
 
       void SetQuantidade(int Quantidade);
       void SetDadosProduto(Produto DadosProduto);
       void SetDadosCliente(Cliente DadosCliente);
       void SetData(Date Data);
-      void SetTipoPagamento(Pagamento TipoPagamento);
+      void SetTipoPagamento(Pagamentos TipoPagamento);
       void SetOrcamentoAtual(Orcamento OrcamentoAtual);
 
       //void RealizarVenda();
