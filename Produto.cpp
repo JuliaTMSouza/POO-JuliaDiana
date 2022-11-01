@@ -48,6 +48,14 @@ Valor Produto::GetValor() {
     return this->ValorProduto;
 }
 
+Producao GetMateriasPrima() {
+    return this->MateriasPrima;
+}
+
+int GetQtdMateriaPrima() {
+    return this->QtdMateriaPrima;
+}
+
 void Produto::SetNome(string Nome) {
     this->Nome = Nome;
 }
@@ -76,4 +84,12 @@ void Produto::SetCategoria(Categoria CategoriaProduto) {
 
 void Produto::SetValor(Valor ValorProduto) {
     this->ValorProduto = ValorProduto;
+}
+
+void SetMateriasPrima(Producao MateriasPrimaProduto) {
+    this->MateriasPrimaProduto = MateriasPrimaProduto;
+}
+
+void SetQtdMateriaPrima(int QtdMateriaPrima) {
+    this->QtdMateriaPrima = QtdMateriaPrima;
 }

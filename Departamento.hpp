@@ -17,6 +17,7 @@
       string GetDescricao();
       string GetNome();
       Cargo GetCargos();
+      
       void SetDescricao(string Descricao);
       void SetNome(string Nome);
       void SetCargos(Cargo Cargos);

@@ -19,11 +19,13 @@
     protected:
       string Nome;
       int LoteMinimo;
-      int EstoqueMinimo;
+      int EstoqueAtual;
       int Codigo;
       Lote Lotes;
       Categoria CategoriaProduto;
       Valor ValorProduto;
+      Producao MateriasPrima;
+      int QtdMateriaPrima;
 
       void SetCodigoAtual();
       void SetLoteAtual();
@@ -31,21 +33,25 @@
     public:
       string GetNome();
       int GetLoteMinimo();
-      int GetEstoqueMinimo();
+      int GetEstoqueAtual();
       int GetCodigo();
       int GetCodigoAtual();
       int GetLoteAtual();
       Lote GetLote();
       Categoria GetCategoria();
       Valor GetValor();
+      Producao GetMateriasPrima();
+      int GetQtdMateriaPrima();
 
       void SetNome(string Nome) {}
       void SetLoteMinimo(int LoteMinimo) {}
-      void SetEstoqueMinimo(int EstoqueMinimo);
+      void SetEstoqueAtual(int EstoqueAtual);
       void SetCodigo();
       void SetLote();
       void SetCategoria(Categoria CategoriaProduto);
       void SetValor(Valor ValorProduto);
+      void SetMateriasPrima(Producao MateriasPrimaProduto);
+      void SetQtdMateriaPrima(int QtdMateriaPrima);
 
   };
 

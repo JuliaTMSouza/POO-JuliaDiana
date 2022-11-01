@@ -7,14 +7,14 @@
 
   class Dissidio {
     protected:
-      string Porcentagem;
+      float Porcentagem;
       string Descricao;
 
     public:
       string GetDescricao();
-      string GetPorcentagem();
+      float GetPorcentagem();
       void SetDescricao(string Descricao);
-      void SetPorcentagem(string Porcentagem);
+      void SetPorcentagem(float Porcentagem);
   };
 
 #endif

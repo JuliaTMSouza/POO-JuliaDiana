@@ -1,11 +1,11 @@
-#ifndef PAGAMENTO_H
-#define PAGAMENTO_H
+#ifndef PAGAMENTOS_H
+#define PAGAMENTOS_H
 
   #include <string>
 
   using namespace std;
 
-  class Pagamento {
+  class Pagamentos {
     protected:
       string Tipo; //ENUM
 

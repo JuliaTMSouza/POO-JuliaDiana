@@ -15,9 +15,12 @@
       int GetQuantidade();
       Date GetDataProducao();
       int GetNumero();
+
       void SetQuantidade(int Quantidade);
       void SetDataProducao(Date DataProducao);
       void SetNumero(int Numero);
+
+      void SolicitarNovoLote();
   };
 
 #endif

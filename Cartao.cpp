@@ -2,6 +2,11 @@
 
 using namespace std;
 
+bool Validacao(int NumeroCartao){
+    //como vamos fazer essa validação?
+    return true;
+}
+
 int Cartao::GetNumeroCartao() {
     return this->NumeroCartao;
 }
@@ -19,7 +24,8 @@ int Cartao::GetParcelas() {
 }
 
 void Cartao::SetNumeroCartao(int NumeroCartao) {
-    this->NumeroCartao = NumeroCartao;
+    if(Validacao(NumeroCartao)) this->NumeroCartao = NumeroCartao;
+    else cout >> "Cartão Inválido\n";
 }
 
 void Cartao::SetValidade(Date Validade) {

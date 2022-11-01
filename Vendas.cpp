@@ -10,12 +10,12 @@ Date Vendas::GetData() {
     return this->Data;
 }
 
-Cliente Vendas::GetCliente() {
-    return this->Cliente;
+Cliente Vendas::GetDadosCliente() {
+    return this->DadosCliente;
 }
 
-Produto Vendas::GetProduto() {
-    return this->Produto;
+Produto Vendas::GetDadosProduto() {
+    return this->DadosProduto;
 }
 
 Pagamento GetTipoPagamento(){
@@ -30,12 +30,12 @@ void Vendas::SetQuantidade(int Quantidade) {
     this->Quantidade = Quantidade;
 }
 
-void Vendas::SetProduto(Produto Produto) {
-    this->Produto = Produto;
+void Vendas::SetDadosProduto(Produto DadosProduto) {
+    this->DadosProduto = DadosProduto;
 }
 
-void Vendas::SetCliente(Cliente Cliente) {
-    this->Cliente = Cliente;
+void Vendas::SetDadosCliente(Cliente DadosCliente) {
+    this->DadosCliente = DadosCliente;
 }
 
 void Vendas::SetData(Date Data) {

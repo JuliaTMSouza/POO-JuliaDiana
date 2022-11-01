@@ -2,7 +2,7 @@
 
 using namespace std;
 
-string Dissidio::GetPorcentagem() {
+float Dissidio::GetPorcentagem() {
     return this->Porcentagem;
 }
 
@@ -10,7 +10,7 @@ string Dissidio::GetDescricao() {
     return this->Descricao;
 }
 
-void Dissidio::SetPorcentagem(string Porcentagem) {
+void Dissidio::SetPorcentagem(float Porcentagem) {
     this->Porcentagem = Porcentagem;
 }
 

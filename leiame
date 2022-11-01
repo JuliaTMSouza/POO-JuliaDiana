@@ -15,3 +15,12 @@ Finalizar o CNPJ
 
 Atualizar modelagem (criar cargo dentro de departamento)
 Atualizar na modelagem todos os nomes
+
+29/10/2022
+Atualizei as funções q já existiam
+Atualizei Cartão
+  Criei uma função de validação e comoquei ela na hr de setar o próprio cartão. Mas n sei como deveria ser essa validação, então n terminei de criar essa função ainda.
+Vendas
+  Coloquei a função, mas tem que escrever ela ainda.
+
+Acho que a gente deveria colocar cargo dentro de funcionário inclusive. Não tá fazendo mt sentido do jeito q a gnt fez

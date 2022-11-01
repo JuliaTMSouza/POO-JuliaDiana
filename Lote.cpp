@@ -28,3 +28,7 @@ void Lote::SetNumero() {
     this->Numero = GetLoteAtual();
     setLoteAtual();
 }
+
+void SolicitarNovoLote(){
+    //Montar solicitação
+}

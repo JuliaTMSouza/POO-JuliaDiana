@@ -1,6 +1,7 @@
 #ifndef CARTAO_H
 #define CARTAO_H
 
+  #include <iostream>
   #include <string>
   #include "Date.hpp"
 
@@ -12,6 +13,10 @@
       int NumeroCartao;
       string Nome;
       int Parcelas; //ENUM
+
+      //CRIEI ESSA FUNÇÃO
+      bool Validacao(int NumeroCartao);
+      //
 
     public:
       int GetNumeroCartao();
