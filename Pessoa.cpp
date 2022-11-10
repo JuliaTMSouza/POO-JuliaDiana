@@ -1,27 +1,32 @@
+#include <iostream>
 #include "Pessoa.hpp"
 
 using namespace std;
 
 bool Pessoa::ValidarCPF_CNPJ(string CPF_CNPJ, bool Tipo) {
+    int verificador1 = CPF_CNPJ[9] - 48;
+    int verificador2 = CPF_CNPJ[10] - 48;
 
     if (Tipo) {
         int validandoPrimeiro = 0, validandoSegundo = 0, restoPrimeiro, restoSegundo;
-        for (int i = 10, j = 0; i > 1; i--)
+        int j = 0;
+        for (int i = 10; i > 1; i--)
         {
-            if((j + 1) % 4 == 0) j++;
             validandoPrimeiro += ((int) CPF_CNPJ[j] - 48) * i;
             validandoSegundo += ((int) CPF_CNPJ[j] - 48) * (i + 1);
+            j = j + 1;
         }
-        validandoSegundo += ((int) CPF_CNPJ[12] - 48) * (2);
+        validandoSegundo += verificador1 * 2;
 
         restoPrimeiro = (validandoPrimeiro * 10 % 11);
         if(restoPrimeiro == 10) restoPrimeiro = 0;
 
-        restoSegundo = (validandoPrimeiro * 10 % 11);
+        restoSegundo = (validandoSegundo * 10 % 11);
         if(restoSegundo == 10) restoSegundo = 0;
 
-        if(restoPrimeiro != CPF_CNPJ[12] || restoSegundo != CPF_CNPJ[13]) return false;
+        cout << restoPrimeiro << verificador1 << restoSegundo << verificador2 << endl;
 
+        if(restoPrimeiro != verificador1 || restoSegundo != verificador2) return false;
         return true;
     }
     return false;
@@ -48,5 +53,7 @@ void Pessoa::SetEmail(string Email) {
 }
 
 void Pessoa::SetCPF_CNPJ(string CPF_CNPJ, bool Tipo) {
-    if(ValidarCPF_CNPJ(CPF_CNPJ, Tipo)) this->CPF_CNPJ = CPF_CNPJ;
+    bool valid = ValidarCPF_CNPJ(CPF_CNPJ, Tipo);
+    cout << valid << endl;
+    if(valid) this->CPF_CNPJ = CPF_CNPJ;
 }

@@ -13,20 +13,20 @@
       string Matricula;
       string Endereco;
       string Nascimento;
-      Cargo *CargoAtual;
-      Departamento *DepartamentoAtual;
+      // Cargo *CargoAtual;
+      // Departamento *DepartamentoAtual;
 
     public:
       string GetMatricula();
       string GetEndereco();
       string GetNascimento();
-      string GetCargoAtual();
-      string GetDepartamentoAtual();
+      // string GetCargoAtual();
+      // string GetDepartamentoAtual();
       void SetMatricula(string Matricula);
       void SetEndereco(string Endereco);
       void SetNascimento(string Nascimento);
-      void SetCargoAtual(Cargo *CargoAtual);
-      void SetDepartamentoAtual(Departamento *DepartamentoAtual);
+      // void SetCargoAtual(Cargo *CargoAtual);
+      // void SetDepartamentoAtual(Departamento *DepartamentoAtual);
 
       //Funcionario(/*string Nome, string CPF_CNPJ, string Email, string Matricula, string Endereco, string Nascimento*/);
   };
