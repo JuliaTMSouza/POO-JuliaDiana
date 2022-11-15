@@ -11,6 +11,7 @@
     protected:
       string Telefone;
       Orcamento OrcamentoAtual;
+      //teoricamente deveria ter um tipo
 
     public:
       string GetTelefone();
