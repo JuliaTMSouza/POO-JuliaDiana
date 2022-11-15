@@ -16,7 +16,6 @@ void Cargo::SetNome(string Nome) {
 
 void Cargo::SetEscopo(string Escopo) {
     this->Escopo = Escopo;
-    cout << "Entrou";
 }
 
 

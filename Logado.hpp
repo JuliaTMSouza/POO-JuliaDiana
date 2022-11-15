@@ -6,7 +6,7 @@
 
   class Logado {
     private:
-      static bool PessoaLogada; //n tem q ser tipo logado?
+      static bool PessoaLogada = false;
 
       Logado();
       

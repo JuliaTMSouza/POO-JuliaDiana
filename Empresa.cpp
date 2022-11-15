@@ -2,10 +2,14 @@
 
 using namespace std;
 
-/*
-Empresa::CriaEmpresa(){
-    this->EmpresaCriada = true;
-}*/
+bool Empresa::ConfereEmpresa(){
+    return this->EmpresaCriada;
+}
+
+Empresa::Empresa(){
+    bool isEmpresa = ConfereEmpresa();
+    if (!isEmpresa)  return this->EmpresaCriada = true;
+}
 
 Departamento Empresa::GetDepartamentos() {
     return this->Departamentos;
