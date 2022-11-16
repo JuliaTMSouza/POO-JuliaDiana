@@ -14,6 +14,7 @@
       Permissao Permissoes;
 
       bool ValidarCPF_CNPJ(string CPF_CNPJ, bool Tipo);
+      bool ValidaPessoa(string CPF_CNPJ, string Nome, bool Tipo);
 
     public:
       string GetNome();

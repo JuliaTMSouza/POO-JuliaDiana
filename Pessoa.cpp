@@ -32,6 +32,10 @@ bool Pessoa::ValidarCPF_CNPJ(string CPF_CNPJ, bool Tipo) {
     return false;
 }
 
+bool ValidaPessoa(string CPF_CNPJ, string Nome, bool Tipo){
+    //confere se a pessoa já está cadastrada no sistema
+}
+
 string Pessoa::GetCPF_CNPJ() {
     return this->CPF_CNPJ;
 }

@@ -3,12 +3,12 @@
 
   #include <iostream>
   #include <string>
+  #include <list>
 
   #include "Categoria.hpp"
   #include "Lote.hpp"
   #include "Valor.hpp"
   #include "Producao.hpp"
-
 
   using namespace std;
 
@@ -21,20 +21,25 @@
       string Nome;
       int LoteMinimo;
       int EstoqueAtual;
+      int EstoqueMinimo;
       int Codigo;
-      Lote Lotes;
+      list <Lote> Lotes;
       Categoria CategoriaProduto;
-      Valor ValorProduto;
-      Producao MateriasPrima;
+      list <Valor> ValorProduto;
+      list <Producao> MateriasPrima;
       int QtdMateriaPrima;
 
       void SetCodigoAtual();
       void SetLoteAtual();
-
+ 
     public:
+
+      Produto();
+      
       string GetNome();
       int GetLoteMinimo();
       int GetEstoqueAtual();
+      int GetEstoqueMinimo();
       int GetCodigo();
       int GetCodigoAtual();
       int GetLoteAtual();
@@ -42,17 +47,18 @@
       Categoria GetCategoria();
       Valor GetValor();
       Producao GetMateriasPrima();
-      int GetQtdMateriaPrima();
+      //int GetQtdMateriaPrima();
 
-      void SetNome(string Nome) {}
-      void SetLoteMinimo(int LoteMinimo) {}
+      //void SetNome(string Nome);
+      void SetLoteMinimo(int LoteMinimo);
       void SetEstoqueAtual(int EstoqueAtual);
-      void SetCodigo();
+      void SetEstoqueMinimo(int EstoqueMinimo);
+      //void SetCodigo();
       void SetLote();
       void SetCategoria(Categoria CategoriaProduto);
       void SetValor(Valor ValorProduto);
       void SetMateriasPrima(Producao MateriasPrima);
-      void SetQtdMateriaPrima(int QtdMateriaPrima);
+      //void SetQtdMateriaPrima(int QtdMateriaPrima);
 
   };
 

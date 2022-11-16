@@ -6,7 +6,7 @@
   #include "Date.hpp"
   #include "Produto.hpp"
   #include "Pagamentos.hpp"
-  #include "Orcamento.hpp"
+  #include "OrcamentoProduto.hpp"
 
   using namespace std;
 
@@ -17,26 +17,27 @@
       Cliente DadosCliente;
       Produto DadosProduto;
       Pagamentos TipoPagamento;
-      Orcamento OrcamentoAtual;
+      OrcamentoProduto OrcamentoAtual;
 
       //void ValidaOrcamento();
 
     public:
+
       int GetQuantidade();
       Produto GetDadosProduto();
       Cliente GetDadosCliente();
       Date GetData();
       Pagamentos GetTipoPagamento();
-      Orcamento GetOrcamentoAtual();
+      OrcamentoProduto GetOrcamentoAtual();
 
       void SetQuantidade(int Quantidade);
       void SetDadosProduto(Produto DadosProduto);
       void SetDadosCliente(Cliente DadosCliente);
       void SetData(Date Data);
       void SetTipoPagamento(Pagamentos TipoPagamento);
-      void SetOrcamentoAtual(Orcamento OrcamentoAtual);
+      void SetOrcamentoAtual(OrcamentoProduto OrcamentoAtual);
 
-      //void RealizarVenda();
+      void RealizarVenda(Produto ProdutoRequerido);
         //REALIZARVENDA CHAMA VALIDAORCAMENTO
       
   };

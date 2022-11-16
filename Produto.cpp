@@ -3,6 +3,11 @@
 
 using namespace std;
 
+Produto::Produto(){
+    //fazer um "confere nome" na empresa?
+    this->Codigo = GetCodigoAtual();
+    SetCodigoAtual();
+}
 
 void Produto::SetCodigoAtual() {
     this->CodigoAtual++;
@@ -18,6 +23,10 @@ string Produto::GetNome() {
 
 int Produto::GetLoteMinimo() {
     return this->LoteMinimo;
+}
+
+int Produto::GetEstoqueMinimo() {
+    return this->EstoqueMinimo;
 }
 
 int Produto::GetEstoqueAtual() {
@@ -37,7 +46,7 @@ int Produto::GetLoteAtual() {
 }
 
 Lote Produto::GetLote() {
-    return this->Lotes;
+    return *this->Lotes.end();
 }
 
 Categoria Produto::GetCategoria() {
@@ -45,36 +54,35 @@ Categoria Produto::GetCategoria() {
 }
 
 Valor Produto::GetValor() {
-    return this->ValorProduto;
+    return *this->ValorProduto.end();
 }
 
 Producao Produto::GetMateriasPrima() {
-    return this->MateriasPrima;
-}
-
-int Produto::GetQtdMateriaPrima() {
-    return this->QtdMateriaPrima;
-}
-
-void Produto::SetNome(string Nome) {
-    this->Nome = Nome;
+    return *this->MateriasPrima.end();
 }
 
 void Produto::SetLoteMinimo(int LoteMinimo) {
     this->LoteMinimo = LoteMinimo;
 }
 
+void Produto::SetEstoqueMinimo(int EstoqueMinimo) {
+    this->EstoqueMinimo = EstoqueMinimo;
+}
+
 void Produto::SetEstoqueAtual(int EstoqueAtual) {
     this->EstoqueAtual = EstoqueAtual;
 }
 
-void Produto::SetCodigo() {
-    this->Codigo = GetCodigoAtual();
-    SetCodigoAtual();
-}
-
 void Produto::SetLote() {
-    this->Lotes.SetNumero(GetLoteAtual());
+    int Quantidade, Numero = GetLoteAtual();
+    Date DataProducao;
+
+    cout << "Quantos " << Nome << " você deseja produzir? " << endl;
+    cin >> Quantidade;
+
+    Lote NovoLote(Quantidade, DataProducao, Numero);
+
+    this->Lotes.push_back(NovoLote);
     SetLoteAtual();
 }
 
@@ -83,13 +91,15 @@ void Produto::SetCategoria(Categoria CategoriaProduto) {
 }
 
 void Produto::SetValor(Valor ValorProduto) {
-    this->ValorProduto = ValorProduto;
+
+    this->ValorProduto.push_back(ValorProduto);
 }
 
 void Produto::SetMateriasPrima(Producao MateriasPrima) {
-    this->MateriasPrima = MateriasPrima;
+    this->MateriasPrima.push_back(MateriasPrima);
 }
-
+/*
 void Produto::SetQtdMateriaPrima(int QtdMateriaPrima) {
     this->QtdMateriaPrima = QtdMateriaPrima;
 }
+*/

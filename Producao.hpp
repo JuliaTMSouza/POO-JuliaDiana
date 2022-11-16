@@ -8,13 +8,16 @@
   class Producao{
     protected:
       int QuantidadeNecessaria;
+      int EstoqueMinimo;
       MateriaPrima MateriasPrimas;
 
     public:
       int GetQuantidadeNecessaria();
+      int GetEstoqueMinimo();
       MateriaPrima GetMateriasPrimas();
       
-      void SetQuantidadeNecessaria(int QuantidadeNecessaria);
+      void SetQuantidadeNecessaria(string QuantidadeNecessaria);
+      void SetEstoqueMinimo(string EstoqueMinimo);
       void SetMateriasPrimas(MateriaPrima MateriasPrimas);
   };
 
