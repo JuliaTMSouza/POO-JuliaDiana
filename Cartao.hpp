@@ -10,23 +10,21 @@
   class Cartao: public Pagamentos {
     protected:
       Date Validade;
-      int NumeroCartao;
+      char NumeroCartao[16];
       string Nome;
-      int Parcelas; //ENUM
+      int Parcelas;
 
-      //CRIEI ESSA FUNÇÃO
-      bool Validacao(int NumeroCartao);
-      //
+      bool Validacao(char NumeroCartao[16]);
 
     public:
-      int GetNumeroCartao();
+      string GetNumeroCartao();
       Date GetValidade();
       string GetNome();
       int GetParcelas();
 
-      void SetNumeroCartao(int NumeroCartao);
+      void SetNumeroCartao(char NumeroCartao[16]);
       void SetValidade(Date Validade);
-      void SetNome(int Nome);
+      void SetNome(string Nome);
       void SetParcelas(int Parcelas);
   };
 

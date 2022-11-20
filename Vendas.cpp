@@ -2,13 +2,13 @@
 
 using namespace std;
 
-
+/*
 void Vendas::RealizarVenda(Produto ProdutoRequerido){
     string confirma = "";
     //ARRUMAR PARA PEGAR O LOTE ATUAL MAIS O LOTE ANTIGO... PRIMEIRO VER SE TÁ PEGANDO CERTO NÉ
 
     if(this->OrcamentoAtual.GetQuantidade() > this->DadosProduto.GetEstoqueAtual()){
-        cout << "A quantidade requerida ultrapassa o estoque atual. Gostaria de realizar um novo orçamento? ('Confirmar' ou 'Recusar')" << endl;
+        cout << "A quantidade requerida ultrapassa o limite do estoque atual. Gostaria de realizar um novo orçamento? ('Confirmar' ou 'Recusar')" << endl;
         
         cin >> confirma;
 
@@ -37,10 +37,57 @@ void Vendas::RealizarVenda(Produto ProdutoRequerido){
         }
         if(confirma == "Confirmar"){
             cout << "Compra confirmada. Agradecemos a preferência!" << endl;
-            int novoEstoque = this->DadosProduto.GetEstoqueAtual() - this->OrcamentoAtual.GetQuantidade();
+            int novoEstoque = this->OrcamentoAtual.GetQuantidade() - this->DadosProduto.GetEstoqueAtual();
             this->DadosProduto.SetEstoqueAtual(novoEstoque);
 
-            if(novoEstoque < DadosProduto.GetEstoqueMinimo()); //Pedir pra produzir mais
+            if(novoEstoque < DadosProduto.GetEstoqueMinimo()) this->DadosProduto.SolicitarNovoLote(); //Pedir pra produzir mais
+        }
+    }
+
+}
+*/
+
+void Vendas::RealizarVenda(){
+    Produto ProdutoRequerido = this->OrcamentoAtual.GetProdutoOrcado();
+
+    string confirma = "";
+    //ARRUMAR PARA PEGAR O LOTE ATUAL MAIS O LOTE ANTIGO... PRIMEIRO VER SE TÁ PEGANDO CERTO NÉ
+
+    if(this->OrcamentoAtual.GetQuantidade() > this->DadosProduto.GetEstoqueAtual()){
+        cout << "A quantidade requerida ultrapassa o limite do estoque atual. Gostaria de realizar um novo orçamento? ('Confirmar' ou 'Recusar')" << endl;
+        
+        cin >> confirma;
+
+        while(confirma != "Confirmar" || confirma != "Recusar"){
+            cin >> confirma;
+            cout << "Comando nao identificado. Confirmar? ('Confirmar' ou 'Recusar')" << endl;
+        }
+
+        if(confirma == "Confirmar") ProdutoRequerido.SolicitarNovoLote(this->OrcamentoAtual.GetQuantidade());
+        else if(confirma == "Recusar") cout << "Avisaremos quando o estoque for renovado. Continue acessando nossos produtos!" << endl;
+    }
+    else{
+        if(&ProdutoRequerido.GetValor() != &this->OrcamentoAtual.GetProdutoOrcado().GetValor()){
+            cout << "Informamos que o valor do produto foi atualizado desde seu Orçamento. O novo valor é R$"
+                 << ProdutoRequerido.GetValor().GetValor()
+                 << ", totalizando a compra em R$"
+                 << ProdutoRequerido.GetValor().GetValor() * this->OrcamentoAtual.GetQuantidade()
+                 << ".\n Deseja continuar? ('Confirmar' ou 'Recusar')";
+
+            cin >> confirma;
+
+            while(confirma != "Confirmar" || confirma != "Recusar"){
+                cin >> confirma;
+                cout << "Comando nao identificado. Confirmar? ('Confirmar' ou 'Recusar')" << endl;
+            }
+
+        }
+        if(confirma == "Confirmar" || confirma == ""){
+            cout << "Compra confirmada. Agradecemos a preferência!" << endl;
+            int novoEstoque = this->OrcamentoAtual.GetQuantidade() - this->DadosProduto.GetEstoqueAtual();
+            this->DadosProduto.SetEstoqueAtual(novoEstoque);
+
+            if(novoEstoque < DadosProduto.GetEstoqueMinimo()) this->DadosProduto.SolicitarNovoLote(this->DadosProduto.GetEstoqueMinimo()); //Pedir pra produzir mais
         }
     }
 
@@ -62,6 +109,10 @@ Produto Vendas::GetDadosProduto() {
     return this->DadosProduto;
 }
 
+Lote Vendas::GetLotePeriodoVenda(){
+    return this->LotePeriodoVenda;
+}
+
 Pagamentos Vendas::GetTipoPagamento(){
     return this->TipoPagamento;
 }
@@ -76,6 +127,7 @@ void Vendas::SetQuantidade(int Quantidade) {
 
 void Vendas::SetDadosProduto(Produto DadosProduto) {
     this->DadosProduto = DadosProduto;
+    SetLotePeriodoVenda(DadosProduto.GetLote());
 }
 
 void Vendas::SetDadosCliente(Cliente DadosCliente) {

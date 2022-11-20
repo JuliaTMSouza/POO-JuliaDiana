@@ -3,6 +3,7 @@
 
   #include <string>
   #include <stdbool.h>
+  #include <list>
 
   #include "Departamento.hpp"
   #include "Cargo.hpp"
@@ -12,36 +13,37 @@
   #include "Estoque.hpp"
   #include "Produto.hpp"
   #include "Vendas.hpp"
+  #include "OrcamentoMaterial.hpp"
 
   using namespace std;
 
   class Empresa {
     private:
       Empresa();
-      static bool EmpresaCriada = false;
+      /*static*/ bool EmpresaCriada = false;
 
     protected:
-      Departamento Departamentos;
-      Cargo Cargos;
-      Funcionario Funcionarios;
-      Cliente Clientes;
-      Categoria Categorias;
-      Estoque Estoques;
-      Produto Produtos;
-      Vendas ListaVendas;
-      
+      list<Departamento> Departamentos;
+      list<Cargo> Cargos;
+      list<Funcionario> Funcionarios;
+      list<Cliente> Clientes;
+      list<Categoria> Categorias;
+      list<Estoque> Estoques;
+      list<Produto> Produtos;
+      list<Vendas> listaVendas;
+      list<OrcamentoMaterial> Compras; //colocar informações de compras de materiais
 
     public:
       bool ConfereEmpresa();
 
-      Departamento GetDepartamentos();
-      Cargo GetCargos();
-      Funcionario GetFuncionarios();
-      Cliente GetClientes();
-      Categoria GetCategorias();
-      Estoque GetEstoques();
-      Produto GetProdutos();
-      Vendas GetVendas();
+      list<Departamento> GetDepartamentos();
+      list<Cargo> GetCargos();
+      list<Funcionario> GetFuncionarios();
+      list<Cliente> GetClientes();
+      list<Categoria> GetCategorias();
+      list<Estoque> GetEstoques();
+      list<Produto> GetProdutos();
+      list<Vendas> GetVendas();
 
       void SetDepartamentos(Departamento Departamentos);
       void SetCargos(Cargo Cargos);
@@ -50,7 +52,8 @@
       void SetCategorias(Categoria Categorias);
       void SetEstoques(Estoque Estoques);
       void SetProdutos(Produto Produtos);
-      void SetVendas(Vendas NovaVenda);     
+      void SetVendas(Vendas NovaVenda);
+      void SetCompras(OrcamentoMaterial Compras);
   };
 
 #endif

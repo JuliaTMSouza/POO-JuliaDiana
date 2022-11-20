@@ -2,7 +2,6 @@
 #define LOTE_H
 
   #include "Date.hpp"
-  #include "Produto.hpp"
 
   using namespace std;
 
@@ -10,20 +9,20 @@
     protected:
       int Quantidade;
       Date DataProducao;
-      int Numero;
+      int NumeroLote;
 
     public:
-      Lote(int Quantidade, Date DataProducao, int Numero);
+      Lote();
+      Lote(int Quantidade, Date DataProducao, int NumeroLote);
 
       int GetQuantidade();
       Date GetDataProducao();
-      int GetNumero();
+      int GetNumeroLote();
 /*
       void SetQuantidade(int Quantidade);
       void SetDataProducao(Date DataProducao);
-      void SetNumero(Produto DefineProduto);
+      void SetNumeroLote(Produto DefineProduto);
 */
-      void SolicitarNovoLote(); //ACHO Q N PRECISA MAIS DISSO TB
-  };
+};
 
 #endif

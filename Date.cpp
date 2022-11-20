@@ -21,7 +21,7 @@ int monthToDays(int month){
            month > 7 ? 31 - (month % 2) : 31;
 }
 
-void Data::ticksToDate() {
+void Date::ticksToDate() {
     //Inicializa as datas
     this->ano = 1970;
     this->mes = 0;
@@ -65,7 +65,7 @@ void Data::ticksToDate() {
 
 
 }
-void Data::dateToTicks() {
+void Date::dateToTicks() {
     this->ticks = 0;
     for (int currentYear = 1970; currentYear < this->ano; currentYear++) {
         this->ticks += YEAR_TO_SECONDS;
@@ -88,7 +88,7 @@ void Data::dateToTicks() {
 
 //Construtores:
 
-Data::Data()
+Date::Date()
 {
     ano= 1970;
     mes= 1;
@@ -100,7 +100,7 @@ Data::Data()
     validaData();
 }
 
-Data::Data(Formato valFormato)
+Date::Date(Formato valFormato)
 {
     ano= 1970;
     mes= 1;
@@ -113,7 +113,7 @@ Data::Data(Formato valFormato)
     validaData();
 }
 
-Data::Data(int valAno, int valMes, int valDia, int valHora, int valMin, int valSeg)
+Date::Date(int valAno, int valMes, int valDia, int valHora, int valMin, int valSeg)
 {
     ano= valAno;
     mes= valMes;
@@ -125,7 +125,7 @@ Data::Data(int valAno, int valMes, int valDia, int valHora, int valMin, int valS
     validaData();
 }
 
-Data::Data(long valTicks)
+Date::Date(long valTicks)
 {
     ticks= valTicks;
     ticksToDate();
@@ -133,17 +133,17 @@ Data::Data(long valTicks)
 }
 
 //Destrutor:
-Data::~Data(){}
+Date::~Date(){}
 
 //Operadores:
 
-bool Data::operator==(Data &d2)
+bool Date::operator==(Date &d2)
 {
 	return ((ano == d2.ano)&&(mes == d2.mes)&&(dia == d2.dia)&&(hora == d2.hora)&&
            (minuto == d2.minuto)&&(segundo == d2.segundo)||(ticks == d2.ticks));
 }
 
-bool Data::operator<(Data &d2)
+bool Date::operator<(Date &d2)
 {
 	return ((ano<d2.ano)||(ano==d2.ano && mes<d2.mes)||(ano==d2.ano && mes==d2.mes && dia<d2.dia)||
            (ano==d2.ano && mes==d2.mes && dia==d2.dia && hora<d2.hora)||(ano==d2.ano && mes==d2.mes&&
@@ -151,7 +151,7 @@ bool Data::operator<(Data &d2)
            hora==d2.hora && minuto==d2.minuto && segundo<d2.segundo));
 }
 
-bool Data::operator>(Data &d2)
+bool Date::operator>(Date &d2)
 {
     return !((ano<d2.ano)||(ano==d2.ano && mes<d2.mes)||(ano==d2.ano && mes==d2.mes && dia<d2.dia)||
 	       (ano==d2.ano && mes==d2.mes && dia==d2.dia && hora<d2.hora)||(ano==d2.ano && mes==d2.mes&&
@@ -159,9 +159,9 @@ bool Data::operator>(Data &d2)
            hora==d2.hora && minuto==d2.minuto && segundo<d2.segundo));
 }
 
-Data Data::operator-(Data &d2)
+Date Date::operator-(Date &d2)
 {
-    Data aux(ticks-d2.getTicks());
+    Date aux(ticks-d2.getTicks());
     if (ticks<d2.getTicks()) {        //Tratamento de excecao se for tentada uma subtracao impossivel
         char message[100] = "Erro: Resultado eh data negativa, inverta parametros";
         throw ExecaoCustomizada(message);
@@ -172,105 +172,105 @@ Data Data::operator-(Data &d2)
 
 //Metodos get:
 
-int Data::getAno()
+int Date::getAno()
 {
     return ano;
 }
 
-int Data::getMes()
+int Date::getMes()
 {
     return mes;
 }
 
-int Data::getDia()
+int Date::getDia()
 {
     return dia;
 }
 
-int Data::getHora()
+int Date::getHora()
 {
     return hora;
 }
 
-int Data::getMin()
+int Date::getMin()
 {
     return minuto;
 }
 
-int Data::getSeg()
+int Date::getSeg()
 {
     return segundo;
 }
 
-long Data::getTicks()
+long Date::getTicks()
 {
     return ticks;
 }
 
-string Data::getFormato()
+string Date::getFormato()
 {
     return formatoData.getNome();
 }
 
 //Metodos set:
 
-void Data::setAno(int valAno)
+void Date::setAno(int valAno)
 {
     ano= valAno;
     dateToTicks();
     validaData();
 }
 
-void Data::setMes(int valMes)
+void Date::setMes(int valMes)
 {
     mes= valMes;
     dateToTicks();
     validaData();
 }
 
-void Data::setDia(int valDia)
+void Date::setDia(int valDia)
 {
     dia= valDia;
     dateToTicks();
     validaData();
 }
 
-void Data::setHora(int valHora)
+void Date::setHora(int valHora)
 {
     hora= valHora;
     dateToTicks();
     validaData();
 }
 
-void Data::setMin(int valMin)
+void Date::setMin(int valMin)
 {
     minuto= valMin;
     dateToTicks();
     validaData();
 }
 
-void Data::setSeg(int valSeg)
+void Date::setSeg(int valSeg)
 {
     segundo= valSeg;
     dateToTicks();
     validaData();
 }
 
-void Data::setTicks(long valTicks)
+void Date::setTicks(long valTicks)
 {
     ticks= valTicks;
     ticksToDate();
     validaData();
 }
 
-void Data::setFormato(Formato valFormato)
+void Date::setFormato(Formato valFormato)
 {
     formatoData= valFormato;
 }
 
 //Outros metodos:
 
-bool Data::validaData()
+bool Date::validaData()
 {
     int condicao= 1;
     if ((segundo<0)||(minuto<0)||(hora<0)||(dia<0)||(mes<0)||(ano<1970))
@@ -291,22 +291,22 @@ bool Data::validaData()
         if ((mes==2)&&(dia>28))
             condicao= 0;
     }
-    if (condicao==0) { 
+    if (condicao==0) {
         char message[100] = "Data inválida.";
         throw ExecaoCustomizada(message);
     }
     return (condicao==1);
 }
 
-Data Data::dateNow()
+Date Date::dateNow()
 {
     time_t tempo= time(NULL);
     double a= double(tempo);
-    Data aux(tempo);
+    Date aux(tempo);
     return aux;
 }
 
-void Data::printData()
+void Date::printData()
 {
     if (strcmp(formatoData.getNome().c_str(),"PT-BR")==0)
     {
@@ -324,7 +324,7 @@ void Data::printData()
     }
 }
 
-string Data::getData() {
+string Date::getData() {
   string data = "";
    if (strcmp(formatoData.getNome().c_str(),"PT-BR")==0)
     {
@@ -342,7 +342,7 @@ string Data::getData() {
   return data;
 }
 
-int Data::diffData(Data d2) {
+int Date::diffData(Date d2) {
   int diff = ticks - d2.getTicks();
   return diff / 60 / 60 / 24;
 }

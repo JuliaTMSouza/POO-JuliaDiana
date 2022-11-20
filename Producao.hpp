@@ -7,16 +7,16 @@
 
   class Producao{
     protected:
-      int QuantidadeNecessaria;
+      //int QuantidadeNecessaria;
       int EstoqueMinimo;
-      MateriaPrima MateriasPrimas;
+      list<MateriaPrima> MateriasPrimas;
 
     public:
-      int GetQuantidadeNecessaria();
+      //int GetQuantidadeNecessaria();
       int GetEstoqueMinimo();
-      MateriaPrima GetMateriasPrimas();
+      list<MateriaPrima> GetMateriasPrimas();
       
-      void SetQuantidadeNecessaria(string QuantidadeNecessaria);
+      //void SetQuantidadeNecessaria(string QuantidadeNecessaria);
       void SetEstoqueMinimo(string EstoqueMinimo);
       void SetMateriasPrimas(MateriaPrima MateriasPrimas);
   };

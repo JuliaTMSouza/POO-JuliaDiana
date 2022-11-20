@@ -6,7 +6,7 @@
   #include "Produto.hpp"
   #include "Valor.hpp"
   #include "Date.hpp"
-  #include "Vendas.hpp"
+  //#include "Vendas.hpp"
 
   using namespace std;
 
@@ -14,7 +14,7 @@
     protected:
       Produto ProdutoOrcado;
       float ValorTotal;
-      Vendas novaVenda; 
+      //Vendas novaVenda; 
 
     public:
       OrcamentoProduto(Produto ProdutoOrcado, int Quantidade, Date Data);

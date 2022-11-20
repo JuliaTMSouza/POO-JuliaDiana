@@ -8,70 +8,73 @@ bool Empresa::ConfereEmpresa(){
 
 Empresa::Empresa(){
     bool isEmpresa = ConfereEmpresa();
-    if (!isEmpresa)  return this->EmpresaCriada = true;
+    if (!isEmpresa)  this->EmpresaCriada = true;
 }
 
-Departamento Empresa::GetDepartamentos() {
+list<Departamento> Empresa::GetDepartamentos() {
     return this->Departamentos;
 }
 
-Cargo Empresa::GetCargos() {
+list<Cargo> Empresa::GetCargos() {
     return this->Cargos;
 }
 
-Funcionario Empresa::GetFuncionarios() {
+list<Funcionario> Empresa::GetFuncionarios() {
     return this->Funcionarios;
 }
 
-Cliente Empresa::GetClientes() {
+list<Cliente> Empresa::GetClientes() {
     return this->Clientes;
 }
 
-Categoria Empresa::GetCategorias() {
+list<Categoria> Empresa::GetCategorias() {
     return this->Categorias;
 }
 
-Estoque Empresa::GetEstoques() {
+list<Estoque> Empresa::GetEstoques() {
     return this->Estoques;
 }
 
-Produto Empresa::GetProdutos() {
+list<Produto> Empresa::GetProdutos() {
     return this->Produtos;
 }
 
-Vendas Empresa::GetVendas() {
-    return this->ListaVendas;
+list<Vendas> Empresa::GetVendas() {
+    return this->listaVendas;
 }
 
 void Empresa::SetDepartamentos(Departamento Departamentos) {
-    this->Departamentos = Departamentos;
+    this->Departamentos.push_back(Departamentos);
 }
 
 void Empresa::SetCargos(Cargo Cargos) {
-    this->Cargos = Cargos;
+    this->Cargos.push_back(Cargos);
 }
 
 void Empresa::SetFuncionarios(Funcionario Funcionarios) {
-    this->Funcionarios = Funcionarios;
+    this->Funcionarios.push_back(Funcionarios);
 }
 
 void Empresa::SetClientes(Cliente Clientes) {
-    this->Clientes = Clientes;
+    this->Clientes.push_back(Clientes);
 }
 
 void Empresa::SetCategorias(Categoria Categorias) {
-    this->Categorias = Categorias;
+    this->Categorias.push_back(Categorias);
 }
 
 void Empresa::SetEstoques(Estoque Estoques) {
-    this->Estoques = Estoques;
+    this->Estoques.push_back(Estoques);
 }
 
 void Empresa::SetProdutos(Produto Produtos) {
-    this->Produtos = Produtos;
+    this->Produtos.push_back(Produtos);
 }
 
 void Empresa::SetVendas(Vendas NovaVenda) {
-    this->ListaVendas = NovaVenda;
+    this->listaVendas.push_back(NovaVenda);
 }
 
+void Empresa::SetCompras(OrcamentoMaterial Compras){
+    this->Compras.push_back(Compras);
+}

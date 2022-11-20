@@ -4,10 +4,14 @@
 
 using namespace std;
 
-Lote::Lote(int Quantidade, Date DataProducao, int Numero){
+Lote::Lote(){
+
+}
+
+Lote::Lote(int Quantidade, Date DataProducao, int NumeroLote){
     this->Quantidade = Quantidade;
     this->DataProducao = DataProducao;
-    this->Numero = Numero;//DefineProduto.GetLoteAtual();
+    this->NumeroLote = NumeroLote;//DefineProduto.GetLoteAtual();
     //DefineProduto.SetLoteAtual();
 }
 
@@ -19,8 +23,8 @@ Date Lote::GetDataProducao() {
     return this->DataProducao;
 }
 
-int Lote::GetNumero() {
-    return this->Numero;
+int Lote::GetNumeroLote() {
+    return this->NumeroLote;
 }
 
 /*
@@ -32,12 +36,8 @@ void Lote::SetDataProducao(Date DataProducao) {
     this->DataProducao = DataProducao;
 }
 
-void Lote::SetNumero(Produto DefineProduto) {
-    this->Numero = DefineProduto.GetLoteAtual();
+void Lote::SetNumeroLote(Produto DefineProduto) {
+    this->NumeroLote = DefineProduto.GetLoteAtual();
     DefineProduto.SetLoteAtual();
 }
 */
-
-void SolicitarNovoLote(){
-    //Montar solicitação
-}

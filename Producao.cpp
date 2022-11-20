@@ -2,28 +2,17 @@
 #include <sstream>
 
 using namespace std;
-
+/*
 int Producao::GetQuantidadeNecessaria() {
     return this->QuantidadeNecessaria;
 }
-
+*/
 int Producao::GetEstoqueMinimo() {
     return this->EstoqueMinimo;
 }
 
-MateriaPrima Producao::GetMateriasPrimas() {
+list<MateriaPrima> Producao::GetMateriasPrimas() {
     return this->MateriasPrimas;
-}
-
-void Producao::SetQuantidadeNecessaria(string QuantidadeNecessaria) {
-    
-    string valorQtd, medidaQtd;
-
-    istringstream quantidade { QuantidadeNecessaria };
-    getline(quantidade, valorQtd, ' ');
-    getline(quantidade, medidaQtd, ' ');
-    
-    if(medidaQtd == "cm" || medidaQtd == "g" || medidaQtd == "unidades") this->QuantidadeNecessaria = stoi (valorQtd);
 }
 
 void Producao::SetEstoqueMinimo(string EstoqueMinimo) {
@@ -41,5 +30,5 @@ void Producao::SetEstoqueMinimo(string EstoqueMinimo) {
 }
 
 void Producao::SetMateriasPrimas(MateriaPrima MateriasPrimas) {
-    this->MateriasPrimas = MateriasPrimas;
+    this->MateriasPrimas.push_back(MateriasPrimas);
 }

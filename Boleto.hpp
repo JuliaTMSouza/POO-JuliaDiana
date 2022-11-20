@@ -3,6 +3,7 @@
 
   #include "Pagamentos.hpp"
   #include <string>
+  #include <iostream>
   #include "Date.hpp"
 
   using namespace std;
@@ -10,10 +11,8 @@
   class Boleto: public Pagamentos {
     protected:
       Date Vencimento;
-      int Prazo; //ENUM
+      int Prazo;
       string Nome;
-
-      //CONFERE SE TEM MATERIA PRIMA ()
 
     public:
       int GetPrazo();

@@ -3,17 +3,23 @@
 
   #include "Pessoa.hpp"
   #include "MateriaPrima.hpp"
+  #include "Valor.hpp"
 
   using namespace std;
 
   class Fornecedor : public Pessoa{
     protected:
-      MateriaPrima MateriasPrima;
+      list <MateriaPrima> MateriasPrima; //isso aqui deveria ser um list tb
+      list <Valor> PrecoMateriais;
 
     public:
-      MateriaPrima GetMateriasPrima();
+      float RequerirOrcamento(string Material, int Quantidade); //montar a função q retorna o preço total q ficaria o produto
+
+      list <MateriaPrima> GetMateriasPrima();
+      list <Valor> GetPrecoMateriais();
       
-      void SetMateriasPrima(MateriaPrima MateriasPrima);
+      void SetMateriasPrima(list <MateriaPrima> MateriasPrima);
+      void SetPrecoMateriais(list <Valor> PrecoMateriais);
   };
 
 #endif

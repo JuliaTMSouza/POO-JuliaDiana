@@ -2,33 +2,36 @@
 #define MATERIAPRIMA_H
 
   #include <string>
-  #include "OrcamentoMaterial.hpp"
-  #include "Estoque.hpp"
+  #include <list>
   #include "Lote.hpp"
 
   using namespace std;
 
   class MateriaPrima {
+    private:
+      static int LoteAtual;
+
     protected:
       string Nome;
-      Estoque EstoqueAtual;
-      OrcamentoMaterial DadosOrcamento;
-      Lote LoteAtual;
-      string Medida;
-
-      //void ValidaOrcamento();
+      int EstoqueAtual = 0;
+      int EstoqueMinimo;
+      list<Lote> LoteAtual;
+      float Medida;
+      string UnidadeMedida;
+      
+      void SetLoteAtual(Lote LoteAtual);
 
     public:
       string GetNome();
       Lote GetLoteAtual();
-      OrcamentoMaterial GetDadosOrcamento();
-      Estoque GetEstoqueAtual();
-      string GetMedida();
+      int GetEstoqueAtual();
+      int GetEstoqueMinimo();
+      int GetMedida();
+      string GetUnidadeMedida();
 
       void SetNome(string Nome);
-      void SetLoteAtual(Lote LoteAtual);
-      void SetDadosOrcamento(OrcamentoMaterial DadosOrcamento);
-      void SetEstoqueAtual(Estoque EstoqueAtual);
+      void SetEstoqueAtual(int EstoqueAtual);
+      void SetEstoqueMinimo(int EstoqueMinimo);
       void SetMedida(string Medida);
 
   };
