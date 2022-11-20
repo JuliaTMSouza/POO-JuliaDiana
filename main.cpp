@@ -27,7 +27,7 @@ int main()
     // Jorge.SetEmail("jorge@gmail.com.br");
     // Jorge.SetMatricula("JorgeLima");
     // Jorge.SetEndereco("Rua entre as árvores, 47");
-    Jorge.SetCPF_CNPJ("11111111111", 1);
+    Jorge.SetCPF_CNPJ("18.824.856/0001-47", 0);
     // cout << Jorge.GetNome() << endl;
     // cout << Jorge.GetEmail() << endl;
     // cout << Jorge.GetMatricula() << endl;
