@@ -13,14 +13,14 @@
   #include "Estoque.hpp"
   #include "Produto.hpp"
   #include "Vendas.hpp"
-  #include "OrcamentoMaterial.hpp"
+  #include "Orcamento.hpp"
 
   using namespace std;
 
   class Empresa {
     private:
       Empresa();
-      static bool EmpresaCriada = false;
+      static bool EmpresaCriada;
 
     protected:
       list<Departamento> Departamentos;
@@ -31,7 +31,7 @@
       list<Estoque> Estoques;
       list<Produto> Produtos;
       list<Vendas> listaVendas;
-      list<OrcamentoMaterial> Compras; //colocar informações de compras de materiais
+      list<Orcamento> Compras; //colocar informações de compras de materiais?
 
     public:
       bool ConfereEmpresa();
@@ -53,7 +53,7 @@
       void SetEstoques(Estoque Estoques);
       void SetProdutos(Produto Produtos);
       void SetVendas(Vendas NovaVenda);
-      void SetCompras(OrcamentoMaterial Compras);
+      void SetCompras(Orcamento Compras);
   };
 
 #endif

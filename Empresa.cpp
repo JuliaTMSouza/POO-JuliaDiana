@@ -2,13 +2,14 @@
 
 using namespace std;
 
+bool Empresa::EmpresaCriada = false;
+
 bool Empresa::ConfereEmpresa(){
     return this->EmpresaCriada;
 }
 
 Empresa::Empresa(){
-    bool isEmpresa = ConfereEmpresa();
-    if (!isEmpresa)  this->EmpresaCriada = true;
+    if (!ConfereEmpresa()) Empresa::EmpresaCriada = true;
 }
 
 list<Departamento> Empresa::GetDepartamentos() {
@@ -75,6 +76,6 @@ void Empresa::SetVendas(Vendas NovaVenda) {
     this->listaVendas.push_back(NovaVenda);
 }
 
-void Empresa::SetCompras(OrcamentoMaterial Compras){
+void Empresa::SetCompras(Orcamento Compras){
     this->Compras.push_back(Compras);
 }
