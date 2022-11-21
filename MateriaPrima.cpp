@@ -3,6 +3,9 @@
 
 using namespace std;
 
+MateriaPrima::MateriaPrima(){
+    this->LoteAtual = 0;
+}
 string MateriaPrima::GetNome() {
     return this->Nome;
 }
@@ -15,8 +18,8 @@ int MateriaPrima::GetEstoqueMinimo() {
     return this->EstoqueMinimo;
 }
 
-Lote MateriaPrima::GetLoteAtual() {
-    return this->LoteAtual;
+list<Lote> MateriaPrima::GetLotes() {
+    return this->Lotes;
 }
 
 int MateriaPrima::GetMedida(){
@@ -27,12 +30,23 @@ string MateriaPrima::GetUnidadeMedida(){
     return this->UnidadeMedida;
 }
 
+int MateriaPrima::GetLoteAtual(){
+    return this->LoteAtual;
+}
+
+void MateriaPrima::SetLoteAtual(){
+    this->LoteAtual++;
+}
+
 void MateriaPrima::SetNome(string Nome) {
     this->Nome = Nome;
 }
 
-void MateriaPrima::SetLoteAtual(Lote LoteAtual) {
-    this->LoteAtual = LoteAtual;
+void MateriaPrima::SetLotes(int Quantidade, Date DataProducao){
+    SetLoteAtual();
+    
+    Lote NovoLote(Quantidade+this->EstoqueMinimo, DataProducao, GetLoteAtual());
+    this->Lotes.push_back(NovoLote);
 }
 
 void MateriaPrima::SetEstoqueAtual(int EstoqueAtual) {

@@ -4,13 +4,15 @@
 using namespace std;
 
 
+int Produto::CodigoAtual = 0;
+
 Produto::Produto(){
-    //fazer um "confere nome" na empresa?
-    this->Codigo = GetCodigoAtual();
+    //fazer um "confere nomeProduto" na empresa?
     SetCodigoAtual();
+    this->Codigo = GetCodigoAtual();
 }
 
-void Produto::SolicitarNovoLote(int Quantidade){
+void Produto::SolicitarNovoLote(int Quantidade, Date Data){
 
     int Validado = 0;
     if (Quantidade < this->GetEstoqueMinimo()) Quantidade = this->GetEstoqueMinimo();
@@ -23,6 +25,7 @@ void Produto::SolicitarNovoLote(int Quantidade){
     if(Validado = 0){
         //novo lote produzido, então tira os materiais necessarios da quantidade armazenada
         SetEstoqueAtual(Quantidade);
+        SetLote(Quantidade, Data);
         for (list<MateriaPrima>::iterator positMateria = this->MateriasPrima.begin(); positMateria != this->MateriasPrima.end(); positMateria++){
             positMateria->SetEstoqueAtual(positMateria->GetEstoqueMinimo()*Quantidade);
         }
@@ -70,15 +73,15 @@ void Produto::SolicitarMateriais(int Quantidade){
 }
 
 void Produto::SetCodigoAtual() {
-    this->CodigoAtual++;
+    Produto::CodigoAtual++;
 }
 
 void Produto::SetLoteAtual() {
     this->LoteAtual++;
 }
 
-string Produto::GetNome() {
-    return this->Nome;
+string Produto::GetNomeProduto() {
+    return this->NomeProduto;
 }
 
 int Produto::GetLoteMinimo() {
@@ -94,7 +97,7 @@ int Produto::GetEstoqueAtual() {
 }
 
 int Produto::GetCodigo() {
-    return this->Codigo;
+    return this->Produto::CodigoAtual;
 }
 
 int Produto::GetCodigoAtual() {
@@ -106,7 +109,7 @@ int Produto::GetLoteAtual() {
 }
 
 Lote Produto::GetLote() {
-    return *this->Lotes.end();
+    return *this->Lotes.begin();
 }
 
 Categoria Produto::GetCategoria() {
@@ -121,6 +124,10 @@ list <MateriaPrima> Produto::GetMateriasPrima() {
     return this->MateriasPrima;
 }
 
+void Produto::SetNomeProduto(string NomeProduto) {
+    this->NomeProduto = NomeProduto;
+}
+
 void Produto::SetLoteMinimo(int LoteMinimo) {
     this->LoteMinimo = LoteMinimo;
 }
@@ -133,20 +140,16 @@ void Produto::SetEstoqueAtual(int EstoqueAtual) {
     this->EstoqueAtual += EstoqueAtual;
 }
 
-void Produto::SetLote() {
-    int Quantidade, Numero = GetLoteAtual();
-    Date DataProducao;
-
-    cout << "Quantos " << Nome << " você deseja produzir? Deve ser maior ou igual a " << LoteMinimo << endl;
-
-    cin >> Quantidade;
-
-    if(Quantidade > LoteMinimo){
-        Lote NovoLote(Quantidade, DataProducao, Numero);
-        this->Lotes.push_back(NovoLote);
-        SetLoteAtual();
-    } 
-    else cout << "Valor inválido." << endl;
+void Produto::SetLote(int Quantidade, Date Data) {
+    SetLoteAtual();
+    cout << "entrou\n" << GetLoteAtual() << " " << Quantidade << endl;
+    Lote NovoLote(Quantidade, Data, GetLoteAtual());
+    cout << "numero interno: " << NovoLote.GetNumeroLote() << endl;
+    /*this->*/Lotes.push_back(NovoLote);
+    list<Lote>::iterator positLoteAtual = this->Lotes.end()--;
+    cout << "fim: " << this->LoteAtual << endl;
+    cout << "ainda dentro:  " << Lotes.begin()->GetNumeroLote() << endl;
+    cout << "ainda dentroII:  " << positLoteAtual->GetNumeroLote() << endl;
 }
 
 void Produto::SetCategoria(Categoria CategoriaProduto) {
@@ -161,8 +164,3 @@ void Produto::SetValor(Valor ValorProduto) {
 void Produto::SetMateriasPrima(MateriaPrima MateriasPrima) {
     this->MateriasPrima.push_back(MateriasPrima);
 }
-/*
-void Produto::SetQtdMateriaPrima(int QtdMateriaPrima) {
-    this->QtdMateriaPrima = QtdMateriaPrima;
-}
-*/

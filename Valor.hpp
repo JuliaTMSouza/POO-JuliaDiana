@@ -10,6 +10,9 @@
       Date Data;
 
     public:
+      Valor();
+      Valor(float ValorProduto, Date Data);
+
       float GetValor();
       Date GetData();
       

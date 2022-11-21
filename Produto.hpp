@@ -8,19 +8,19 @@
   #include "Categoria.hpp"
   #include "Lote.hpp"
   #include "Valor.hpp"
-  #include "Producao.hpp"
   #include "MateriaPrima.hpp"
   #include "Fornecedor.hpp"
+  #include "Date.hpp"
 
   using namespace std;
 
   class Produto {
     private:
       static int CodigoAtual;
-      static int LoteAtual;
+      int LoteAtual = 0;
 
     protected:
-      string Nome;
+      string NomeProduto;
       int LoteMinimo;
       int EstoqueAtual = 0;
       int EstoqueMinimo;
@@ -38,10 +38,10 @@
     public:
 
       Produto();
-      void SolicitarNovoLote(int Quantidade); //CRIAR
+      void SolicitarNovoLote(int Quantidade, Date Data); //CRIAR
       void SolicitarMateriais(int Quantidade); //CRIAR
       
-      string GetNome();
+      string GetNomeProduto();
       int GetLoteMinimo();
       int GetEstoqueAtual();
       int GetEstoqueMinimo();
@@ -52,19 +52,17 @@
       Categoria GetCategoria();
       Valor GetValor();
       list <MateriaPrima> GetMateriasPrima();
-      //int GetQtdMateriaPrima();
 
-      void SetNome(string Nome);
+      void SetNomeProduto(string NomeProduto);
       void SetLoteMinimo(int LoteMinimo);
       void SetEstoqueAtual(int EstoqueAtual);
       void SetEstoqueMinimo(int EstoqueMinimo);
-      //void SetCodigo();
-      void SetLote();
+      void SetLote(int Quantidade, Date Data);
       void SetCategoria(Categoria CategoriaProduto);
       void SetValor(Valor ValorProduto);
       void SetMateriasPrima(MateriaPrima MateriasPrima);
-      //void SetQtdMateriaPrima(int QtdMateriaPrima);
 
   };
+  
 
 #endif

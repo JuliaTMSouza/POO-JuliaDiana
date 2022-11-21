@@ -13,6 +13,8 @@
       list <Valor> PrecoMateriais;
 
     public:
+      Fornecedor();
+      
       float RequerirOrcamento(string Material, int Quantidade); //montar a função q retorna o preço total q ficaria o produto
 
       list <MateriaPrima> GetMateriasPrima();
