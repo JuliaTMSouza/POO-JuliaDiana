@@ -2,7 +2,9 @@
 #define MATERIAPRIMA_H
 
   #include <string>
+  #include <string.h>
   #include <list>
+  #include <iostream>
   #include "Lote.hpp"
   #include "Date.hpp"
 

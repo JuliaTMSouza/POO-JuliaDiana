@@ -2,11 +2,12 @@
 #define VENDAS_H
 
   #include <string>
+  
   #include "Cliente.hpp"
   #include "Date.hpp"
   #include "Produto.hpp"
   #include "Pagamentos.hpp"
-  #include "OrcamentoProduto.hpp"
+  #include "Orcamento.hpp"
   #include "Lote.hpp"
 
   using namespace std;
@@ -19,7 +20,7 @@
       Produto DadosProduto;
       Lote LotePeriodoVenda;
       Pagamentos TipoPagamento;
-      OrcamentoProduto OrcamentoAtual;
+      Orcamento OrcamentoAtual;
 
       //void ValidaOrcamento();
 
@@ -31,7 +32,7 @@
       Cliente GetDadosCliente();
       Date GetData();
       Pagamentos GetTipoPagamento();
-      OrcamentoProduto GetOrcamentoAtual();
+      Orcamento GetOrcamentoAtual();
 
       void SetQuantidade(int Quantidade);
       void SetDadosProduto(Produto DadosProduto);
@@ -39,10 +40,10 @@
       void SetDadosCliente(Cliente DadosCliente);
       void SetData(Date Data);
       void SetTipoPagamento(Pagamentos TipoPagamento);
-      void SetOrcamentoAtual(OrcamentoProduto OrcamentoAtual);
+      void SetOrcamentoAtual(Orcamento OrcamentoAtual);
 
       //void RealizarVenda(Produto ProdutoRequerido); //Considerar colocar o orçamento aqui, ao invés do produto... dentro do orçamento já tem o prod.
-      void RealizarVenda();
+      void RealizarVenda(Date Data);
         //REALIZARVENDA CHAMA VALIDAORCAMENTO
       
   };

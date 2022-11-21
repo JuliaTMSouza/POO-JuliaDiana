@@ -15,7 +15,7 @@ string Boleto::GetNome() {
 }
 
 void Boleto::SetPrazo(int Prazo) {
-    if(Prazo != 30 || Prazo != 60 || Prazo != 90) cout << "Prazo inválido";// Dá pra resolver isso logo na entrada tb
+    if(!(Prazo == 30 || Prazo == 60 || Prazo == 90)) cout << "Prazo invalido\n";// Dá pra resolver isso logo na entrada tb
     //quando for chamar a fuanção na main só por um switch case
     this->Prazo = Prazo;
 }

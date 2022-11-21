@@ -15,23 +15,36 @@ Produto::Produto(){
 void Produto::SolicitarNovoLote(int Quantidade, Date Data){
 
     int Validado = 0;
-    if (Quantidade < this->GetEstoqueMinimo()) Quantidade = this->GetEstoqueMinimo();
+    //if (Quantidade < this->GetEstoqueMinimo()) Quantidade = this->GetEstoqueMinimo();
 
     for (list<MateriaPrima>::iterator positMateria = this->MateriasPrima.begin(); positMateria != this->MateriasPrima.end(); positMateria++){
         //comparar se os materiais q ainda tem são suficientes pra produzir
+        /*cout << positMateria->GetNome() //<< " " << positMateria->GetEstoqueMinimo() 
+        << " " << positMateria->GetEstoqueMinimo()*Quantidade
+        << " " <<  positMateria->GetEstoqueAtual() << endl;*/
         if(positMateria->GetEstoqueMinimo()*Quantidade > positMateria->GetEstoqueAtual()) Validado = 1;
     }
-
-    if(Validado = 0){
+    //cout << "validando: " << Validado << endl;
+    if(Validado == 0){
         //novo lote produzido, então tira os materiais necessarios da quantidade armazenada
         SetEstoqueAtual(Quantidade);
+        //cout << "setou ";
         SetLote(Quantidade, Data);
         for (list<MateriaPrima>::iterator positMateria = this->MateriasPrima.begin(); positMateria != this->MateriasPrima.end(); positMateria++){
-            positMateria->SetEstoqueAtual(positMateria->GetEstoqueMinimo()*Quantidade);
+            //cout << positMateria->GetNome() << "\nantes: " << positMateria->GetEstoqueAtual();
+            positMateria->SetEstoqueAtual(-(positMateria->GetEstoqueMinimo()*Quantidade));
+            //cout << " depois: " << positMateria->GetEstoqueAtual() << endl;
+            if(positMateria->GetEstoqueAtual() < positMateria->GetEstoqueMinimo()){
+                SolicitarMateriais(this->GetEstoqueMinimo());
+                break;
+            }
         }
+        //cout << "entrou 1\n";
     }
     else{
         SolicitarMateriais(Quantidade);
+        SolicitarNovoLote(Quantidade, Data);
+        //cout << "entrou 2\n";
     }
 
     //Puxa daqui sapoha
@@ -44,6 +57,8 @@ void Produto::SolicitarNovoLote(int Quantidade, Date Data){
 }
     
 void Produto::SolicitarMateriais(int Quantidade){
+    //cout << "\nNOVA ETAPA: \n\n";
+    //cout << "quant. " << Quantidade << endl;
     list<float> Orcamentos;
     list<Fornecedor>::iterator positFornecedor = this->Fornecedores.begin();
     float precos;
@@ -68,8 +83,14 @@ void Produto::SolicitarMateriais(int Quantidade){
         positFornecedor++;
     }
 
-    
+    //cout << "preco ." << precos << ".";
     //Teoricamente agr ele compara os preços e solicita. Mas oq fazer com essa informação? Armazena em Empresa que foi comprado x coisas com y valor?
+    //ESSA PARTE A FRENTE PROVAVELMENTE IRIA PRO LUGAR EM Q OS GASTOS FOSSEM ARMAZENADOS:
+
+    for(list<MateriaPrima>::iterator positMaterial = this->MateriasPrima.begin(); positMaterial != this->MateriasPrima.end(); positMaterial++){
+        positMaterial->SetEstoqueAtual(Quantidade*positMaterial->GetEstoqueMinimo());
+    }
+
 }
 
 void Produto::SetCodigoAtual() {
@@ -109,7 +130,12 @@ int Produto::GetLoteAtual() {
 }
 
 Lote Produto::GetLote() {
-    return *this->Lotes.begin();
+    list<Lote>::iterator ultimoLote = this->Lotes.end();
+    ultimoLote--;
+
+    Lote getUltimoLote(ultimoLote->GetQuantidade(), ultimoLote->GetDataProducao(), ultimoLote->GetNumeroLote());
+
+    return getUltimoLote;
 }
 
 Categoria Produto::GetCategoria() {
@@ -117,7 +143,12 @@ Categoria Produto::GetCategoria() {
 }
 
 Valor Produto::GetValor() {
-    return *this->ValorProduto.end();
+    list<Valor>::iterator valorAtual = this->ValorProduto.end();
+    valorAtual--;
+
+    Valor getvalorAtual(valorAtual->GetValor(), valorAtual->GetData());
+
+    return getvalorAtual;
 }
 
 list <MateriaPrima> Produto::GetMateriasPrima() {
@@ -142,14 +173,21 @@ void Produto::SetEstoqueAtual(int EstoqueAtual) {
 
 void Produto::SetLote(int Quantidade, Date Data) {
     SetLoteAtual();
-    cout << "entrou\n" << GetLoteAtual() << " " << Quantidade << endl;
+    //cout << "entrou\n"; //<< GetLoteAtual() << " " << Quantidade << endl;
     Lote NovoLote(Quantidade, Data, GetLoteAtual());
-    cout << "numero interno: " << NovoLote.GetNumeroLote() << endl;
-    /*this->*/Lotes.push_back(NovoLote);
-    list<Lote>::iterator positLoteAtual = this->Lotes.end()--;
+    //cout << "numero interno: " << NovoLote.GetNumeroLote() << endl;
+    this->Lotes.push_back(NovoLote);
+    //this->Lotes.push_back(NovoLote);
+    /*list<Lote>::iterator positLoteAtual = this->Lotes.end();
+    for(list<Lote>::iterator inicio = this->Lotes.begin(); inicio != positLoteAtual; inicio++){
+        cout << "++" << inicio->GetNumeroLote() << " ";
+    }
+
+
     cout << "fim: " << this->LoteAtual << endl;
     cout << "ainda dentro:  " << Lotes.begin()->GetNumeroLote() << endl;
     cout << "ainda dentroII:  " << positLoteAtual->GetNumeroLote() << endl;
+    */
 }
 
 void Produto::SetCategoria(Categoria CategoriaProduto) {

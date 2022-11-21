@@ -47,7 +47,7 @@ void Vendas::RealizarVenda(Produto ProdutoRequerido){
 }
 */
 
-void Vendas::RealizarVenda(){
+void Vendas::RealizarVenda(Date Data){
     Produto ProdutoRequerido = this->OrcamentoAtual.GetProdutoOrcado();
 
     string confirma = "";
@@ -63,7 +63,7 @@ void Vendas::RealizarVenda(){
             cout << "Comando nao identificado. Confirmar? ('Confirmar' ou 'Recusar')" << endl;
         }
 
-        if(confirma == "Confirmar") ProdutoRequerido.SolicitarNovoLote(this->OrcamentoAtual.GetQuantidade());
+        if(confirma == "Confirmar") ProdutoRequerido.SolicitarNovoLote(this->OrcamentoAtual.GetQuantidade(), Data);
         else if(confirma == "Recusar") cout << "Avisaremos quando o estoque for renovado. Continue acessando nossos produtos!" << endl;
     }
     else{
@@ -87,7 +87,7 @@ void Vendas::RealizarVenda(){
             int novoEstoque = this->OrcamentoAtual.GetQuantidade() - this->DadosProduto.GetEstoqueAtual();
             this->DadosProduto.SetEstoqueAtual(novoEstoque);
 
-            if(novoEstoque < DadosProduto.GetEstoqueMinimo()) this->DadosProduto.SolicitarNovoLote(this->DadosProduto.GetEstoqueMinimo()); //Pedir pra produzir mais
+            if(novoEstoque < DadosProduto.GetEstoqueMinimo()) this->DadosProduto.SolicitarNovoLote(this->DadosProduto.GetEstoqueMinimo(), Data); //Pedir pra produzir mais
         }
     }
 
@@ -117,7 +117,7 @@ Pagamentos Vendas::GetTipoPagamento(){
     return this->TipoPagamento;
 }
 
-OrcamentoProduto Vendas::GetOrcamentoAtual(){
+Orcamento Vendas::GetOrcamentoAtual(){
     return this->OrcamentoAtual;
 }
 
@@ -142,6 +142,6 @@ void Vendas::SetTipoPagamento(Pagamentos TipoPagamento) {
     this->TipoPagamento = TipoPagamento;
 }
 
-void Vendas::SetOrcamentoAtual(OrcamentoProduto OrcamentoAtual) {
+void Vendas::SetOrcamentoAtual(Orcamento OrcamentoAtual) {
     this->OrcamentoAtual = OrcamentoAtual;
 }

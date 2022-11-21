@@ -2,6 +2,9 @@
 #define ORCAMENTO_H
 
   #include "Date.hpp"
+  //#include "Orcamento.hpp"
+  #include "Produto.hpp"
+  #include "Valor.hpp"
 
   using namespace std;
 
@@ -9,13 +12,21 @@
     protected:
       Date Data;
       int Quantidade;
+      Produto ProdutoOrcado;
+      float ValorTotal;
 
     public:
+      Orcamento(Produto ProdutoOrcado, int Quantidade, Date Data);
+
       int GetQuantidade();
       Date GetData();
+      Produto GetProdutoOrcado();
+      float GetValorTotal();
       
+      /*
       void SetQuantidade(int Quantidade);
       void SetData(Date Data);
+      */
   };
 
 #endif

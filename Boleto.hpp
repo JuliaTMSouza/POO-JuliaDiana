@@ -1,9 +1,11 @@
 #ifndef BOLETO_H
 #define BOLETO_H
 
-  #include "Pagamentos.hpp"
+  
   #include <string>
   #include <iostream>
+
+  #include "Pagamentos.hpp"
   #include "Date.hpp"
 
   using namespace std;

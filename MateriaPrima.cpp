@@ -59,18 +59,33 @@ void MateriaPrima::SetEstoqueMinimo(int EstoqueMinimo) {
 
 void MateriaPrima::SetMedida(string Medida) {
 
-    string valorQtd, medidaQtd;
+    string valorQtd = "", medidaQtd = "";
+    char cMedida[Medida.length()];
 
-    istringstream quantidade { Medida };
+    strcpy (cMedida, Medida.c_str());
+
+    /*istringstream quantidade { Medida };
     getline(quantidade, valorQtd, ' ');
-    getline(quantidade, medidaQtd, ' ');
+    getline(quantidade, medidaQtd, ' ');*/
+
+    for(int i = 0, j = -1; i < Medida.length(); i++){
+        if(cMedida[i] == ' '){
+            j++;
+            i++;
+        }
+        if(j > -1) medidaQtd += cMedida[i];
+        else valorQtd += cMedida[i];
+    }
     
-    this->UnidadeMedida = UnidadeMedida;
+    //cout << ")) medidas: " << medidaQtd << " " << valorQtd << "\t";
+
+    this->UnidadeMedida = medidaQtd;
 
     if(medidaQtd == "cm2" || medidaQtd == "cm" || medidaQtd == "g" || medidaQtd == "unidades") this->Medida = stoi (valorQtd);
-    else if(medidaQtd == "m2") this->Medida = stoi (valorQtd) / 10000;
-    else if(medidaQtd == "m") this->Medida = stoi (valorQtd) / 100;
-    else if(medidaQtd == "Kg") this->Medida = stoi (valorQtd) / 1000;
-        
+    else if(medidaQtd == "m2") this->Medida = (stoi (valorQtd)) / 10000.0;
+    else if(medidaQtd == "m") this->Medida = (stoi (valorQtd)) / 100.0;
+    else if(medidaQtd == "Kg") this->Medida = (stoi (valorQtd)) / 1000.0;
+       // cout << ")) medidasII: ." << this->UnidadeMedida << ". " << this->Medida << endl;
+
 }
 

@@ -9,22 +9,22 @@
 #include "Admissao.hpp"
 #include "Dissidio.hpp"
 
-#include "Produto.hpp"
-#include "Valor.hpp"
-#include "Date.hpp"
+#include "Produto.hpp"              // FALTA A PARTE Q DEPENDE DO FORNECEDOR
+#include "Valor.hpp"                //OK
+#include "Date.hpp"                 //OK
 //#include "Producao.hpp"
 #include "Vendas.hpp"
-#include "Orcamento.hpp"
-#include "OrcamentoProduto.hpp"
-#include "OrcamentoMaterial.hpp"
-#include "MateriaPrima.hpp"
-#include "Categoria.hpp"
-#include "Lote.hpp"
+#include "Orcamento.hpp"            //OK
+//#include "OrcamentoProduto.hpp"
+//#include "OrcamentoMaterial.hpp"  // ACHO Q N VAI PRECISAR
+#include "MateriaPrima.hpp"         //OK
+#include "Categoria.hpp"            //OK
+#include "Lote.hpp"                 //OK
 //#include "Estoque.hpp"
-//#include "Pagamentos.hpp"
-//#include "Boleto.hpp"
-//#include "Cartao.hpp"
-#include "Fornecedor.hpp"
+#include "Pagamentos.hpp"
+#include "Boleto.hpp"
+#include "Cartao.hpp"
+#include "Fornecedor.hpp"           // INCOMPLETO
 
 using namespace std;
 
@@ -35,6 +35,7 @@ using namespace std;
 
 int main()
 {
+    
     // Exemplo de construtor 
     // Cargo novoCar = Cargo() ;
     // novoCar.SetNome("Vendedor");
@@ -69,8 +70,6 @@ int main()
     // Jorge.SetDepartamentoAtual(DepartamentoJorge);
     // cout << Jorge.GetDepartamentoAtual() << endl;
 
-
-
     // Jorge.SetCargoAtual(CargoJorge);
 
     cout << ">>>> SAIDA" << endl;
@@ -101,7 +100,6 @@ int main()
     mds.SetLotes(45, aaa);
     mds.SetNome("madeira");
 
-
     cout << mds.GetEstoqueAtual() << " ";
     cout << mds.GetEstoqueMinimo() << " ";
     cout << mds.GetLoteAtual() << " ";
@@ -109,6 +107,7 @@ int main()
     cout << mds.GetNome() << " ";
     cout << mds.GetMedida() << " ";
     cout << "." << mds.GetUnidadeMedida() << ",\n" << endl;
+
 
     Fornecedor chefe;
     chefe.SetCPF_CNPJ("020.247.096-21", true);
@@ -136,21 +135,22 @@ int main()
     cout << novoProduto.GetEstoqueAtual() << " ";
     cout << novoProduto.GetEstoqueMinimo() << " ";
     cout << novoProduto.GetLoteMinimo() << " ";
-    cout << novoProduto.GetNomeProduto() << " ";
+    cout << novoProduto.GetNomeProduto() << " >";
+    cout << novoProduto.GetLote().GetDataProducao().getData() << " ";
+    cout << novoProduto.GetLote().GetQuantidade() << " ";
     cout << novoProduto.GetLote().GetNumeroLote() << " ";
-    cout << novoProduto.GetValor().GetValor() << "\n\n";
-
+    cout << novoProduto.GetValor().GetValor() << " ";
 
     Produto novoProduto2;
     cout << novoProduto2.GetCodigoAtual() << "|" << novoProduto2.GetLoteAtual() << "\n";
 
     novoProduto2.SetCategoria(Cozinha);
-    novoProduto2.SetEstoqueAtual(10);
-    novoProduto2.SetEstoqueMinimo(20);
-    novoProduto2.SetLoteMinimo(50);
-    novoProduto2.SetLote(60, Date(2022, 10, 13));
-    novoProduto2.SetNomeProduto("Mesa");
-    novoProduto2.SetValor(Valor(400, Date(2022, 10, 13)));
+    novoProduto2.SetEstoqueAtual(40);
+    novoProduto2.SetEstoqueMinimo(80);
+    novoProduto2.SetLoteMinimo(200);
+    novoProduto2.SetLote(60, Date(2022, 10, 24));
+    novoProduto2.SetNomeProduto("Cadeira");
+    novoProduto2.SetValor(Valor(400, Date(2022, 10, 24)));
 
     cout << novoProduto2.GetCategoria().GetNome() << " ";
     cout << novoProduto2.GetEstoqueAtual() << " ";
@@ -162,24 +162,55 @@ int main()
     cout << novoProduto2.GetLote().GetNumeroLote() << " ";
     cout << novoProduto2.GetValor().GetValor() << " ";
 
+    cout << "\n\n O complexo:\n";
 
-    //Produto Mesa = {};
-    //Valor preco;
-    //Vendas caraio;
+    MateriaPrima mds1, mds2, mds3;
+    cout << ">> " << mds.GetLoteAtual() << endl;
+
+    mds1.SetEstoqueMinimo(20); mds1.SetEstoqueAtual(30); mds1.SetMedida("20 m"); mds1.SetLotes(45, aaa); mds1.SetNome("madeira");
+    mds2.SetEstoqueMinimo(2); mds2.SetEstoqueAtual(40); mds2.SetMedida("8 m"); mds2.SetLotes(45, aaa); mds2.SetNome("parafuso");
+    mds3.SetEstoqueMinimo(8); mds3.SetEstoqueAtual(8); mds3.SetMedida("9 m"); mds3.SetLotes(45, aaa); mds3.SetNome("perna");
+
+    //cout <<  "\n Produto: \n";
+    novoProduto.SetMateriasPrima(mds1);
+    novoProduto.SetMateriasPrima(mds2);
+    novoProduto.SetMateriasPrima(mds3);
+
+    novoProduto.SolicitarNovoLote(1, Date(2023, 1, 24));
+
+    //cout <<  "\n Produto2: \n";
+    novoProduto2.SetMateriasPrima(mds1);
+    novoProduto2.SetMateriasPrima(mds2);
+    novoProduto2.SetMateriasPrima(mds3);
+
+    novoProduto2.SolicitarNovoLote(5, Date(2023, 1, 24)); //funciona
     
-    //preco.SetData(data);
-    //preco.SetValor(50.30);
+    Orcamento novoOrcamento(novoProduto, 7, Date(2023, 1, 24));
+    cout << "orcamento: " << novoOrcamento.GetValorTotal() << endl;
 
-    //cout << preco.GetValor() << endl;
+    Boleto pagar1;
+    pagar1.SetNome("Robson");
+    pagar1.SetPrazo(60); //fazer o switch case
+    pagar1.SetTipo("Boleto");
+    pagar1.SetVencimento(Date(2023, 2, 24));
 
-    /*
-    Mesa.SetLoteMinimo(20);
-    cout << Mesa.GetLoteMinimo() << endl;
+    cout << pagar1.GetNome() << " ";
+    cout << pagar1.GetPrazo() << " ";
+    cout << pagar1.GetTipo() << " ";
+    cout << pagar1.GetVencimento().getData() << "\n";
 
-    Mesa.SetValor(preco);
-    cout << Mesa.GetValor().GetValor() << " e " << Mesa.GetValor().GetData().getData() << endl;
-    */   
+    Cartao pagar2;
+    pagar2.SetNome("Robdaugther");
+    pagar2.SetNumeroCartao("1234542395426541");
+    pagar2.SetParcelas(6); //fazer o switch case
+    pagar2.SetTipo("Cartao");
+    pagar2.SetValidade(Date(2023, 2, 24));
 
+    cout << ">>> " << pagar2.GetNome() << " ";
+    cout << pagar2.GetNumeroCartao() << " ";
+    cout << pagar2.GetParcelas() << " ";
+    cout << pagar2.GetTipo() << " ";
+    cout << pagar2.GetValidade().getData() << "\n";
 
     return 0;
 

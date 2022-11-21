@@ -3,6 +3,8 @@
 
   #include <iostream>
   #include <string>
+
+  #include "Pagamentos.hpp"
   #include "Date.hpp"
 
   using namespace std;
@@ -10,7 +12,7 @@
   class Cartao: public Pagamentos {
     protected:
       Date Validade;
-      char NumeroCartao[16];
+      string NumeroCartao;
       string Nome;
       int Parcelas;
 
@@ -22,7 +24,7 @@
       string GetNome();
       int GetParcelas();
 
-      void SetNumeroCartao(char NumeroCartao[16]);
+      void SetNumeroCartao(string NumeroCartao);
       void SetValidade(Date Validade);
       void SetNome(string Nome);
       void SetParcelas(int Parcelas);
