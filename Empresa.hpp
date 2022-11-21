@@ -20,7 +20,7 @@
   class Empresa {
     private:
       Empresa();
-      /*static*/ bool EmpresaCriada = false;
+      static bool EmpresaCriada = false;
 
     protected:
       list<Departamento> Departamentos;
