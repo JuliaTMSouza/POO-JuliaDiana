@@ -7,7 +7,7 @@ float Salario::GetValor(){
     return this->Valor;
 }
 
-string Salario::GetDataSalario() {
+Date Salario::GetDataSalario() {
     return this->DataSalario;
 }
 
@@ -19,10 +19,15 @@ void Salario::SetValor(float Valor) {
     this->Valor = Valor;
 }
 
-void Salario::SetDataSalario(string DataSalario) {
+void Salario::SetDataSalario(Date DataSalario) {
     this->DataSalario = DataSalario;
 }
 
 void Salario::SetDescricao(string Descricao) {
     this->Descricao = Descricao;
+}
+
+//PROVAVALMENTE TEREMOS QUE ARRUMAR ISSO
+void Salario::Promocao(Dissidio NovaPromocao){
+    this->Valor *= NovaPromocao
 }

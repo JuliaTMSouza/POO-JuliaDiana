@@ -7,13 +7,13 @@ int Estoque::GetQuantidade() {
 }
 
 Produto Estoque::GetProduto() {
-    return this->Produto;
+    return this->Produtos;
 }
 
 void Estoque::SetQuantidade(int Quantidade) {
     this->Quantidade = Quantidade;
 }
 
-void Estoque::SetProduto(Produto Produto) {
-    this->Produto = Produto;
+void Estoque::SetProduto(Produto Produtos) {
+    this->Produtos = Produtos;
 }

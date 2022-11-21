@@ -6,7 +6,7 @@ int Vendas::GetQuantidade() {
     return this->Quantidade;
 }
 
-string Vendas::GetData() {
+Date Vendas::GetData() {
     return this->Data;
 }
 
@@ -16,6 +16,14 @@ Cliente Vendas::GetCliente() {
 
 Produto Vendas::GetProduto() {
     return this->Produto;
+}
+
+Pagamento GetTipoPagamento(){
+    return this->TipoPagamento;
+}
+
+Orcamento GetOrcamentoAtual(){
+    return this->OrcamentoAtual;
 }
 
 void Vendas::SetQuantidade(int Quantidade) {
@@ -30,6 +38,14 @@ void Vendas::SetCliente(Cliente Cliente) {
     this->Cliente = Cliente;
 }
 
-void Vendas::SetData(string Data) {
+void Vendas::SetData(Date Data) {
     this->Data = Data;
+}
+
+void Vendas::SetTipoPagamento(Pagamento TipoPagamento) {
+    this->TipoPagamento = TipoPagamento;
+}
+
+void Vendas::SetOrcamentoAtual(Orcamento OrcamentoAtual) {
+    this->OrcamentoAtual = OrcamentoAtual;
 }

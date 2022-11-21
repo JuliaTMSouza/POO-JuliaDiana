@@ -2,6 +2,7 @@
 #define PESSOA_H
 
   #include <string>
+  #include "Permissao.hpp"
 
   using namespace std;
 
@@ -10,6 +11,7 @@
       string Nome;
       string CPF_CNPJ;
       string Email;
+      Permissao Permissoes;
 
       bool ValidarCPF_CNPJ(string CPF_CNPJ, bool Tipo);
 
@@ -17,9 +19,12 @@
       string GetNome();
       string GetCPF_CNPJ();
       string GetEmail();
+      Permissao GetPermissoes();
+
       void SetNome(string Nome);
       void SetCPF_CNPJ(string CPF_CNPJ, bool Tipo);
       void SetEmail(string Email);
+      void SetPermissoes(Permissao Permissoes);
   };
 
 #endif

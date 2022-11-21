@@ -7,4 +7,12 @@ alterar se a pessoa está logada ou não. Teria que ter uma função deslogar ta
 Outra coisa ainda sobre isso, a gnt teria que criar uma função que desloga? Ou seria 
 destrutor?
 
+
+25/10/2022
+Atualizar os Enum
+Terminar de implementar os singleton (Empresa e Logado)
+Finalizar o CNPJ
+
+Atualizar modelagem (criar cargo dentro de departamento)
+Atualizar na modelagem todos os nomes
 Criar classe endereço?
