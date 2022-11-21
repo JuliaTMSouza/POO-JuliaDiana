@@ -38,11 +38,12 @@
     public:
 
       Produto();
+      Produto(int cria);
       void SolicitarNovoLote(int Quantidade, Date Data); //CRIAR
       void SolicitarMateriais(int Quantidade); //CRIAR
       
       string GetNomeProduto();
-      int GetLoteMinimo();
+     // int GetLoteMinimo();
       int GetEstoqueAtual();
       int GetEstoqueMinimo();
       int GetCodigo();

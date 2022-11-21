@@ -6,7 +6,9 @@ using namespace std;
 
 int Produto::CodigoAtual = 0;
 
-Produto::Produto(){
+Produto::Produto(){}
+
+Produto::Produto(int cria){
     //fazer um "confere nomeProduto" na empresa?
     SetCodigoAtual();
     this->Codigo = GetCodigoAtual();
@@ -20,30 +22,31 @@ void Produto::SolicitarNovoLote(int Quantidade, Date Data){
     for (list<MateriaPrima>::iterator positMateria = this->MateriasPrima.begin(); positMateria != this->MateriasPrima.end(); positMateria++){
         //comparar se os materiais q ainda tem são suficientes pra produzir
         /*cout << positMateria->GetNome() //<< " " << positMateria->GetEstoqueMinimo() 
-        << " " << positMateria->GetEstoqueMinimo()*Quantidade
+        << " " << positMateria->GetMedida()*Quantidade
         << " " <<  positMateria->GetEstoqueAtual() << endl;*/
-        if(positMateria->GetEstoqueMinimo()*Quantidade > positMateria->GetEstoqueAtual()) Validado = 1;
+        if(positMateria->GetMedida()*Quantidade > positMateria->GetEstoqueAtual()) Validado = 1;
     }
     //cout << "validando: " << Validado << endl;
     if(Validado == 0){
         //novo lote produzido, então tira os materiais necessarios da quantidade armazenada
+        //cout << "\n\tProduziu novo lote:\n";
         SetEstoqueAtual(Quantidade);
         //cout << "setou ";
         SetLote(Quantidade, Data);
         for (list<MateriaPrima>::iterator positMateria = this->MateriasPrima.begin(); positMateria != this->MateriasPrima.end(); positMateria++){
             //cout << positMateria->GetNome() << "\nantes: " << positMateria->GetEstoqueAtual();
-            positMateria->SetEstoqueAtual(-(positMateria->GetEstoqueMinimo()*Quantidade));
+            positMateria->SetEstoqueAtual(-(positMateria->GetMedida()*Quantidade));
             //cout << " depois: " << positMateria->GetEstoqueAtual() << endl;
             if(positMateria->GetEstoqueAtual() < positMateria->GetEstoqueMinimo()){
-                SolicitarMateriais(this->GetEstoqueMinimo());
-                break;
+                Validado = positMateria->GetEstoqueMinimo();
             }
         }
         //cout << "entrou 1\n";
     }
-    else{
+    if(Validado > 0){
+        if(Validado > 1) Quantidade = Validado;
         SolicitarMateriais(Quantidade);
-        SolicitarNovoLote(Quantidade, Data);
+        if (Validado == 1) SolicitarNovoLote(Quantidade, Data);
         //cout << "entrou 2\n";
     }
 
@@ -57,7 +60,7 @@ void Produto::SolicitarNovoLote(int Quantidade, Date Data){
 }
     
 void Produto::SolicitarMateriais(int Quantidade){
-    //cout << "\nNOVA ETAPA: \n\n";
+    //cout << "\n\tSolicitou materiais\n";
     //cout << "quant. " << Quantidade << endl;
     list<float> Orcamentos;
     list<Fornecedor>::iterator positFornecedor = this->Fornecedores.begin();
@@ -89,6 +92,7 @@ void Produto::SolicitarMateriais(int Quantidade){
 
     for(list<MateriaPrima>::iterator positMaterial = this->MateriasPrima.begin(); positMaterial != this->MateriasPrima.end(); positMaterial++){
         positMaterial->SetEstoqueAtual(Quantidade*positMaterial->GetEstoqueMinimo());
+        //cout << positMaterial->GetNome() << " " << positMaterial->GetEstoqueAtual() << " " << Quantidade*positMaterial->GetEstoqueMinimo() << endl;
     }
 
 }
@@ -104,11 +108,11 @@ void Produto::SetLoteAtual() {
 string Produto::GetNomeProduto() {
     return this->NomeProduto;
 }
-
+/*
 int Produto::GetLoteMinimo() {
     return this->LoteMinimo;
 }
-
+*/
 int Produto::GetEstoqueMinimo() {
     return this->EstoqueMinimo;
 }

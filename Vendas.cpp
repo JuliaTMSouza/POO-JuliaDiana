@@ -47,8 +47,14 @@ void Vendas::RealizarVenda(Produto ProdutoRequerido){
 }
 */
 
+/*
+Vendas::Vendas(){
+
+};
+*/
+
 void Vendas::RealizarVenda(Date Data){
-    Produto ProdutoRequerido = this->OrcamentoAtual.GetProdutoOrcado();
+    /*Produto ProdutoRequerido = this->OrcamentoAtual.GetProdutoOrcado();
 
     string confirma = "";
     //ARRUMAR PARA PEGAR O LOTE ATUAL MAIS O LOTE ANTIGO... PRIMEIRO VER SE TÁ PEGANDO CERTO NÉ
@@ -90,7 +96,7 @@ void Vendas::RealizarVenda(Date Data){
             if(novoEstoque < DadosProduto.GetEstoqueMinimo()) this->DadosProduto.SolicitarNovoLote(this->DadosProduto.GetEstoqueMinimo(), Data); //Pedir pra produzir mais
         }
     }
-
+*/
 }
 
 int Vendas::GetQuantidade() {
@@ -101,16 +107,16 @@ Date Vendas::GetData() {
     return this->Data;
 }
 
+Lote Vendas::GetLotePeriodoVenda() {
+    return this->LotePeriodoVenda;
+}
+
 Cliente Vendas::GetDadosCliente() {
     return this->DadosCliente;
 }
 
 Produto Vendas::GetDadosProduto() {
     return this->DadosProduto;
-}
-
-Lote Vendas::GetLotePeriodoVenda(){
-    return this->LotePeriodoVenda;
 }
 
 Pagamentos Vendas::GetTipoPagamento(){
@@ -128,6 +134,10 @@ void Vendas::SetQuantidade(int Quantidade) {
 void Vendas::SetDadosProduto(Produto DadosProduto) {
     this->DadosProduto = DadosProduto;
     SetLotePeriodoVenda(DadosProduto.GetLote());
+}
+
+void Vendas::SetLotePeriodoVenda(Lote LotePeriodoVenda){
+    this->LotePeriodoVenda = LotePeriodoVenda;
 }
 
 void Vendas::SetDadosCliente(Cliente DadosCliente) {

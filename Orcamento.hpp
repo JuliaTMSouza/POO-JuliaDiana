@@ -16,6 +16,7 @@
       float ValorTotal;
 
     public:
+      Orcamento();
       Orcamento(Produto ProdutoOrcado, int Quantidade, Date Data);
 
       int GetQuantidade();

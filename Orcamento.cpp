@@ -2,6 +2,8 @@
 
 using namespace std;
 
+Orcamento::Orcamento(){}
+
 Orcamento::Orcamento(Produto ProdutoOrcado, int Quantidade, Date Data){
     this->ProdutoOrcado = ProdutoOrcado;
     this->Quantidade = Quantidade;
