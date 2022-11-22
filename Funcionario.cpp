@@ -14,17 +14,19 @@ string Funcionario::GetNascimento() {
     return this->Nascimento;
 }
 
-Departamento Funcionario::GetDepartamentoAtual() {
-    return this->DepartamentoAtual;
+string Funcionario::GetDepartamentoAtual() {
+    string Departamento = "Departamento: " + DepartamentoAtual.GetNome() + '\n' + "Descrição: " + DepartamentoAtual.GetDescricao() + '\n';
+    return Departamento;
 }
 
-Cargo Funcionario::GetCargoAtual() {
-    return this->CargoAtual;
+string Funcionario::GetCargoAtual() {
+    string Cargo = "Cargo: " + CargoAtual.GetNome() + '\n' + "Escopo: " + CargoAtual.GetEscopo() + '\n';
+    return Cargo;
 }
 
-Admissao Funcionario::GetAdmissaoDemissao() {
-    return this->AdmissaoDemissao;
-}
+// Admissao Funcionario::GetAdmissaoDemissao() {
+//     return this->AdmissaoDemissao;
+// }
 
 void Funcionario::SetMatricula(string Matricula) {
     this->Matricula = Matricula;
@@ -46,9 +48,9 @@ void Funcionario::SetCargoAtual(Cargo CargoAtual) {
     this->CargoAtual = CargoAtual;
 }
 
-void Funcionario::SetAdmissaoDemissao(Admissao AdmissaoDemissao) {
-    this->AdmissaoDemissao = AdmissaoDemissao;
-}
+// void Funcionario::SetAdmissaoDemissao(Admissao AdmissaoDemissao) {
+//     this->AdmissaoDemissao = AdmissaoDemissao;
+// }
 
 /*
 Funcionario::Funcionario(){
