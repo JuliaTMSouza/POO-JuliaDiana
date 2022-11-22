@@ -3,13 +3,6 @@
 
 using namespace std;
 
-Admissao::Admissao(Date DataAdmissao)
-{
-    this->DataAdmissao = DataAdmissao;
-    this->DataDemissao = "";
-    cout << "Novo membro adicionado" << endl;
-}
-
 Date Admissao::GetDataAdmissao() {
     return this->DataAdmissao;
 }

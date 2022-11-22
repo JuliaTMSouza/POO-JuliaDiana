@@ -1,4 +1,5 @@
 #include "Funcionario.hpp"
+#include <list>
 
 using namespace std;
 
@@ -14,19 +15,17 @@ string Funcionario::GetNascimento() {
     return this->Nascimento;
 }
 
-string Funcionario::GetDepartamentoAtual() {
-    string Departamento = "Departamento: " + DepartamentoAtual.GetNome() + '\n' + "Descrição: " + DepartamentoAtual.GetDescricao() + '\n';
-    return Departamento;
+Departamento Funcionario::GetDepartamentoAtual() {
+    return this->DepartamentoAtual;
 }
 
-string Funcionario::GetCargoAtual() {
-    string Cargo = "Cargo: " + CargoAtual.GetNome() + '\n' + "Escopo: " + CargoAtual.GetEscopo() + '\n';
-    return Cargo;
+Cargo Funcionario::GetCargoAtual() {
+    return this->CargoAtual;
 }
 
-// Admissao Funcionario::GetAdmissaoDemissao() {
-//     return this->AdmissaoDemissao;
-// }
+list<Admissao> Funcionario::GetAdmissaoDemissao() {
+    return this->AdmissaoDemissao;
+}
 
 void Funcionario::SetMatricula(string Matricula) {
     this->Matricula = Matricula;
@@ -48,12 +47,7 @@ void Funcionario::SetCargoAtual(Cargo CargoAtual) {
     this->CargoAtual = CargoAtual;
 }
 
-// void Funcionario::SetAdmissaoDemissao(Admissao AdmissaoDemissao) {
-//     this->AdmissaoDemissao = AdmissaoDemissao;
-// }
-
-/*
-Funcionario::Funcionario(){
-    cout << "entrou";
+void Funcionario::SetAdmissaoDemissao(Admissao AdmissaoDemissao) {
+    // if(this->AdmissaoDemissao.GetDataDemissao())
+    this->AdmissaoDemissao.push_back(AdmissaoDemissao);
 }
-*/

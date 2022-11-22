@@ -17,7 +17,7 @@
       string Nascimento;
       Departamento DepartamentoAtual;
       Cargo CargoAtual;
-      // Admissao AdmissaoDemissao; //Conferir se ainda é necessário
+      list<Admissao> AdmissaoDemissao; //Conferir se ainda é necessário
       // Salario SalarioAtual; // Tem que manter fixo quando o membro for demitido, então talvez criar algum bool pra conferir
                             // se atualiza esse dado ou n
 
@@ -25,18 +25,16 @@
       string GetMatricula();
       string GetEndereco();
       string GetNascimento();
-      string GetDepartamentoAtual();
-      string GetCargoAtual();
-      // Admissao GetAdmissaoDemissao();
+      Departamento GetDepartamentoAtual();
+      Cargo GetCargoAtual();
+      list<admissão> GetAdmissaoDemissao();
 
       void SetMatricula(string Matricula);
       void SetEndereco(string Endereco);
       void SetNascimento(string Nascimento);
       void SetDepartamentoAtual(Departamento DepartamentoAtual);
       void SetCargoAtual(Cargo CargoAtual);
-      // void SetAdmissaoDemissao(Admissao AdmissaoDemissao);
-
-      //Funcionario(/*string Nome, string CPF_CNPJ, string Email, string Matricula, string Endereco, string Nascimento*/);
+      void SetAdmissaoDemissao(Admissao AdmissaoDemissao);
   };
 
 #endif

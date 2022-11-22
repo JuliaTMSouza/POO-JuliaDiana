@@ -1,5 +1,5 @@
-#ifndef ADIMISSAO_H
-#define ADIMISSAO_H
+#ifndef ADMISSAO_H
+#define ADMISSAO_H
 
   #include <iostream>
   #include "Date.hpp"
@@ -12,8 +12,6 @@
       Date DataDemissao;
 
     public:
-      Admissao(Date DataAdmissao);
-
       Date GetDataAdmissao();
       Date GetDataDemissao();
 
