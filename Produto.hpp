@@ -53,6 +53,7 @@
       Categoria GetCategoria();
       Valor GetValor();
       list <MateriaPrima> GetMateriasPrima();
+      list <Fornecedor> GetFornecedores();
 
       void SetNomeProduto(string NomeProduto);
       void SetLoteMinimo(int LoteMinimo);
@@ -62,6 +63,7 @@
       void SetCategoria(Categoria CategoriaProduto);
       void SetValor(Valor ValorProduto);
       void SetMateriasPrima(MateriaPrima MateriasPrima);
+      void SetFornecedores(Fornecedor *NovoFornecedor);
 
   };
   

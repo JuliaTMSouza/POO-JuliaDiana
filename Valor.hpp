@@ -1,7 +1,7 @@
 #ifndef VALOR_H
 #define VALOR_H
 
-  #include <iostream>
+ // #include <iostream>
   #include "Date.hpp"
 
   class Valor {

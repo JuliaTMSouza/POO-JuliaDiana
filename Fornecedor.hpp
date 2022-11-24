@@ -1,6 +1,9 @@
 #ifndef FORNECEDOR_H
 #define FORNECEDOR_H
 
+  #include <list>
+  #include <string>
+
   #include "Pessoa.hpp"
   #include "MateriaPrima.hpp"
   #include "Valor.hpp"
@@ -13,15 +16,14 @@
       list<Valor> PrecoMateriais;
 
     public:
-      Fornecedor();
+      float RequerirOrcamento(string MateriasPrima, float Quantidade);
+      void AtualizaPrecoMateriais(MateriaPrima MateriasPrima, Valor PrecoMateriais);
       
-      float RequerirOrcamento(string Material, int Quantidade); //montar a função q retorna o preço total q ficaria o produto
-
       list<MateriaPrima> GetMateriasPrima();
       list<Valor> GetPrecoMateriais();
       
-      void SetMateriasPrima(list <MateriaPrima> MateriasPrima);
-      void SetPrecoMateriais(list <Valor> PrecoMateriais);
+      void SetMateriasPrima(MateriaPrima MateriasPrima, Valor PrecoMateriais);
+      
   };
 
 #endif

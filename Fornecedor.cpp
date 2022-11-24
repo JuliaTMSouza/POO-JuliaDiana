@@ -2,31 +2,39 @@
 
 using namespace std;
 
-Fornecedor::Fornecedor(){
-    // JÁ INICIAR COMO PADRÃO AS PERMISSÕES AQUI, JÁ Q TODO FORNECEDOR VAI TER AS MESMAS...
+float Fornecedor::RequerirOrcamento(string MateriasPrima, float Quantidade){
+
+    float precoTotal = 0;
+    list<Valor>::iterator positValor = this->PrecoMateriais.begin();
+
+    for(; positValor != this->PrecoMateriais.end(); positValor++){
+        precoTotal += positValor->GetValor();
+    }
+
+    return precoTotal;
 }
 
-float Fornecedor::RequerirOrcamento(string Material, int Quantidade){
+void Fornecedor::AtualizaPrecoMateriais(MateriaPrima MateriasPrima, Valor PrecoMateriais){
     list<MateriaPrima>::iterator positMaterial = this->MateriasPrima.begin();
-    list<Valor>::iterator positPreco = this->PrecoMateriais.begin();
-    for (; positMaterial != this->MateriasPrima.end(); positMaterial++){
-        if(positMaterial->GetNome() == Material) return Quantidade * positPreco->GetValor();
-        positPreco++;
+    list<Valor>::iterator positValor = this->PrecoMateriais.begin();
+
+    for(; positMaterial != this->MateriasPrima.end(); positMaterial++){
+        if(positMaterial->GetNome() == MateriasPrima.GetNome()){
+            positValor->SetValor(PrecoMateriais.GetValor());
+            positValor->SetData(PrecoMateriais.GetData());
+        }
+        positValor++;
     }
 }
 
-list<MateriaPrima> Fornecedor::GetMateriasPrima() {
+list<MateriaPrima> Fornecedor::GetMateriasPrima(){
     return this->MateriasPrima;
 }
-
-list<Valor> Fornecedor::GetPrecoMateriais() {
+list<Valor> Fornecedor::GetPrecoMateriais(){
     return this->PrecoMateriais;
 }
 
-void Fornecedor::SetMateriasPrima(list <MateriaPrima> MateriasPrima) {
-    this->MateriasPrima = MateriasPrima;
-}
-
-void Fornecedor::SetPrecoMateriais(list <Valor> PrecoMateriais) {
-    this->PrecoMateriais = PrecoMateriais;
+void Fornecedor::SetMateriasPrima(MateriaPrima MateriasPrima, Valor PrecoMateriais){
+    this->MateriasPrima.push_back(MateriasPrima);
+    this->PrecoMateriais.push_back(PrecoMateriais);
 }

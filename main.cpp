@@ -44,7 +44,7 @@ int main()
 {
 
     //CRIANDO EMPRESA
-    Empresa &Colchobel = Empresa::getInstancia();
+    //Empresa &Colchobel = Empresa::getInstancia();
     
     // Exemplo de construtor 
     // Cargo novoCar = Cargo() ;
@@ -91,9 +91,9 @@ int main()
     // cout << Jorge.GetAdmissaoDemissao() << endl;
 
 
+/*
 
-
-/*     Date aaa(2022, 9, 22);
+     Date aaa(2022, 9, 22);
      cout << aaa.getData() << endl;
 
      Categoria Cozinha;
@@ -251,6 +251,13 @@ int main()
     Alumn.SetEstoqueMinimo("1 Kg"); Alumn.SetEstoqueAtual(1000); Alumn.SetMedida("100 g"); Alumn.SetLotes(20, Date(2022, 11, 21), 0); Alumn.SetNome("Alumn");
     Paraf.SetEstoqueMinimo("20 unidades"); Paraf.SetEstoqueAtual(20); Paraf.SetMedida("8 unidades"); Paraf.SetLotes(20, Date(2022, 11, 21), 0); Paraf.SetNome("Paraf");
 
+    chefe.SetMateriasPrima(Mad, Valor(200, Date(2022, 11, 24)));
+    chefe.SetMateriasPrima(Alumn, Valor(200, Date(2022, 11, 24)));
+    chefe.SetMateriasPrima(Paraf, Valor(200, Date(2022, 11, 24)));
+    chefe.SetMateriasPrima(Plastc, Valor(200, Date(2022, 11, 24)));
+
+    chefe.AtualizaPrecoMateriais(Mad, Valor(50, Date(2022, 11, 24)));
+
     Produto outraMesa(0);
     outraMesa.SetMateriasPrima(Mad);
     outraMesa.SetMateriasPrima(Plastc);
@@ -265,6 +272,7 @@ int main()
     //outraMesa.SetLote(60, Date(2022, 10, 24));
     outraMesa.SetNomeProduto("outraMesa");
     outraMesa.SetValor(Valor(120.29, Date(2022, 11, 21)));
+    outraMesa.SetFornecedores(&chefe);
     
     cout << outraMesa.GetCategoria().GetNome() << " ";
     cout << outraMesa.GetEstoqueAtual() << " ";
@@ -303,8 +311,26 @@ int main()
     Veiculo novoOnibus;
     novoOnibus.SetPlaca(450);
     novoOnibus.SetRotas(novaRota);
-    cout << novoOnibus.GetPlaca() << " " << novoOnibus.GetRotas().begin()->GetTurnos().GetHorarioPartida() << endl;
-*/
+    cout << novoOnibus.GetPlaca() << " " << novoOnibus.GetRotas().begin()->GetTurnos().GetHorarioPartida() << "\n\n" << endl;
+
+    
+    outraMesa.SetFornecedores(&chefe);
+
+    Fornecedor head;
+    head.SetMateriasPrima(Mad, Valor(10, Date(2022, 11, 24)));
+    head.SetMateriasPrima(Alumn, Valor(10, Date(2022, 11, 24)));
+    head.SetMateriasPrima(Plastc, Valor(10, Date(2022, 11, 24)));
+    head.SetMateriasPrima(Paraf, Valor(10, Date(2022, 11, 24)));
+
+    outraMesa.SetFornecedores(&head);
+
+    outraMesa.SolicitarNovoLote(100, Date(2022, 11, 24));
+    //outraMesa.SolicitarNovoLote(2, Date(2022, 11, 24));
+
+    */
+
+
+
 
     return 0;
 
