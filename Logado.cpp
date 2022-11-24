@@ -1,14 +1,9 @@
 #include "Logado.hpp"
 
-Logado::Logado(){
-    this->PessoaLogada = true;
+void Logado::SetPermissoes(Permissao Permissoes) {
+    this->Permissoes = Permissoes;
 }
 
-bool Logado::GetLogado() {
-    return this->PessoaLogada;
+Permissao Logado::GetPermissoes() {
+    return this-> Permissoes;
 }
-/*
-void Logado::SetLogado() {
-    this->PessoaLogada = PessoaLogada;
-}
-*/

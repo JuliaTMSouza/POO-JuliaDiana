@@ -25,7 +25,7 @@
       Logado& operator=(Logado&&) = delete;
 
       Permissao GetPermissoes();
-      void setPermissoes(Permissao Permissoes);
+      void SetPermissoes(Permissao Permissoes);
   };
 
 #endif
