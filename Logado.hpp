@@ -3,10 +3,12 @@
 
   #include <iostream>
   #include <stdbool.h>
+  #include <permissao.hpp>
 
   class Logado {
     protected:
       Logado() = default;
+      Permissão Permissoes;
       
 
     public:
@@ -21,6 +23,9 @@
       Logado(Logado&&) = delete;
       Logado& operator=(const Logado&) = delete;
       Logado& operator=(Logado&&) = delete;
+
+      Permissao GetPermissoes();
+      void setPermissoes(Permissao Permissoes);
   };
 
 #endif
