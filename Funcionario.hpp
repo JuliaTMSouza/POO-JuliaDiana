@@ -27,7 +27,7 @@
       string GetNascimento();
       Departamento GetDepartamentoAtual();
       Cargo GetCargoAtual();
-      list<admissão> GetAdmissaoDemissao();
+      list<Admissao> GetAdmissaoDemissao();
 
       void SetMatricula(string Matricula);
       void SetEndereco(string Endereco);

@@ -2,7 +2,7 @@
 #include <string>
 
 #include "Pessoa.hpp"
-#include "Funcionario.hpp"
+// #include "Funcionario.hpp"
 #include "Cliente.hpp"
 #include "Cargo.hpp"
 #include "Departamento.hpp"
@@ -25,6 +25,7 @@
 #include "Boleto.hpp"
 #include "Cartao.hpp"
 #include "Fornecedor.hpp"           // INCOMPLETO
+#include "Empresa.hpp"
 
 using namespace std;
 
@@ -35,18 +36,21 @@ using namespace std;
 
 int main()
 {
+
+    //CRIANDO EMPRESA
+    Empresa &Colchobel = Empresa::getInstancia();
     
     // Exemplo de construtor 
     // Cargo novoCar = Cargo() ;
     // novoCar.SetNome("Vendedor");
     // novoCar.SetEscopo("Cuidar da precificação de projetos e negociação com os clientes");
-    Funcionario Jorge;
-    Jorge.SetNome("Jorge");
+    // Funcionario Jorge;
+    // Jorge.SetNome("Jorge");
     // Jorge.SetEmail("jorge@gmail.com.br");
     // Jorge.SetMatricula("JorgeLima");
     // Jorge.SetEndereco("Rua entre as árvores, 47");
     //Jorge.SetCPF_CNPJ("11111111111", 1);
-    cout << Jorge.GetNome() << endl;
+    // cout << Jorge.GetNome() << endl;
     // cout << Jorge.GetEmail() << endl;
     // cout << Jorge.GetMatricula() << endl;
     // cout << Jorge.GetEndereco() << endl;
@@ -72,13 +76,13 @@ int main()
 
     // Jorge.SetCargoAtual(CargoJorge);
 
-    Date Data(2022, 10, 9, 14, 50);
-    cout << Data.getDia() << endl;
-    Admissao AdmissaoJorge;
-    AdmissaoJorge.SetDataAdmissao(Data);
-    cout << AdmissaoJorge.GetDataAdmissao().getDia() << endl;
-    Jorge.SetAdmissaoDemissao(AdmissaoJorge);
-    cout << Jorge.GetAdmissaoDemissao() << endl;
+    // Date Data(2022, 10, 9, 14, 50);
+    // cout << Data.getDia() << endl;
+    // Admissao AdmissaoJorge;
+    // AdmissaoJorge.SetDataAdmissao(Data);
+    // cout << AdmissaoJorge.GetDataAdmissao().getDia() << endl;
+    // Jorge.SetAdmissaoDemissao(AdmissaoJorge);
+    // cout << Jorge.GetAdmissaoDemissao() << endl;
 
 
 

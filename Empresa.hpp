@@ -18,11 +18,9 @@
   using namespace std;
 
   class Empresa {
-    private:
-      Empresa();
-      static bool EmpresaCriada;
 
     protected:
+      Empresa() = default;
       list<Departamento> Departamentos;
       list<Cargo> Cargos;
       list<Funcionario> Funcionarios;
@@ -34,7 +32,18 @@
       list<Orcamento> Compras; //colocar informações de compras de materiais?
 
     public:
-      bool ConfereEmpresa();
+      int data;
+
+      static Empresa& getInstancia()
+      {
+        static Empresa EmpresaCriada;
+        return EmpresaCriada;
+      };
+
+      Empresa(const Empresa&) = delete;
+      Empresa(Empresa&&) = delete;
+      Empresa& operator=(const Empresa&) = delete;
+      Empresa& operator=(Empresa&&) = delete;
 
       list<Departamento> GetDepartamentos();
       list<Cargo> GetCargos();

@@ -2,15 +2,6 @@
 
 using namespace std;
 
-bool Empresa::EmpresaCriada = false;
-
-bool Empresa::ConfereEmpresa(){
-    return this->EmpresaCriada;
-}
-
-Empresa::Empresa(){
-    if (!ConfereEmpresa()) Empresa::EmpresaCriada = true;
-}
 
 list<Departamento> Empresa::GetDepartamentos() {
     return this->Departamentos;

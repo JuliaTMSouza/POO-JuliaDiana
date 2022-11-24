@@ -15,11 +15,11 @@ float Fornecedor::RequerirOrcamento(string Material, int Quantidade){
     }
 }
 
-list <MateriaPrima> Fornecedor::GetMateriasPrima() {
+list<MateriaPrima> Fornecedor::GetMateriasPrima() {
     return this->MateriasPrima;
 }
 
-list <Valor> Fornecedor::GetPrecoMateriais() {
+list<Valor> Fornecedor::GetPrecoMateriais() {
     return this->PrecoMateriais;
 }
 
