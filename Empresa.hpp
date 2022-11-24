@@ -32,7 +32,6 @@
       list<Orcamento> Compras; //colocar informações de compras de materiais?
 
     public:
-      int data;
 
       static Empresa& getInstancia()
       {

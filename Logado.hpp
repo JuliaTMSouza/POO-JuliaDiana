@@ -5,16 +5,22 @@
   #include <stdbool.h>
 
   class Logado {
-    private:
-      static bool PessoaLogada;
-
-      Logado();
+    protected:
+      Logado() = default;
       
 
     public:
-      bool GetLogado();
       
-      //void SetLogado();
+      static Logado& getInstancia()
+      {
+        static Logado PessoaLogada;
+        return PessoaLogada;
+      };
+
+      Logado(const Logado&) = delete;
+      Logado(Logado&&) = delete;
+      Logado& operator=(const Logado&) = delete;
+      Logado& operator=(Logado&&) = delete;
   };
 
 #endif
