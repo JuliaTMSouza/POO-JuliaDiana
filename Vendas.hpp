@@ -36,12 +36,12 @@
       Orcamento GetOrcamentoAtual();
 
       void SetQuantidade(int Quantidade);
-      void SetDadosProduto(Produto DadosProduto);
+      void SetDadosProduto(Produto *DadosProduto);
       void SetLotePeriodoVenda(Lote LotePeriodoVenda);
-      void SetDadosCliente(Cliente DadosCliente);
+      void SetDadosCliente(Cliente *DadosCliente);
       void SetData(Date Data);
-      void SetTipoPagamento(Pagamentos TipoPagamento);
-      void SetOrcamentoAtual(Orcamento OrcamentoAtual);
+      void SetTipoPagamento(Pagamentos *TipoPagamento);
+      void SetOrcamentoAtual(Orcamento *OrcamentoAtual); // Esse tem q ser ponteiro ou list?
 
       //void RealizarVenda(Produto ProdutoRequerido); //Considerar colocar o orçamento aqui, ao invés do produto... dentro do orçamento já tem o prod.
       void RealizarVenda(Date Data);

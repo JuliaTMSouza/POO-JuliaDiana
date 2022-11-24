@@ -2,7 +2,7 @@
 
 using namespace std;
 
-string Turno::GetPeriodo() {
+int Turno::GetPeriodo() {
     return this->Periodo;
 }
 
@@ -10,7 +10,7 @@ int Turno::GetHorarioPartida() {
     return this->HorarioPartida;
 }
 
-void Turno::SetPeriodo(string Periodo) {
+void Turno::SetPeriodo(int Periodo) {
     this->Periodo = Periodo;
 }
 

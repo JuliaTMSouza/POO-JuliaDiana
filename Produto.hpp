@@ -40,10 +40,10 @@
       Produto();
       Produto(int cria);
       void SolicitarNovoLote(int Quantidade, Date Data); //CRIAR
-      void SolicitarMateriais(int Quantidade); //CRIAR
+      void SolicitarMateriais(int Quantidade, Date Data); //CRIAR
       
       string GetNomeProduto();
-     // int GetLoteMinimo();
+      int GetLoteMinimo();
       int GetEstoqueAtual();
       int GetEstoqueMinimo();
       int GetCodigo();
@@ -58,7 +58,7 @@
       void SetLoteMinimo(int LoteMinimo);
       void SetEstoqueAtual(int EstoqueAtual);
       void SetEstoqueMinimo(int EstoqueMinimo);
-      void SetLote(int Quantidade, Date Data);
+      void SetLote(int Quantidade, Date Data, float ValorDeCompra);
       void SetCategoria(Categoria CategoriaProduto);
       void SetValor(Valor ValorProduto);
       void SetMateriasPrima(MateriaPrima MateriasPrima);

@@ -1,18 +1,18 @@
 #ifndef TURNO_H
 #define TURNO_H
 
-  #include <string>
+ // #include <string>
 
   class Turno {
     protected:
-      string Periodo; //fazer Enum
+      int Periodo;
       int HorarioPartida;
 
     public:
-      string GetPeriodo();
+      int GetPeriodo();
       int GetHorarioPartida();
       
-      void SetPeriodo(string Periodo);
+      void SetPeriodo(int Periodo);
       void SetHorarioPartida(int HorarioPartida);
   };
 

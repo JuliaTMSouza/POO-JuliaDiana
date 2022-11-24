@@ -9,16 +9,16 @@
 
   class Fornecedor : public Pessoa{
     protected:
-      list <MateriaPrima> MateriasPrima; //isso aqui deveria ser um list tb
-      list <Valor> PrecoMateriais;
+      list<MateriaPrima> MateriasPrima; //isso aqui deveria ser um list tb
+      list<Valor> PrecoMateriais;
 
     public:
       Fornecedor();
       
       float RequerirOrcamento(string Material, int Quantidade); //montar a função q retorna o preço total q ficaria o produto
 
-      list <MateriaPrima> GetMateriasPrima();
-      list <Valor> GetPrecoMateriais();
+      list<MateriaPrima> GetMateriasPrima();
+      list<Valor> GetPrecoMateriais();
       
       void SetMateriasPrima(list <MateriaPrima> MateriasPrima);
       void SetPrecoMateriais(list <Valor> PrecoMateriais);

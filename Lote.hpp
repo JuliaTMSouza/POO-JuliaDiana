@@ -10,19 +10,17 @@
       int Quantidade;
       Date DataProducao;
       int NumeroLote;
+      float ValorDeCompra;
 
     public:
       Lote();
-      Lote(int Quantidade, Date DataProducao, int NumeroLote);
+      Lote(int Quantidade, Date DataProducao, int NumeroLote, float ValorDeCompra);
 
       int GetQuantidade();
       Date GetDataProducao();
       int GetNumeroLote();
-/*
-      void SetQuantidade(int Quantidade);
-      void SetDataProducao(Date DataProducao);
-      void SetNumeroLote(Produto DefineProduto);
-*/
+      float GetValorDeCompra();
+
 };
 
 #endif

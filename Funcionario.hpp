@@ -2,6 +2,7 @@
 #define FUNCIONARIO_H
 
   #include <string>
+  
   #include "Pessoa.hpp"
   #include "Departamento.hpp"
   #include "Cargo.hpp"
@@ -32,7 +33,7 @@
       void SetMatricula(string Matricula);
       void SetEndereco(string Endereco);
       void SetNascimento(string Nascimento);
-      void SetDepartamentoAtual(Departamento DepartamentoAtual);
+      void SetDepartamentoAtual(Departamento *DepartamentoAtual);
       void SetCargoAtual(Cargo CargoAtual);
       void SetAdmissaoDemissao(Admissao AdmissaoDemissao);
 

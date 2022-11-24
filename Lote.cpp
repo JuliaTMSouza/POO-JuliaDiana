@@ -8,10 +8,11 @@ Lote::Lote(){
 
 }
 
-Lote::Lote(int Quantidade, Date DataProducao, int NumeroLote){
+Lote::Lote(int Quantidade, Date DataProducao, int NumeroLote, float ValorDeCompra){
     this->Quantidade = Quantidade;
     this->DataProducao = DataProducao;
-    this->NumeroLote = NumeroLote;//DefineProduto.GetLoteAtual();
+    this->NumeroLote = NumeroLote;
+    this->ValorDeCompra = ValorDeCompra;//DefineProduto.GetLoteAtual();
     //DefineProduto.SetLoteAtual();
 }
 
@@ -27,17 +28,6 @@ int Lote::GetNumeroLote() {
     return this->NumeroLote;
 }
 
-/*
-void Lote::SetQuantidade(int Quantidade) {
-    this->Quantidade = Quantidade;
+float Lote::GetValorDeCompra() {
+    return this->ValorDeCompra;
 }
-
-void Lote::SetDataProducao(Date DataProducao) {
-    this->DataProducao = DataProducao;
-}
-
-void Lote::SetNumeroLote(Produto DefineProduto) {
-    this->NumeroLote = DefineProduto.GetLoteAtual();
-    DefineProduto.SetLoteAtual();
-}
-*/

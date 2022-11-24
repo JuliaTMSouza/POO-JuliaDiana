@@ -131,27 +131,27 @@ void Vendas::SetQuantidade(int Quantidade) {
     this->Quantidade = Quantidade;
 }
 
-void Vendas::SetDadosProduto(Produto DadosProduto) {
-    this->DadosProduto = DadosProduto;
-    SetLotePeriodoVenda(DadosProduto.GetLote());
+void Vendas::SetDadosProduto(Produto *DadosProduto) {
+    this->DadosProduto = *DadosProduto;
+    SetLotePeriodoVenda(DadosProduto->GetLote());
 }
 
 void Vendas::SetLotePeriodoVenda(Lote LotePeriodoVenda){
     this->LotePeriodoVenda = LotePeriodoVenda;
 }
 
-void Vendas::SetDadosCliente(Cliente DadosCliente) {
-    this->DadosCliente = DadosCliente;
+void Vendas::SetDadosCliente(Cliente *DadosCliente) {
+    this->DadosCliente = *DadosCliente;
 }
 
 void Vendas::SetData(Date Data) {
     this->Data = Data;
 }
 
-void Vendas::SetTipoPagamento(Pagamentos TipoPagamento) {
-    this->TipoPagamento = TipoPagamento;
+void Vendas::SetTipoPagamento(Pagamentos *TipoPagamento) {
+    this->TipoPagamento = *TipoPagamento;
 }
 
-void Vendas::SetOrcamentoAtual(Orcamento OrcamentoAtual) {
-    this->OrcamentoAtual = OrcamentoAtual;
+void Vendas::SetOrcamentoAtual(Orcamento *OrcamentoAtual) {
+    this->OrcamentoAtual = *OrcamentoAtual;
 }

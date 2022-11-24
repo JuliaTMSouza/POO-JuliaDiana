@@ -2,9 +2,10 @@
 #define ROTA_H
 
   #include <string>
-  #include <vector>
+  #include <list>
+
   #include "Turno.hpp"
-  #include "Funcionario.hpp"
+  /*#include "Funcionario.hpp"*/
 
   using namespace std;
 
@@ -14,23 +15,24 @@
       //depois conferir como vai ser isso aqui...
 
     protected:
-      Funcionario Residentes;
-      vector<string> RotaRealizada;
+      /*Funcionario Residentes;*/
+      list<string> RotaRealizada;
       Turno Turnos;
       int TempoPercurso;
       int TempoEmbarque;
 
     public:
-      Funcionario GetResidentes();
-      int GetTempoPercurso();
+
+      /*Funcionario GetResidentes();*/
       Turno GetTurnos();
-      vector <string> GetRotaRealizada();
+      list<string> GetRotaRealizada();
+      int GetTempoPercurso();
       int GetTempoEmbarque();
 
-      void SetResidentes(Funcionario Residentes);
-      void SetTempoPercurso(int TempoPercurso);
+      /*void SetResidentes(Funcionario Residentes);*/
       void SetTurnos(Turno Turnos);
-      void SetRotaRealizada(vector<string> RotaRealizada);
+      void SetRotaRealizada(string RotaRealizada);
+      void SetTempoPercurso(int TempoPercurso);
       void SetTempoEmbarque(int TempoEmbarque);
 
   };
