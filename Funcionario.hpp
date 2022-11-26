@@ -2,6 +2,7 @@
 #define FUNCIONARIO_H
 
   #include <string>
+  
   #include "Pessoa.hpp"
   #include "Departamento.hpp"
   #include "Cargo.hpp"

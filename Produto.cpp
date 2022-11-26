@@ -6,7 +6,9 @@ using namespace std;
 
 int Produto::CodigoAtual = 0;
 
-Produto::Produto(){
+Produto::Produto(){}
+
+Produto::Produto(int cria){
     //fazer um "confere nomeProduto" na empresa?
     SetCodigoAtual();
     this->Codigo = GetCodigoAtual();
@@ -20,30 +22,31 @@ void Produto::SolicitarNovoLote(int Quantidade, Date Data){
     for (list<MateriaPrima>::iterator positMateria = this->MateriasPrima.begin(); positMateria != this->MateriasPrima.end(); positMateria++){
         //comparar se os materiais q ainda tem são suficientes pra produzir
         /*cout << positMateria->GetNome() //<< " " << positMateria->GetEstoqueMinimo() 
-        << " " << positMateria->GetEstoqueMinimo()*Quantidade
+        << " " << positMateria->GetMedida()*Quantidade
         << " " <<  positMateria->GetEstoqueAtual() << endl;*/
-        if(positMateria->GetEstoqueMinimo()*Quantidade > positMateria->GetEstoqueAtual()) Validado = 1;
+        if(positMateria->GetMedida()*Quantidade > positMateria->GetEstoqueAtual()) Validado = 1;
     }
     //cout << "validando: " << Validado << endl;
     if(Validado == 0){
         //novo lote produzido, então tira os materiais necessarios da quantidade armazenada
+        //cout << "\n\tProduziu novo lote:\n";
         SetEstoqueAtual(Quantidade);
         //cout << "setou ";
-        SetLote(Quantidade, Data);
+        SetLote(Quantidade, Data, 0);
         for (list<MateriaPrima>::iterator positMateria = this->MateriasPrima.begin(); positMateria != this->MateriasPrima.end(); positMateria++){
             //cout << positMateria->GetNome() << "\nantes: " << positMateria->GetEstoqueAtual();
-            positMateria->SetEstoqueAtual(-(positMateria->GetEstoqueMinimo()*Quantidade));
+            positMateria->SetEstoqueAtual(-(positMateria->GetMedida()*Quantidade));
             //cout << " depois: " << positMateria->GetEstoqueAtual() << endl;
             if(positMateria->GetEstoqueAtual() < positMateria->GetEstoqueMinimo()){
-                SolicitarMateriais(this->GetEstoqueMinimo());
-                break;
+                Validado = positMateria->GetEstoqueMinimo();
             }
         }
         //cout << "entrou 1\n";
     }
-    else{
-        SolicitarMateriais(Quantidade);
-        SolicitarNovoLote(Quantidade, Data);
+    if(Validado > 0){
+        if(Validado > 1) Quantidade = Validado;
+        SolicitarMateriais(Quantidade, Data);
+        if (Validado == 1) SolicitarNovoLote(Quantidade, Data);
         //cout << "entrou 2\n";
     }
 
@@ -56,15 +59,17 @@ void Produto::SolicitarNovoLote(int Quantidade, Date Data){
     //SE PA ISSO TUDO FICARIA NO SOLICITAR MATERIAIS
 }
     
-void Produto::SolicitarMateriais(int Quantidade){
-    //cout << "\nNOVA ETAPA: \n\n";
+void Produto::SolicitarMateriais(int Quantidade, Date Data){
+    //cout << "\n\tSolicitou materiais\n";
     //cout << "quant. " << Quantidade << endl;
+   // Orcamento orcamentoFinal(this->NomeProduto, Quantidade, Data);
     list<float> Orcamentos;
     list<Fornecedor>::iterator positFornecedor = this->Fornecedores.begin();
-    float precos;
+    //list<Orcamento> OrcamentosPorMaterial;
+    float precos, proposta, precoTotal = 0;
     Fornecedor melhorOrcamento;
 
-    
+    /*
     for (; positFornecedor != this->Fornecedores.end(); positFornecedor++){
         precos = 0;
         for(list<MateriaPrima>::iterator positMaterial = this->MateriasPrima.begin(); positMaterial != this->MateriasPrima.end(); positMaterial++){
@@ -83,12 +88,34 @@ void Produto::SolicitarMateriais(int Quantidade){
         positFornecedor++;
     }
 
+
     //cout << "preco ." << precos << ".";
     //Teoricamente agr ele compara os preços e solicita. Mas oq fazer com essa informação? Armazena em Empresa que foi comprado x coisas com y valor?
     //ESSA PARTE A FRENTE PROVAVELMENTE IRIA PRO LUGAR EM Q OS GASTOS FOSSEM ARMAZENADOS:
 
     for(list<MateriaPrima>::iterator positMaterial = this->MateriasPrima.begin(); positMaterial != this->MateriasPrima.end(); positMaterial++){
         positMaterial->SetEstoqueAtual(Quantidade*positMaterial->GetEstoqueMinimo());
+        positMaterial->SetLotes(Quantidade, Data);
+        positMaterial->SetCompras(final); //NU, EU TENHO Q VER COMO ISSO AQUI VAI SER SETADO AINDA, PQ ACHO Q N TÁ PASSANDO POR TUDO
+        
+            //TENHO Q ARMAZENAR SAPOHA EM ALGUM LUGAR PRA LANÇAR NA LISTA DE COMPRA DEPOIS  
+        positFornecedor->RequerirOrcamento(positMaterial->GetNome(), positMaterial->GetMedida());
+        
+        
+        
+        //cout << positMaterial->GetNome() << " " << positMaterial->GetEstoqueAtual() << " " << Quantidade*positMaterial->GetEstoqueMinimo() << endl;
+    }*/
+
+    for(list<MateriaPrima>::iterator positMaterial = this->MateriasPrima.begin(); positMaterial != this->MateriasPrima.end(); positMaterial++){
+        for (precos = 0, proposta = 0; positFornecedor != this->Fornecedores.end(); positFornecedor++){
+            proposta = positFornecedor->RequerirOrcamento(positMaterial->GetNome(), positMaterial->GetMedida());
+            if(proposta < precos) precos = proposta;
+        }
+
+        positMaterial->SetEstoqueAtual(Quantidade*positMaterial->GetEstoqueMinimo());
+        positMaterial->SetLotes(Quantidade, Data, precos);
+        precoTotal += precos;
+
     }
 
 }
@@ -104,11 +131,11 @@ void Produto::SetLoteAtual() {
 string Produto::GetNomeProduto() {
     return this->NomeProduto;
 }
-
+/*
 int Produto::GetLoteMinimo() {
     return this->LoteMinimo;
 }
-
+*/
 int Produto::GetEstoqueMinimo() {
     return this->EstoqueMinimo;
 }
@@ -133,7 +160,7 @@ Lote Produto::GetLote() {
     list<Lote>::iterator ultimoLote = this->Lotes.end();
     ultimoLote--;
 
-    Lote getUltimoLote(ultimoLote->GetQuantidade(), ultimoLote->GetDataProducao(), ultimoLote->GetNumeroLote());
+    Lote getUltimoLote(ultimoLote->GetQuantidade(), ultimoLote->GetDataProducao(), ultimoLote->GetNumeroLote(), ultimoLote->GetValorDeCompra());
 
     return getUltimoLote;
 }
@@ -171,10 +198,10 @@ void Produto::SetEstoqueAtual(int EstoqueAtual) {
     this->EstoqueAtual += EstoqueAtual;
 }
 
-void Produto::SetLote(int Quantidade, Date Data) {
+void Produto::SetLote(int Quantidade, Date Data, float ValorDeCompra) {
     SetLoteAtual();
     //cout << "entrou\n"; //<< GetLoteAtual() << " " << Quantidade << endl;
-    Lote NovoLote(Quantidade, Data, GetLoteAtual());
+    Lote NovoLote(Quantidade, Data, GetLoteAtual(), ValorDeCompra); 
     //cout << "numero interno: " << NovoLote.GetNumeroLote() << endl;
     this->Lotes.push_back(NovoLote);
     //this->Lotes.push_back(NovoLote);
