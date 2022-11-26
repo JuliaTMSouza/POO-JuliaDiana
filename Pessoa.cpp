@@ -4,6 +4,8 @@
 #include <cctype>
 #include "Pessoa.hpp"
 
+//Possível cadastrar cnpj em pessoa
+
 using namespace std;
 
 bool Pessoa::ValidarCPF_CNPJ(string CPF_CNPJ, bool Tipo) {
@@ -21,16 +23,16 @@ bool Pessoa::ValidarCPF_CNPJ(string CPF_CNPJ, bool Tipo) {
 
     if (Tipo) {
         
-        if (CPF_CNPJ == "000000000000" ||
-        CPF_CNPJ == "111111111111" ||
-        CPF_CNPJ == "222222222222" || 
-        CPF_CNPJ == "333333333333" || 
-        CPF_CNPJ == "444444444444" || 
-        CPF_CNPJ == "555555555555" || 
-        CPF_CNPJ == "666666666666" || 
-        CPF_CNPJ == "777777777777" || 
-        CPF_CNPJ == "888888888888" || 
-        CPF_CNPJ == "999999999999") {
+        if (CPF_CNPJ == "00000000000" ||
+        CPF_CNPJ == "11111111111" ||
+        CPF_CNPJ == "22222222222" || 
+        CPF_CNPJ == "33333333333" || 
+        CPF_CNPJ == "44444444444" || 
+        CPF_CNPJ == "55555555555" || 
+        CPF_CNPJ == "66666666666" || 
+        CPF_CNPJ == "77777777777" || 
+        CPF_CNPJ == "88888888888" || 
+        CPF_CNPJ == "99999999999") {
             return false;
         }
 
@@ -116,7 +118,7 @@ string Pessoa::GetEmail() {
     return this->Email;
 }
 
-Permissao Pessoa::GetPermissoes() {
+Permissao* Pessoa::GetPermissoes() {
     return this->Permissoes;
 }
 
@@ -133,6 +135,6 @@ void Pessoa::SetCPF_CNPJ(string CPF_CNPJ, bool Tipo) {
     if(valid) this->CPF_CNPJ = CPF_CNPJ;
 }
 
-void Pessoa::SetPermissoes(Permissao Permissoes) {
+void Pessoa::SetPermissoes(Permissao *Permissoes) {
     this->Permissoes = Permissoes;
 }

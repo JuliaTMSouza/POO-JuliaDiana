@@ -15,7 +15,6 @@
       string Descricao;
 
     public:
-      Salario();
       void Promocao(Dissidio NovaPromocao);
 
       float GetValor();
@@ -23,7 +22,7 @@
       string GetDescricao();
       
       void SetValor(float Valor);
-      void SetDataSalario(Date DataSalario) {}
+      void SetDataSalario(Date DataSalario);
       void SetDescricao(string Descricao);
   };
 
