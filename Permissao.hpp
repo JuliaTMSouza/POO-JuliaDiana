@@ -13,7 +13,6 @@
     public:
       list<string> GetNaoPermitido();
       void SetNaoPermitido(string NaoPermitido);
-      int VerificarPermissao(Permissao NaoPermitido, string NomeMetodo);
   };
 
 #endif

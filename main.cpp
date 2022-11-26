@@ -42,133 +42,133 @@ using namespace std;
         e minúsculo para outras variáveis
         */
 
-void cadastrarPessoas(Empresa *empresa){
-    for(int cadastro = -1; cadastro != 0; cin >> cadastro){
-        switch (cadastro){
-        case -1:
-            break;
-        case 1:
-            /*cout << "Nome completo: "; cin >> auxString;
-            novoFuncionario.SetNome(auxString); auxString = "";
+// void cadastrarPessoas(Empresa *empresa){
+//     for(int cadastro = -1; cadastro != 0; cin >> cadastro){
+//         switch (cadastro){
+//         case -1:
+//             break;
+//         case 1:
+//             /*cout << "Nome completo: "; cin >> auxString;
+//             novoFuncionario.SetNome(auxString); auxString = "";
 
-            cout << "Pessoa física (0) ou jurídica (1)?: "; cin >> auxBool;
-            if(!auxBool) {cout << "Inserir CPF: "; cin >> auxString;}
-            else {cout << "Inserir CNPJ: "; cin >> auxString;}
-            novoFuncionario.SetCPF_CNPJ(auxString, auxBool); auxString = "";
+//             cout << "Pessoa física (0) ou jurídica (1)?: "; cin >> auxBool;
+//             if(!auxBool) {cout << "Inserir CPF: "; cin >> auxString;}
+//             else {cout << "Inserir CNPJ: "; cin >> auxString;}
+//             novoFuncionario.SetCPF_CNPJ(auxString, auxBool); auxString = "";
 
-            empresa.SetFuncionarios(novoFuncionario);*/
-            //cout << "Funcionario cadastrado. " << empresa.GetFuncionarios().begin()->GetNome() << endl;
-            break;
-        case 2:
-            cout << "Cliente cadastrado" << endl;
-            break;
-        default:
-            cout << "Comando nao encontrado. Tente novamente:\n";
-            break;
-        }
-        cout << "Selecione: \n'1' para Cadastro de funcionario\n'2' para Cadastro de Cliete\n'0' para Sair\n";
-    }
-}
+//             empresa.SetFuncionarios(novoFuncionario);*/
+//             //cout << "Funcionario cadastrado. " << empresa.GetFuncionarios().begin()->GetNome() << endl;
+//             break;
+//         case 2:
+//             cout << "Cliente cadastrado" << endl;
+//             break;
+//         default:
+//             cout << "Comando nao encontrado. Tente novamente:\n";
+//             break;
+//         }
+//         cout << "Selecione: \n'1' para Cadastro de funcionario\n'2' para Cadastro de Cliete\n'0' para Sair\n";
+//     }
+// }
 
-void cadastrarMaterial(Produto *produto, Date data){
-    MateriaPrima novoMaterial;
-    string auxString, nome = "a", estoque = "10 Kg", medida = "8 g";
+// void cadastrarMaterial(Produto *produto, Date data){
+//     MateriaPrima novoMaterial;
+//     string auxString, nome = "a", estoque = "10 Kg", medida = "8 g";
 
-    for(string novo = "S"; novo != "N"; cin >> novo){
-        /*cout << "Nome do Material: "; cin >> nome;
-        novoMaterial.SetNome(nome);*/
+//     for(string novo = "S"; novo != "N"; cin >> novo){
+//         /*cout << "Nome do Material: "; cin >> nome;
+//         novoMaterial.SetNome(nome);*/
 
-        cout << "Estoque minimo: "; //cin >> estoque;
+//         cout << "Estoque minimo: "; //cin >> estoque;
         
 
-        cout << "Medida: ";// cin >> medida;
+//         cout << "Medida: ";// cin >> medida;
 
-        novoMaterial.SetEstoqueMinimo(estoque);
-        novoMaterial.SetMedida(medida);
+//         novoMaterial.SetEstoqueMinimo(estoque);
+//         novoMaterial.SetMedida(medida);
 
-        int i = 1;
-        for(list<Fornecedor>::iterator positFornecedor = produto->GetFornecedores().begin(); positFornecedor != produto->GetFornecedores().end(); positFornecedor++){
-            srand(i);
-            i++;
-            positFornecedor->SetMateriasPrima(novoMaterial, Valor((rand()/500), data));
-        }
+//         int i = 1;
+//         for(list<Fornecedor>::iterator positFornecedor = produto->GetFornecedores().begin(); positFornecedor != produto->GetFornecedores().end(); positFornecedor++){
+//             srand(i);
+//             i++;
+//             positFornecedor->SetMateriasPrima(novoMaterial, Valor((rand()/500), data));
+//         }
 
-        cout << "Cadastrar novo material? (S/N) "; cin >> novo;
-        //novoMaterial.SetLotes();
-    }
-}
+//         cout << "Cadastrar novo material? (S/N) "; cin >> novo;
+//         //novoMaterial.SetLotes();
+//     }
+// }
 
-void cadastrarProdutos(Empresa *empresa, Date data, list<Fornecedor> fornecedores){
-    Produto novoProduto;
-    string auxString;
-    float auxFloat;
-    int auxInt;
-    bool auxBool;
+// void cadastrarProdutos(Empresa *empresa, Date data, list<Fornecedor> fornecedores){
+//     Produto novoProduto;
+//     string auxString;
+//     float auxFloat;
+//     int auxInt;
+//     bool auxBool;
 
-    for(string novo = "S"; (novo != "N" || novo != "n"); cin >> novo){
-        cout << "Nome do produto: "; cin >> auxString;
-        novoProduto.SetNomeProduto(auxString);
+//     for(string novo = "S"; (novo != "N" || novo != "n"); cin >> novo){
+//         cout << "Nome do produto: "; cin >> auxString;
+//         novoProduto.SetNomeProduto(auxString);
 
-        cout << "Categoria do produto: (como fazer?)" << endl;
-        //novoProduto.SetCategoria();
+//         cout << "Categoria do produto: (como fazer?)" << endl;
+//         //novoProduto.SetCategoria();
 
-        cout << "Estoque minimo: "; cin >> auxInt;
-        novoProduto.SetEstoqueMinimo(auxInt);
+//         cout << "Estoque minimo: "; cin >> auxInt;
+//         novoProduto.SetEstoqueMinimo(auxInt);
 
-        cout << "Cadastrar materias primas: ";
-        cadastrarMaterial(&novoProduto, data);
+//         cout << "Cadastrar materias primas: ";
+//         cadastrarMaterial(&novoProduto, data);
 
-        novoProduto.SetFornecedores(fornecedores);
+//         novoProduto.SetFornecedores(fornecedores);
 
-        novoProduto.SolicitarNovoLote(auxInt, data);
+//         novoProduto.SolicitarNovoLote(auxInt, data);
 
-        empresa->SetProdutos(novoProduto);
-        cout << "Cadastrar novo produto? (S/N) "; cin >> novo;
-    }
+//         empresa->SetProdutos(novoProduto);
+//         cout << "Cadastrar novo produto? (S/N) "; cin >> novo;
+//     }
 
-    //novoProduto.SetLote(auxInt, Date(2022, 11, 25), novoProduto.GetValor().GetValor());
+//     //novoProduto.SetLote(auxInt, Date(2022, 11, 25), novoProduto.GetValor().GetValor());
 
-     /*
-     novoProduto.SetLoteMinimo();
+//      /*
+//      novoProduto.SetLoteMinimo();
      
-     */
-}
+//      */
+// }
 
-void cadastrarFornecedores(list<Fornecedor> *fornecedor){
-    Fornecedor novoFornecedor;
+// void cadastrarFornecedores(list<Fornecedor> *fornecedor){
+//     Fornecedor novoFornecedor;
 
-    novoFornecedor.SetNome("Fornecedor 1");
-    fornecedor->push_back(novoFornecedor);
+//     novoFornecedor.SetNome("Fornecedor 1");
+//     fornecedor->push_back(novoFornecedor);
 
-    novoFornecedor.SetNome("Fornecedor 2");
-    fornecedor->push_back(novoFornecedor);
+//     novoFornecedor.SetNome("Fornecedor 2");
+//     fornecedor->push_back(novoFornecedor);
 
-    novoFornecedor.SetNome("Fornecedor 3");
-    fornecedor->push_back(novoFornecedor);
+//     novoFornecedor.SetNome("Fornecedor 3");
+//     fornecedor->push_back(novoFornecedor);
 
-    novoFornecedor.SetNome("Fornecedor 4");
-    fornecedor->push_back(novoFornecedor);
-}
+//     novoFornecedor.SetNome("Fornecedor 4");
+//     fornecedor->push_back(novoFornecedor);
+// }
 
-void cadastrarVeiculos(Empresa *empresa){
+// void cadastrarVeiculos(Empresa *empresa){
 
-}
+// }
 
-void cadastrarRotas(Empresa *empresa){
+// void cadastrarRotas(Empresa *empresa){
 
-}
+// }
 
-void gestaoCadastros(Empresa *empresa){
+// void gestaoCadastros(Empresa *empresa){
 
-}
+// }
 
-void orcamento(Empresa *empresa){
+// void orcamento(Empresa *empresa){
 
-}
+// }
 
-void compra(Empresa *empresa){
+// void compra(Empresa *empresa){
 
-}
+// }
 
 
 
@@ -178,84 +178,84 @@ int main()
     // //Empresa &Colchobel = Empresa::getInstancia();
 
     //CRIANDO LOGADO
-    // Logado &Jorge = Logado::getInstancia();
+    Logado &Jorge = Logado::getInstancia();
     Permissao PermissaoJorge;
     PermissaoJorge.SetNaoPermitido("ExcluirFuncionario");
     Permissao *PermissaoJorge1 = &PermissaoJorge;
-    // Jorge.SetPermissoes(PermissaoJorge);
-    // cout << PermissaoJorge.VerificarPermissao(Jorge.GetPermissoes(), "ExcluirFuncionario") << endl;
+    Jorge.SetPermissoes(PermissaoJorge);
+    cout << Jorge.VerificarPermissao("ExcluirFuncionario") << endl;
     // Logado &Alexandre = Logado::getInstancia();
     // cout << PermissaoJorge.VerificarPermissao(Alexandre.GetPermissoes(), "ExcluirFuncionario") << endl;
 
     //CADASTRANDO FUNCIONARIO
-    Funcionario Jorge;
+    // Funcionario Jorge;
     // Jorge.SetNome("Jorge");
     // Jorge.SetEmail("jorge@gmail.com.br");
-    Jorge.SetPermissoes(PermissaoJorge1);
-    Jorge.SetMatricula("JorgeLima");
-    Jorge.SetEndereco("Rua entre as árvores, 47");
+    // Jorge.SetPermissoes(PermissaoJorge1);
+    // Jorge.SetMatricula("JorgeLima");
+    // Jorge.SetEndereco("Rua entre as árvores, 47");
     // Jorge.SetCPF_CNPJ("13873357666", 1);
     // cout << Jorge.GetNome() << endl;
     // cout << Jorge.GetEmail() << endl;
-    cout << Jorge.GetMatricula() << endl;
-    cout << Jorge.GetEndereco() << endl;
+    // cout << Jorge.GetMatricula() << endl;
+    // cout << Jorge.GetEndereco() << endl;
     // cout << Jorge.GetCPF_CNPJ() << endl;
 
-    cout << "Saídas" << endl;
+    // cout << "Saídas" << endl;
 
 
-    Cargo Gerente;
-    Gerente.SetEscopo("Acompanhar o trabalho dos desenvolvedores");
-    Gerente.SetNome("Gerente Scrum");
+    // Cargo Gerente;
+    // Gerente.SetEscopo("Acompanhar o trabalho dos desenvolvedores");
+    // Gerente.SetNome("Gerente Scrum");
 
-    Cargo *CargoJorge = &Gerente;
+    // Cargo *CargoJorge = &Gerente;
     // Jorge.SetCargoAtual(Gerente);
     // cout << Jorge.GetCargoAtual() << endl;
 
-    Departamento Projetos;
-    Projetos.SetNome("Projetos");
+    // Departamento Projetos;
+    // Projetos.SetNome("Projetos");
 
-    Departamento *DepartamentoJorge = &Projetos;
+    // Departamento *DepartamentoJorge = &Projetos;
 
-    Date NascimentoJorge;
-    NascimentoJorge.setAno(1975);
-    NascimentoJorge.setMes(3);
-    NascimentoJorge.setDia(4);
+    // Date NascimentoJorge;
+    // NascimentoJorge.setAno(1975);
+    // NascimentoJorge.setMes(3);
+    // NascimentoJorge.setDia(4);
 
-    Date *NascimentoJorge1 = &NascimentoJorge;
+    // Date *NascimentoJorge1 = &NascimentoJorge;
 
-    Admissao AdmissaoJorge;
-    AdmissaoJorge.SetDataAdmissao(NascimentoJorge);
+    // Admissao AdmissaoJorge;
+    // AdmissaoJorge.SetDataAdmissao(NascimentoJorge);
 
-    Admissao *AdmissaoJorge1 = &AdmissaoJorge;
+    // Admissao *AdmissaoJorge1 = &AdmissaoJorge;
 
-    Salario SalarioJorge;
-    SalarioJorge.SetValor(1750);
-    SalarioJorge.SetDescricao("Admisao");
-    SalarioJorge.SetDataSalario(NascimentoJorge);
+    // Salario SalarioJorge;
+    // SalarioJorge.SetValor(1750);
+    // SalarioJorge.SetDescricao("Admisao");
+    // SalarioJorge.SetDataSalario(NascimentoJorge);
 
-    Salario *SalarioJorge1 = &SalarioJorge;
+    // Salario *SalarioJorge1 = &SalarioJorge;
 
-    Jorge.SetNascimento(NascimentoJorge1);
-    Jorge.SetCargoAtual(CargoJorge);
-    Jorge.SetDepartamentoAtual(DepartamentoJorge);
-    Jorge.SetAdmissaoDemissao(AdmissaoJorge);
-    Jorge.SetSalarios(SalarioJorge);
+    // Jorge.SetNascimento(NascimentoJorge1);
+    // Jorge.SetCargoAtual(CargoJorge);
+    // Jorge.SetDepartamentoAtual(DepartamentoJorge);
+    // Jorge.SetAdmissaoDemissao(AdmissaoJorge);
+    // Jorge.SetSalarios(SalarioJorge);
 
-    cout << Jorge.GetCargoAtual()->GetEscopo() << endl;
-    cout << Jorge.GetDepartamentoAtual()->GetNome() << endl;
-    list<Admissao>::iterator it;
-    list<Admissao> AdmissaoDemissaoJorge = Jorge.GetAdmissaoDemissao();
-    for (it = AdmissaoDemissaoJorge.begin(); it != AdmissaoDemissaoJorge.end(); it++) {
-       it->GetDataAdmissao().printData();
-    }
-    list<Salario>::iterator it2;
-    list<Salario> SalarioJorge2 = Jorge.GetSalarios();
-    for (it2 = SalarioJorge2.begin(); it2 != SalarioJorge2.end(); it2++) {
-       cout << it2->GetValor() << endl;
-    }
+    // cout << Jorge.GetCargoAtual()->GetEscopo() << endl;
+    // cout << Jorge.GetDepartamentoAtual()->GetNome() << endl;
+    // list<Admissao>::iterator it;
+    // list<Admissao> AdmissaoDemissaoJorge = Jorge.GetAdmissaoDemissao();
+    // for (it = AdmissaoDemissaoJorge.begin(); it != AdmissaoDemissaoJorge.end(); it++) {
+    //    it->GetDataAdmissao().printData();
+    // }
+    // list<Salario>::iterator it2;
+    // list<Salario> SalarioJorge2 = Jorge.GetSalarios();
+    // for (it2 = SalarioJorge2.begin(); it2 != SalarioJorge2.end(); it2++) {
+    //    cout << it2->GetValor() << endl;
+    // }
 
-    Jorge.GetNascimento()->printData();
+    // Jorge.GetNascimento()->printData();
     // cout << Jorge.GetSalarios().GetValor() << endl;
 
     // Departamento *DepartamentoJorge = &Projetos;
