@@ -4,9 +4,9 @@
 #include "Pessoa.hpp"
 // #include "Funcionario.hpp"
 #include "Cliente.hpp"
-#include "Cargo.hpp"
-#include "Departamento.hpp"
-#include "Admissao.hpp"
+#include "Cargo.hpp"           //OK
+#include "Departamento.hpp"    //OK
+#include "Admissao.hpp"        //OK
 #include "Dissidio.hpp"
 
 #include "Produto.hpp"              // FALTA A PARTE Q DEPENDE DO FORNECEDOR
@@ -26,6 +26,7 @@
 #include "Cartao.hpp"
 #include "Fornecedor.hpp"           // INCOMPLETO
 #include "Empresa.hpp"
+#include "Logado.hpp"
 
 using namespace std;
 
@@ -38,37 +39,82 @@ int main()
 {
 
     //CRIANDO EMPRESA
-    Empresa &Colchobel = Empresa::getInstancia();
-    
-    // Exemplo de construtor 
-    // Cargo novoCar = Cargo() ;
-    // novoCar.SetNome("Vendedor");
-    // novoCar.SetEscopo("Cuidar da precificação de projetos e negociação com os clientes");
-    // Funcionario Jorge;
+    // Empresa &Colchobel = Empresa::getInstancia();
+
+    //CRIANDO LOGADO
+    // Logado &Jorge = Logado::getInstancia();
+    Permissao PermissaoJorge;
+    PermissaoJorge.SetNaoPermitido("ExcluirFuncionario");
+    Permissao *PermissaoJorge1 = &PermissaoJorge;
+    // Jorge.SetPermissoes(PermissaoJorge);
+    // cout << PermissaoJorge.VerificarPermissao(Jorge.GetPermissoes(), "ExcluirFuncionario") << endl;
+    // Logado &Alexandre = Logado::getInstancia();
+    // cout << PermissaoJorge.VerificarPermissao(Alexandre.GetPermissoes(), "ExcluirFuncionario") << endl;
+
+    //CADASTRANDO FUNCIONARIO
+    Funcionario Jorge;
     // Jorge.SetNome("Jorge");
     // Jorge.SetEmail("jorge@gmail.com.br");
-    // Jorge.SetMatricula("JorgeLima");
-    // Jorge.SetEndereco("Rua entre as árvores, 47");
-    //Jorge.SetCPF_CNPJ("11111111111", 1);
+    Jorge.SetPermissoes(PermissaoJorge1);
+    Jorge.SetMatricula("JorgeLima");
+    Jorge.SetEndereco("Rua entre as árvores, 47");
+    // Jorge.SetCPF_CNPJ("13873357666", 1);
     // cout << Jorge.GetNome() << endl;
     // cout << Jorge.GetEmail() << endl;
-    // cout << Jorge.GetMatricula() << endl;
-    // cout << Jorge.GetEndereco() << endl;
+    cout << Jorge.GetMatricula() << endl;
+    cout << Jorge.GetEndereco() << endl;
     // cout << Jorge.GetCPF_CNPJ() << endl;
+    list<string>::iterator it;
+    for (it = Jorge.GetPermissoes()->GetNaoPermitido().begin(); it != Jorge.GetPermissoes()->GetNaoPermitido().end(); it++) {
+      cout << *it << endl;
+    }
 
-    // Cargo Gerente;
-    // Gerente.SetEscopo("Acompanhar o trabalho dos desenvolvedores");
-    // Gerente.SetNome("Gerente Scrum");
-    // cout << Gerente.GetEscopo() << endl;
-    // cout << Gerente.GetNome() << endl;
+    cout << "Saídas" << endl;
 
-    // Cargo *CargoJorge = &Gerente;
+
+    Cargo Gerente;
+    Gerente.SetEscopo("Acompanhar o trabalho dos desenvolvedores");
+    Gerente.SetNome("Gerente Scrum");
+
+    Cargo *CargoJorge = &Gerente;
     // Jorge.SetCargoAtual(Gerente);
     // cout << Jorge.GetCargoAtual() << endl;
 
-    // Departamento Projetos;
-    // Projetos.SetNome("Projetos");
-    // Projetos.SetDescricao("Gerenciar a execução dos projetos vendidos pela empresa");
+    Departamento Projetos;
+    Projetos.SetNome("Projetos");
+
+    Departamento *DepartamentoJorge = &Projetos;
+
+    Date NascimentoJorge;
+    NascimentoJorge.setAno(1975);
+    NascimentoJorge.setMes(3);
+    NascimentoJorge.setDia(4);
+
+    Date *NascimentoJorge1 = &NascimentoJorge;
+
+    Admissao AdmissaoJorge;
+    AdmissaoJorge.SetDataAdmissao(NascimentoJorge);
+
+    Admissao *AdmissaoJorge1 = &AdmissaoJorge;
+
+    Salario SalarioJorge;
+    SalarioJorge.SetValor(1750);
+    SalarioJorge.SetDescricao("Admisao");
+    SalarioJorge.SetDataSalario(NascimentoJorge);
+
+    Salario *SalarioJorge1 = &SalarioJorge;
+
+    Jorge.SetNascimento(NascimentoJorge1);
+    Jorge.SetCargoAtual(CargoJorge);
+    Jorge.SetDepartamentoAtual(DepartamentoJorge);
+    Jorge.SetAdmissaoDemissao(AdmissaoJorge1);
+    Jorge.SetSalarios(SalarioJorge1);
+
+    cout << Jorge.GetCargoAtual()->GetEscopo() << endl;
+    cout << Jorge.GetDepartamentoAtual()->GetNome() << endl;
+    // Jorge.GetAdmissaoDemissao().GetDataAdmissao().printData();
+    Jorge.GetNascimento()->printData();
+    // cout << Jorge.GetSalarios().GetValor() << endl;
 
     // Departamento *DepartamentoJorge = &Projetos;
     // Jorge.SetDepartamentoAtual(Projetos);

@@ -3,12 +3,12 @@
 
   #include <iostream>
   #include <stdbool.h>
-  #include <permissao.hpp>
+  #include "Permissao.hpp"
 
   class Logado {
     protected:
       Logado() = default;
-      Permissão Permissoes;
+      Permissao Permissoes;
       
 
     public:

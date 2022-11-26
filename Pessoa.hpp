@@ -11,7 +11,7 @@
       string Nome;
       string CPF_CNPJ;
       string Email;
-      Permissao Permissoes;
+      Permissao *Permissoes;
 
       bool ValidarCPF_CNPJ(string CPF_CNPJ, bool Tipo);
       bool ValidaPessoa(string CPF_CNPJ, string Nome, bool Tipo);
@@ -20,12 +20,12 @@
       string GetNome();
       string GetCPF_CNPJ();
       string GetEmail();
-      Permissao GetPermissoes();
+      Permissao* GetPermissoes();
 
       void SetNome(string Nome);
       void SetCPF_CNPJ(string CPF_CNPJ, bool Tipo);
       void SetEmail(string Email);
-      void SetPermissoes(Permissao Permissoes);
+      void SetPermissoes(Permissao *Permissoes);
   };
 
 #endif

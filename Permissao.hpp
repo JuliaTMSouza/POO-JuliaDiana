@@ -8,12 +8,12 @@
 
   class Permissao {
     protected:
-      list <string> NaoPermitido;
+      list<string> NaoPermitido;
 
     public:
-      list <string> GetNaoPermitido();
-      void SetNaoPermitido(list <string> NaoPermitido);
-      bool VerificarPermissao(list<string> NaoPermitido, string NomeMetodo);
+      list<string> GetNaoPermitido();
+      void SetNaoPermitido(string NaoPermitido);
+      int VerificarPermissao(Permissao NaoPermitido, string NomeMetodo);
   };
 
 #endif
