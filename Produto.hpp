@@ -63,7 +63,7 @@
       void SetCategoria(Categoria CategoriaProduto);
       void SetValor(Valor ValorProduto);
       void SetMateriasPrima(MateriaPrima MateriasPrima);
-      void SetFornecedores(Fornecedor *NovoFornecedor);
+      void SetFornecedores(list<Fornecedor> NovoFornecedor);
 
   };
   

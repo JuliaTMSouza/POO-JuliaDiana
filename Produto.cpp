@@ -23,7 +23,7 @@ void Produto::SolicitarNovoLote(int Quantidade, Date Data){
     }
     if(Validado == 0){
         SetEstoqueAtual(Quantidade);
-        SetLote(Quantidade, Data, 0);
+        SetLote(Quantidade, Data, this->GetValor().GetValor());
 
         for (list<MateriaPrima>::iterator positMateria = this->MateriasPrima.begin(); positMateria != this->MateriasPrima.end(); positMateria++){
             positMateria->SetEstoqueAtual(-(positMateria->GetMedida()*Quantidade));
@@ -161,6 +161,6 @@ void Produto::SetMateriasPrima(MateriaPrima MateriasPrima) {
     this->MateriasPrima.push_back(MateriasPrima);
 }
 
-void Produto::SetFornecedores(Fornecedor *NovoFornecedor) {
-    this->Fornecedores.push_back(*NovoFornecedor);
+void Produto::SetFornecedores(list<Fornecedor> NovoFornecedor) {
+    this->Fornecedores = NovoFornecedor;
 }

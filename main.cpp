@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cstdlib>
 #include <string>
 #include <list>
 
@@ -40,9 +41,138 @@ using namespace std;
         e minúsculo para outras variáveis
         */
 
+void cadastrarPessoas(Empresa *empresa){
+    for(int cadastro = -1; cadastro != 0; cin >> cadastro){
+        switch (cadastro){
+        case -1:
+            break;
+        case 1:
+            /*cout << "Nome completo: "; cin >> auxString;
+            novoFuncionario.SetNome(auxString); auxString = "";
+
+            cout << "Pessoa física (0) ou jurídica (1)?: "; cin >> auxBool;
+            if(!auxBool) {cout << "Inserir CPF: "; cin >> auxString;}
+            else {cout << "Inserir CNPJ: "; cin >> auxString;}
+            novoFuncionario.SetCPF_CNPJ(auxString, auxBool); auxString = "";
+
+            empresa.SetFuncionarios(novoFuncionario);*/
+            //cout << "Funcionario cadastrado. " << empresa.GetFuncionarios().begin()->GetNome() << endl;
+            break;
+        case 2:
+            cout << "Cliente cadastrado" << endl;
+            break;
+        default:
+            cout << "Comando nao encontrado. Tente novamente:\n";
+            break;
+        }
+        cout << "Selecione: \n'1' para Cadastro de funcionario\n'2' para Cadastro de Cliete\n'0' para Sair\n";
+    }
+}
+
+void cadastrarMaterial(Produto *produto, Date data){
+    MateriaPrima novoMaterial;
+    string auxString, nome = "a", estoque = "10 Kg", medida = "8 g";
+
+    for(string novo = "S"; novo != "N"; cin >> novo){
+        /*cout << "Nome do Material: "; cin >> nome;
+        novoMaterial.SetNome(nome);*/
+
+        cout << "Estoque minimo: "; //cin >> estoque;
+        
+
+        cout << "Medida: ";// cin >> medida;
+
+        novoMaterial.SetEstoqueMinimo(estoque);
+        novoMaterial.SetMedida(medida);
+
+        int i = 1;
+        for(list<Fornecedor>::iterator positFornecedor = produto->GetFornecedores().begin(); positFornecedor != produto->GetFornecedores().end(); positFornecedor++){
+            srand(i);
+            i++;
+            positFornecedor->SetMateriasPrima(novoMaterial, Valor((rand()/500), data));
+        }
+
+        cout << "Cadastrar novo material? (S/N) "; cin >> novo;
+        //novoMaterial.SetLotes();
+    }
+}
+
+void cadastrarProdutos(Empresa *empresa, Date data, list<Fornecedor> fornecedores){
+    Produto novoProduto;
+    string auxString;
+    float auxFloat;
+    int auxInt;
+    bool auxBool;
+
+    for(string novo = "S"; (novo != "N" || novo != "n"); cin >> novo){
+        cout << "Nome do produto: "; cin >> auxString;
+        novoProduto.SetNomeProduto(auxString);
+
+        cout << "Categoria do produto: (como fazer?)" << endl;
+        //novoProduto.SetCategoria();
+
+        cout << "Estoque minimo: "; cin >> auxInt;
+        novoProduto.SetEstoqueMinimo(auxInt);
+
+        cout << "Cadastrar materias primas: ";
+        cadastrarMaterial(&novoProduto, data);
+
+        novoProduto.SetFornecedores(fornecedores);
+
+        novoProduto.SolicitarNovoLote(auxInt, data);
+
+        empresa->SetProdutos(novoProduto);
+        cout << "Cadastrar novo produto? (S/N) "; cin >> novo;
+    }
+
+    //novoProduto.SetLote(auxInt, Date(2022, 11, 25), novoProduto.GetValor().GetValor());
+
+     /*
+     novoProduto.SetLoteMinimo();
+     
+     */
+}
+
+void cadastrarFornecedores(list<Fornecedor> *fornecedor){
+    Fornecedor novoFornecedor;
+
+    novoFornecedor.SetNome("Fornecedor 1");
+    fornecedor->push_back(novoFornecedor);
+
+    novoFornecedor.SetNome("Fornecedor 2");
+    fornecedor->push_back(novoFornecedor);
+
+    novoFornecedor.SetNome("Fornecedor 3");
+    fornecedor->push_back(novoFornecedor);
+
+    novoFornecedor.SetNome("Fornecedor 4");
+    fornecedor->push_back(novoFornecedor);
+}
+
+void cadastrarVeiculos(Empresa *empresa){
+
+}
+
+void cadastrarRotas(Empresa *empresa){
+
+}
+
+void gestaoCadastros(Empresa *empresa){
+
+}
+
+void orcamento(Empresa *empresa){
+
+}
+
+void compra(Empresa *empresa){
+
+}
+
+
 int main()
 {
-
+    /*
     //CRIANDO EMPRESA
     //Empresa &Colchobel = Empresa::getInstancia();
     
@@ -89,10 +219,10 @@ int main()
     // cout << AdmissaoJorge.GetDataAdmissao().getDia() << endl;
     // Jorge.SetAdmissaoDemissao(AdmissaoJorge);
     // cout << Jorge.GetAdmissaoDemissao() << endl;
+*/
 
 
 /*
-
      Date aaa(2022, 9, 22);
      cout << aaa.getData() << endl;
 
@@ -272,7 +402,9 @@ int main()
     //outraMesa.SetLote(60, Date(2022, 10, 24));
     outraMesa.SetNomeProduto("outraMesa");
     outraMesa.SetValor(Valor(120.29, Date(2022, 11, 21)));
-    outraMesa.SetFornecedores(&chefe);
+    list<Fornecedor> fornecedores;
+    fornecedores.push_back(chefe);
+    outraMesa.SetFornecedores(fornecedores);
     
     cout << outraMesa.GetCategoria().GetNome() << " ";
     cout << outraMesa.GetEstoqueAtual() << " ";
@@ -314,7 +446,7 @@ int main()
     cout << novoOnibus.GetPlaca() << " " << novoOnibus.GetRotas().begin()->GetTurnos().GetHorarioPartida() << "\n\n" << endl;
 
     
-    outraMesa.SetFornecedores(&chefe);
+    outraMesa.SetFornecedores(fornecedores);
 
     Fornecedor head;
     head.SetMateriasPrima(Mad, Valor(10, Date(2022, 11, 24)));
@@ -322,12 +454,101 @@ int main()
     head.SetMateriasPrima(Plastc, Valor(10, Date(2022, 11, 24)));
     head.SetMateriasPrima(Paraf, Valor(10, Date(2022, 11, 24)));
 
-    outraMesa.SetFornecedores(&head);
+    fornecedores.push_back(head);
+    outraMesa.SetFornecedores(fornecedores);
 
     outraMesa.SolicitarNovoLote(100, Date(2022, 11, 24));
     //outraMesa.SolicitarNovoLote(2, Date(2022, 11, 24));
 
     */
+
+    MateriaPrima mds;
+    cout << ">> " << mds.GetLoteAtual() << endl;
+
+    mds.SetEstoqueMinimo("20 m2");
+    mds.SetEstoqueAtual(30);
+    mds.SetMedida("20 m");
+    mds.SetLotes(45, Date(2022, 11, 25), 0);
+    mds.SetNome("madeira");
+
+     cout << mds.GetEstoqueAtual() << " ";
+     cout << mds.GetEstoqueMinimo() << " ";
+     cout << mds.GetLoteAtual() << " ";
+     cout << mds.GetLotes().begin()->GetNumeroLote() << " ";
+     cout << mds.GetNome() << " ";
+     cout << mds.GetMedida() << " ";
+     cout << "." << mds.GetUnidadeMedida() << ",\n" << endl;
+
+
+    // TESTE DO PROFESSOR:    
+/*
+    bool gestaoDesbloqueada = false, orcamentoDesbloqueado = false, compraDesbloqueada = false;
+    Empresa &Colchobel = Empresa::getInstancia();
+    // Como provar q isso foi feito e deu certo?
+
+    list<Fornecedor> fornecedores;
+    Date data(2022, 11, 25);
+    // Como vamos deixar isso dinâmico?
+
+    // Instanciar informações pré prontas
+        // Fornecedores
+    cadastrarFornecedores(&fornecedores);
+        // Cargos
+        // Departamentos
+        // Categorias
+
+    for(int selecao = -1; selecao != 0; cin >> selecao){
+
+        switch (selecao){
+        case -1: // INICIALIZA
+            break;
+        case 1: // CADASTRA PESSOA
+            cadastrarPessoas(&Colchobel);
+            gestaoDesbloqueada = true;
+            cout << "1\n\n";
+            break;
+        case 2: // CADASTRA MATERIAIS E PRODUTOS
+            cadastrarProdutos(&Colchobel, data, fornecedores);
+            orcamentoDesbloqueado = true;
+            cout << "2\n\n";
+            break;
+        case 3: // CADASTRA VEICULOS
+            cadastrarVeiculos(&Colchobel);
+            break;
+        case 4: // CADASTRA ROTAS
+            cadastrarRotas(&Colchobel);
+            break;
+        case 5: // GESTÃO DE CADASTROS (ATUALIZAR E EXCLUIR)
+            if(gestaoDesbloqueada) gestaoCadastros(&Colchobel);
+            else cout << "Ainda nao existem pessoas cadastradas ou voce nao possui permissao para gerir os cadastros\n";
+            break;
+        case 6: // CRIA ORCAMENTO
+            if(orcamentoDesbloqueado) orcamento(&Colchobel);
+            else cout << "Ainda nao existem produtos cadastrados.\n";
+            compraDesbloqueada = true;
+            break;
+        case 7: // COMPRA
+            if(compraDesbloqueada) compra(&Colchobel);
+            else cout << "Ainda nao existem orcamentos realizados.\n";
+            break;
+        default:
+            cout << "Comando nao encontrado. Tente novamente:\n";
+            break;
+        }
+        cout << "Selecione: \n"
+        << "'1' para Cadastro de pessoas\n"
+        << "'2' para Cadastro de materiais e produtos\n"
+        << "'3' para Cadastro de veículos\n"
+        << "'4' para Cadastro de rotas\n"
+        << "'5' para gestão de cadastros\n"
+        << "'6' para Realizar um orcamento\n"
+        << "'7' para Compra\n"
+        << "'0' para Sair\n";
+                
+    }
+
+    cout << "Volte sempre!\n";
+*/
 
 
 
