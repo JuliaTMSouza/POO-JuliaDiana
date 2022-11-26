@@ -4,7 +4,7 @@
 #include <list>
 
 #include "Pessoa.hpp"
-// #include "Funcionario.hpp"
+#include "Funcionario.hpp"  //OK 
 #include "Cliente.hpp"
 #include "Cargo.hpp"           //OK
 #include "Departamento.hpp"    //OK
@@ -171,9 +171,9 @@ void compra(Empresa *empresa){
 }
 
 
+
 int main()
 {
-    /*
     //CRIANDO EMPRESA
     // //Empresa &Colchobel = Empresa::getInstancia();
 
@@ -200,10 +200,6 @@ int main()
     cout << Jorge.GetMatricula() << endl;
     cout << Jorge.GetEndereco() << endl;
     // cout << Jorge.GetCPF_CNPJ() << endl;
-    list<string>::iterator it;
-    for (it = Jorge.GetPermissoes()->GetNaoPermitido().begin(); it != Jorge.GetPermissoes()->GetNaoPermitido().end(); it++) {
-      cout << *it << endl;
-    }
 
     cout << "Saídas" << endl;
 
@@ -243,12 +239,22 @@ int main()
     Jorge.SetNascimento(NascimentoJorge1);
     Jorge.SetCargoAtual(CargoJorge);
     Jorge.SetDepartamentoAtual(DepartamentoJorge);
-    Jorge.SetAdmissaoDemissao(AdmissaoJorge1);
-    Jorge.SetSalarios(SalarioJorge1);
+    Jorge.SetAdmissaoDemissao(AdmissaoJorge);
+    Jorge.SetSalarios(SalarioJorge);
 
     cout << Jorge.GetCargoAtual()->GetEscopo() << endl;
     cout << Jorge.GetDepartamentoAtual()->GetNome() << endl;
-    // Jorge.GetAdmissaoDemissao().GetDataAdmissao().printData();
+    list<Admissao>::iterator it;
+    list<Admissao> AdmissaoDemissaoJorge = Jorge.GetAdmissaoDemissao();
+    for (it = AdmissaoDemissaoJorge.begin(); it != AdmissaoDemissaoJorge.end(); it++) {
+       it->GetDataAdmissao().printData();
+    }
+    list<Salario>::iterator it2;
+    list<Salario> SalarioJorge2 = Jorge.GetSalarios();
+    for (it2 = SalarioJorge2.begin(); it2 != SalarioJorge2.end(); it2++) {
+       cout << it2->GetValor() << endl;
+    }
+
     Jorge.GetNascimento()->printData();
     // cout << Jorge.GetSalarios().GetValor() << endl;
 
@@ -265,7 +271,6 @@ int main()
     // cout << AdmissaoJorge.GetDataAdmissao().getDia() << endl;
     // Jorge.SetAdmissaoDemissao(AdmissaoJorge);
     // cout << Jorge.GetAdmissaoDemissao() << endl;
-*/
 
 
 /*
@@ -508,22 +513,22 @@ int main()
 
     */
 
-    MateriaPrima mds;
-    cout << ">> " << mds.GetLoteAtual() << endl;
+    // MateriaPrima mds;
+    // cout << ">> " << mds.GetLoteAtual() << endl;
 
-    mds.SetEstoqueMinimo("20 m2");
-    mds.SetEstoqueAtual(30);
-    mds.SetMedida("20 m");
-    mds.SetLotes(45, Date(2022, 11, 25), 0);
-    mds.SetNome("madeira");
+    // mds.SetEstoqueMinimo("20 m2");
+    // mds.SetEstoqueAtual(30);
+    // mds.SetMedida("20 m");
+    // mds.SetLotes(45, Date(2022, 11, 25), 0);
+    // mds.SetNome("madeira");
 
-     cout << mds.GetEstoqueAtual() << " ";
-     cout << mds.GetEstoqueMinimo() << " ";
-     cout << mds.GetLoteAtual() << " ";
-     cout << mds.GetLotes().begin()->GetNumeroLote() << " ";
-     cout << mds.GetNome() << " ";
-     cout << mds.GetMedida() << " ";
-     cout << "." << mds.GetUnidadeMedida() << ",\n" << endl;
+    //  cout << mds.GetEstoqueAtual() << " ";
+    //  cout << mds.GetEstoqueMinimo() << " ";
+    //  cout << mds.GetLoteAtual() << " ";
+    //  cout << mds.GetLotes().begin()->GetNumeroLote() << " ";
+    //  cout << mds.GetNome() << " ";
+    //  cout << mds.GetMedida() << " ";
+    //  cout << "." << mds.GetUnidadeMedida() << ",\n" << endl;
 
 
     // TESTE DO PROFESSOR:    

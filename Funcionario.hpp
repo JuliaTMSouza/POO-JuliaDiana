@@ -20,8 +20,8 @@
       Date *Nascimento;
       Departamento *DepartamentoAtual;
       Cargo *CargoAtual;
-      list<Admissao*> AdmissaoDemissao; //Conferir se ainda é necessário
-      list<Salario*> Salarios; // Tem que manter fixo quando o membro for demitido, então talvez criar algum bool pra conferir
+      list<Admissao> AdmissaoDemissao; //Conferir se ainda é necessário
+      list<Salario> Salarios; // Tem que manter fixo quando o membro for demitido, então talvez criar algum bool pra conferir
                             // se atualiza esse dado ou n
 
     public:
@@ -30,8 +30,8 @@
       Date* GetNascimento();
       Departamento* GetDepartamentoAtual();
       Cargo* GetCargoAtual();
-      list<Admissao*> GetAdmissaoDemissao();
-      list<Salario*> GetSalarios();
+      list<Admissao> GetAdmissaoDemissao();
+      list<Salario> GetSalarios();
 
 
       void SetMatricula(string Matricula);
@@ -39,8 +39,8 @@
       void SetNascimento(Date *Nascimento);
       void SetDepartamentoAtual(Departamento *DepartamentoAtual);
       void SetCargoAtual(Cargo *CargoAtual);
-      void SetAdmissaoDemissao(Admissao *AdmissaoDemissao);
-      void SetSalarios(Salario *Salarios);
+      void SetAdmissaoDemissao(Admissao AdmissaoDemissao);
+      void SetSalarios(Salario Salarios);
   };
 
 #endif
