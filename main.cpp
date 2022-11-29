@@ -2,6 +2,7 @@
 #include <cstdlib>
 #include <string>
 #include <list>
+#include <time.h>
 
 #include "Pessoa.hpp"
 // #include "Funcionario.hpp"
@@ -10,7 +11,7 @@
 #include "Departamento.hpp"    //OK
 #include "Admissao.hpp"        //OK
 #include "Dissidio.hpp"
-//g++ main.cpp produto.cpp valor.cpp date.cpp vendas.cpp orcamento.cpp materiaprima.cpp categoria.cpp lote.cpp pagamentos.cpp boleto.cpp cartao.cpp fornecedor.cpp veiculo.cpp turno.cpp rota.cpp -o main
+//g++ main.cpp empresa.cpp produto.cpp valor.cpp date.cpp formato.cpp vendas.cpp orcamento.cpp materiaprima.cpp categoria.cpp lote.cpp pagamentos.cpp boleto.cpp cartao.cpp pessoa.cpp fornecedor.cpp veiculo.cpp turno.cpp rota.cpp -o main
 
 #include "Produto.hpp"              // FALTA A PARTE Q DEPENDE DO FORNECEDOR
 #include "Valor.hpp"                //OK
@@ -36,11 +37,25 @@
 #include "Logado.hpp"
 
 using namespace std;
+float denSort = 100;
 
         /*
         * Pensei em deixar em maiúsculo todas as referências às nossas classes
         e minúsculo para outras variáveis
         */
+
+int strparaint(string valor){
+    char cvalor[5];
+    float ivalor = 0;
+    strcpy(cvalor, valor.c_str());
+
+    for(int i = 0; i < valor.length(); i++){
+        ivalor *= 10;
+        ivalor += (int) cvalor[i] - 48;
+    }
+
+    return ivalor;
+}
 
 void cadastrarPessoas(Empresa *empresa){
     for(int cadastro = -1; cadastro != 0; cin >> cadastro){
@@ -72,29 +87,56 @@ void cadastrarPessoas(Empresa *empresa){
 
 void cadastrarMaterial(Produto *produto, Date data){
     MateriaPrima novoMaterial;
-    string auxString, nome = "a", estoque = "10 Kg", medida = "8 g";
+    list<Fornecedor> listaFornecedores;
+    string auxString, nome = "a", unEstoque = "", vlEstoque = "", estoque = "", unMedida = "", vlMedida = "", medida = "";
 
-    for(string novo = "S"; novo != "N"; cin >> novo){
-        /*cout << "Nome do Material: "; cin >> nome;
-        novoMaterial.SetNome(nome);*/
+    float numeroSorteado, vlProduto = 0;
+    string novo = "S";
 
-        cout << "Estoque minimo: "; //cin >> estoque;
-        
+    while( !(novo == "N" || novo == "n") ){
+        cout << novo << endl;
+        listaFornecedores = produto->GetFornecedores();
 
-        cout << "Medida: ";// cin >> medida;
+        cout << "\n  Nome do Material: "; cin >> nome;
+        novoMaterial.SetNome(nome);
 
+        cout << "  Estoque minimo: "; cin >> vlEstoque; cin >> unEstoque;
+        estoque = vlEstoque + " " + unEstoque;
         novoMaterial.SetEstoqueMinimo(estoque);
+        cout << estoque << " " << novoMaterial.GetEstoqueMinimo() << endl;
+
+        cout << "  Medida: "; cin >> vlMedida; cin >> unMedida;
+        medida = vlMedida + " " + unMedida;
         novoMaterial.SetMedida(medida);
+        cout << medida << " " << novoMaterial.GetMedida() << endl;
 
-        int i = 1;
-        for(list<Fornecedor>::iterator positFornecedor = produto->GetFornecedores().begin(); positFornecedor != produto->GetFornecedores().end(); positFornecedor++){
-            srand(i);
-            i++;
-            positFornecedor->SetMateriasPrima(novoMaterial, Valor((rand()/500), data));
+        float maior, menor;
+        for(list<Fornecedor>::iterator positFornecedor = listaFornecedores.begin(); positFornecedor != listaFornecedores.end(); positFornecedor++){
+            srand(denSort);
+            denSort++;
+            if(novoMaterial.GetUnidadeMedida() == "unidade") {
+                maior = 50;
+                menor = 0.4;
+            }
+            else {
+                maior = 20;
+                menor = 10;
+            }
+
+            numeroSorteado = (rand() / denSort);
+            while(numeroSorteado < menor || numeroSorteado > maior) numeroSorteado = (rand() / denSort);
+            positFornecedor->SetMateriasPrima(novoMaterial, Valor(numeroSorteado, data));
+            
         }
-
+        produto->SetFornecedores(listaFornecedores);
+        cout << "tamanho fornecedores out " << listaFornecedores.size() << endl;
+        cout << "->" << produto->GetFornecedores().begin()->GetPrecoMateriais().begin()->GetValor() << endl;
+        novo = "";
         cout << "Cadastrar novo material? (S/N) "; cin >> novo;
-        //novoMaterial.SetLotes();
+        cout << novo << endl;
+        novoMaterial.SetEstoqueAtual(0);
+        produto->SetMateriasPrima(novoMaterial);
+        produto->SetEstoqueAtual(0);
     }
 }
 
@@ -112,18 +154,23 @@ void cadastrarProdutos(Empresa *empresa, Date data, list<Fornecedor> fornecedore
         cout << "Categoria do produto: (como fazer?)" << endl;
         //novoProduto.SetCategoria();
 
-        cout << "Estoque minimo: "; cin >> auxInt;
-        novoProduto.SetEstoqueMinimo(auxInt);
-
-        cout << "Cadastrar materias primas: ";
-        cadastrarMaterial(&novoProduto, data);
+        cout << "Estoque minimo: "; cin >> auxFloat;
+        novoProduto.SetEstoqueMinimo(auxFloat);
 
         novoProduto.SetFornecedores(fornecedores);
 
+        cout << "Cadastrar materias primas: ";
+        cadastrarMaterial(&novoProduto, data);
+        cout << fornecedores.size() << "\n\nfinalizou";
+        
+        auxInt = (int) auxFloat;
+        cout << auxInt;
         novoProduto.SolicitarNovoLote(auxInt, data);
-
+        cout << "hum";
         empresa->SetProdutos(novoProduto);
+        cout << "total de mesas produzidas no final do trem: " << novoProduto.GetEstoqueAtual();
         cout << "Cadastrar novo produto? (S/N) "; cin >> novo;
+        cout << "\n\nfinalizou";
     }
 
     //novoProduto.SetLote(auxInt, Date(2022, 11, 25), novoProduto.GetValor().GetValor());
@@ -506,7 +553,7 @@ int main()
     outraMesa.SolicitarNovoLote(100, Date(2022, 11, 24));
     //outraMesa.SolicitarNovoLote(2, Date(2022, 11, 24));
 
-    */
+    
 
     MateriaPrima mds;
     cout << ">> " << mds.GetLoteAtual() << endl;
@@ -524,10 +571,10 @@ int main()
      cout << mds.GetNome() << " ";
      cout << mds.GetMedida() << " ";
      cout << "." << mds.GetUnidadeMedida() << ",\n" << endl;
-
+*/
 
     // TESTE DO PROFESSOR:    
-/*
+
     bool gestaoDesbloqueada = false, orcamentoDesbloqueado = false, compraDesbloqueada = false;
     Empresa &Colchobel = Empresa::getInstancia();
     // Como provar q isso foi feito e deu certo?
@@ -539,6 +586,7 @@ int main()
     // Instanciar informações pré prontas
         // Fornecedores
     cadastrarFornecedores(&fornecedores);
+    cout << fornecedores.begin()->GetNome() << "\n\n";
         // Cargos
         // Departamentos
         // Categorias
@@ -584,9 +632,9 @@ int main()
         cout << "Selecione: \n"
         << "'1' para Cadastro de pessoas\n"
         << "'2' para Cadastro de materiais e produtos\n"
-        << "'3' para Cadastro de veículos\n"
+        << "'3' para Cadastro de veiculos\n"
         << "'4' para Cadastro de rotas\n"
-        << "'5' para gestão de cadastros\n"
+        << "'5' para gestao de cadastros\n"
         << "'6' para Realizar um orcamento\n"
         << "'7' para Compra\n"
         << "'0' para Sair\n";
@@ -594,7 +642,8 @@ int main()
     }
 
     cout << "Volte sempre!\n";
-*/
+
+
 
 
 
