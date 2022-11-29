@@ -26,6 +26,7 @@
 
       Permissao GetPermissoes();
       void SetPermissoes(Permissao Permissoes);
+      int VerificarPermissao(string NomeMetodo);
   };
 
 #endif

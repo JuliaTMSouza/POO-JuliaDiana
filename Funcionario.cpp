@@ -23,11 +23,11 @@ Cargo* Funcionario::GetCargoAtual() {
     return this->CargoAtual;
 }
 
-list<Admissao*> Funcionario::GetAdmissaoDemissao() {
+list<Admissao> Funcionario::GetAdmissaoDemissao() {
     return this->AdmissaoDemissao;
 }
 
-list<Salario*> Funcionario::GetSalarios() {
+list<Salario> Funcionario::GetSalarios() {
     return this->Salarios;
 }
 
@@ -51,11 +51,11 @@ void Funcionario::SetCargoAtual(Cargo *CargoAtual) {
     this->CargoAtual = CargoAtual;
 }
 
-void Funcionario::SetAdmissaoDemissao(Admissao *AdmissaoDemissao) {
+void Funcionario::SetAdmissaoDemissao(Admissao AdmissaoDemissao) {
     // if(this->AdmissaoDemissao.GetDataDemissao())
     this->AdmissaoDemissao.push_back(AdmissaoDemissao);
 }
 
-void Funcionario::SetSalarios(Salario *Salarios) {
+void Funcionario::SetSalarios(Salario Salarios) {
     this->Salarios.push_back(Salarios);
 }
