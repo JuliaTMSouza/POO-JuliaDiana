@@ -20,7 +20,6 @@
       float EstoqueAtual = 0;
       float EstoqueMinimo;
       list<Lote> Lotes;
-     // list<Orcamento> Compras;
       float Medida;
       string UnidadeMedida;
 
@@ -30,16 +29,14 @@
       MateriaPrima();
       string GetNome();
       list<Lote> GetLotes();
-      //list<Orcamento> GetCompras(); 
       float GetEstoqueAtual();
       float GetEstoqueMinimo();
-      int GetMedida();
+      float GetMedida();
       string GetUnidadeMedida();
       int GetLoteAtual();
 
       void SetNome(string Nome);
       void SetLotes(int Quantidade, Date DataProducao, float ValorDeCompra);
-     // void SetCompras(Orcamento NovoOrcamento);
       void SetEstoqueAtual(int EstoqueAtual);
       void SetEstoqueMinimo(string EstoqueMinimo);
       void SetMedida(string Medida);

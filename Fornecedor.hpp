@@ -17,7 +17,7 @@
 
     public:
       float RequerirOrcamento(string MateriasPrima, float Quantidade);
-      void AtualizaPrecoMateriais(MateriaPrima MateriasPrima, Valor PrecoMateriais);
+      void AtualizaPrecoMateriais(/*MateriaPrima MateriasPrima, Valor PrecoMateriais*/ Date Data);
       
       list<MateriaPrima> GetMateriasPrima();
       list<Valor> GetPrecoMateriais();

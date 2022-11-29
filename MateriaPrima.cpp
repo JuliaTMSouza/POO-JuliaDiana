@@ -27,7 +27,7 @@ list<Lote> MateriaPrima::GetLotes() {
     return this->Compras;
 }*/
 
-int MateriaPrima::GetMedida(){
+float MateriaPrima::GetMedida(){
     return this->Medida;
 }
 
@@ -54,17 +54,14 @@ void MateriaPrima::SetLotes(int Quantidade, Date DataProducao, float ValorDeComp
     this->Lotes.push_back(NovoLote);
 }
 
-/*void MateriaPrima::SetCompras(Orcamento NovoOrcamento){
-    this->Compras.push_back(NovoOrcamento);
-}*/
-
 void MateriaPrima::SetEstoqueAtual(int EstoqueAtual) {
     this->EstoqueAtual += EstoqueAtual;
 }
 
 void MateriaPrima::SetEstoqueMinimo(string EstoqueMinimo) {
-    string valorQtd = "", estoqueMinimoQtd = "";
+    string estoqueMinimoQtd = "";
     char cEstoqueMinimo[EstoqueMinimo.length()];
+    float valorQtd = 0;
 
     strcpy (cEstoqueMinimo, EstoqueMinimo.c_str());
 
@@ -74,23 +71,28 @@ void MateriaPrima::SetEstoqueMinimo(string EstoqueMinimo) {
             i++;
         }
         if(j > -1) estoqueMinimoQtd += cEstoqueMinimo[i];
-        else valorQtd += cEstoqueMinimo[i];
+        else {
+            valorQtd *= 10;
+            valorQtd += (float) cEstoqueMinimo[i] - 48;
+        }
     }
+    cout << "ESTOQUE: " << valorQtd << estoqueMinimoQtd << endl;
+    if(estoqueMinimoQtd == "cm2" || estoqueMinimoQtd == "cm" || estoqueMinimoQtd == "g" || estoqueMinimoQtd == "unidades") this->EstoqueMinimo = valorQtd;
+    else if(estoqueMinimoQtd == "m2") this->EstoqueMinimo = valorQtd * 10000.0;
+    else if(estoqueMinimoQtd == "m") this->EstoqueMinimo = valorQtd * 100.0;
+    else if(estoqueMinimoQtd == "kg" || estoqueMinimoQtd == "Kg") this->EstoqueMinimo = valorQtd * 1000.0;
 
-    if(estoqueMinimoQtd == "cm2" || estoqueMinimoQtd == "cm" || estoqueMinimoQtd == "g" || estoqueMinimoQtd == "unidades") this->EstoqueMinimo = stoi (valorQtd);
-    else if(estoqueMinimoQtd == "m2") this->EstoqueMinimo = (stoi (valorQtd)) * 1000.0;
-    else if(estoqueMinimoQtd == "m") this->EstoqueMinimo = (stoi (valorQtd)) * 100.0;
-    else if(estoqueMinimoQtd == "Kg") this->EstoqueMinimo = (stoi (valorQtd)) * 1000.0;
+    cout <<  this->EstoqueMinimo << "\n\n";
 }
 
 void MateriaPrima::SetMedida(string Medida) {
-   // cout << "in ";
+
     string medidaQtd = "";
     char cMedida[Medida.length()];
     float valorQtd = 0;
 
     strcpy (cMedida, Medida.c_str());
-   // cout << "1 ";
+
     for(int i = 0, j = -1; i < Medida.length(); i++){
         if(cMedida[i] == ' '){
             j++;
@@ -102,13 +104,13 @@ void MateriaPrima::SetMedida(string Medida) {
             valorQtd += (float) cMedida[i] - 48;
         }
     }
-   // cout << "2 ";
+
     this->UnidadeMedida = medidaQtd;
-    cout << "fim " << valorQtd << endl;
+
     if(medidaQtd == "cm2" || medidaQtd == "cm" || medidaQtd == "g" || medidaQtd == "unidades") this->Medida = valorQtd;
-    else if(medidaQtd == "m2") this->Medida = valorQtd / 10000.0;
-    else if(medidaQtd == "m") this->Medida = valorQtd / 100.0;
-    else if(medidaQtd == "Kg") this->Medida = valorQtd / 1000.0;
+    else if(medidaQtd == "m2") this->Medida = valorQtd * 10000.0;
+    else if(medidaQtd == "m") this->Medida = valorQtd * 100.0;
+    else if(medidaQtd == "kg" || medidaQtd == "Kg") this->Medida = valorQtd * 1000.0;
 
 }
 
