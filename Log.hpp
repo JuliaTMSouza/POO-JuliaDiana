@@ -10,15 +10,15 @@
     protected:
       Date Data;
       string Entidade;
-      Pessoa usuario;
+      string Nome;
 
     public:
       Date GetData();
       string GetEntidade();
-      Pessoa GetUsuario();
+      string GetNome();
       void SetData(Date Data);
       void SetEntidade(string Entidade);
-      void SetUsuario(Pessoa Usuario);
+      void SetNome(string Nome);
   };
 
 #endif

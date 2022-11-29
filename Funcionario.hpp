@@ -10,6 +10,9 @@
   #include "Salario.hpp"
   #include "Permissao.hpp"
   #include "Date.hpp"
+  #include "Logado.hpp"
+  #include "PermissaoNegada.hpp"
+  #include "Leitura.hpp"
 
   using namespace std;
 

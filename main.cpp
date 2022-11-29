@@ -255,26 +255,28 @@ int main()
     // //Empresa &Colchobel = Empresa::getInstancia();
 
     //CRIANDO LOGADO
-    Logado &Jorge = Logado::getInstancia();
-    Permissao PermissaoJorge;
-    PermissaoJorge.SetNaoPermitido("ExcluirFuncionario");
-    Permissao *PermissaoJorge1 = &PermissaoJorge;
-    Jorge.SetPermissoes(PermissaoJorge);
-    cout << Jorge.VerificarPermissao("ExcluirFuncionario") << endl;
+    // Logado &Jorge = Logado::getInstancia();
+    // Permissao PermissaoJorge;
+    // PermissaoJorge.SetNaoPermitido("ExcluirFuncionario");
+    // Permissao *PermissaoJorge1 = &PermissaoJorge;
+    // Jorge.SetPermissoes(PermissaoJorge);
+    // cout << Jorge.VerificarPermissao("ExcluirFuncionario") << endl;
     // Logado &Alexandre = Logado::getInstancia();
     // cout << PermissaoJorge.VerificarPermissao(Alexandre.GetPermissoes(), "ExcluirFuncionario") << endl;
 
     {//CADASTRANDO FUNCIONARIO
     // Funcionario Jorge;
+    //CADASTRANDO FUNCIONARIO
+    Funcionario Jorge;
     // Jorge.SetNome("Jorge");
     // Jorge.SetEmail("jorge@gmail.com.br");
     // Jorge.SetPermissoes(PermissaoJorge1);
-    // Jorge.SetMatricula("JorgeLima");
+    Jorge.SetMatricula("JorgeLima");
     // Jorge.SetEndereco("Rua entre as árvores, 47");
     // Jorge.SetCPF_CNPJ("13873357666", 1);
     // cout << Jorge.GetNome() << endl;
     // cout << Jorge.GetEmail() << endl;
-    // cout << Jorge.GetMatricula() << endl;
+    cout << Jorge.GetMatricula() << endl;
     // cout << Jorge.GetEndereco() << endl;
     // cout << Jorge.GetCPF_CNPJ() << endl;
 

@@ -4,7 +4,16 @@
 using namespace std;
 
 string Funcionario::GetMatricula() {
-    return this->Matricula;
+    if (Logado::getInstancia().VerificarPermissao("GetMatricula") == 0) 
+    {
+        Leitura LogLeitura = Leitura(Date::dateNow(), Logado::getInstancia().GetNome(), "Funcionario", "Matricula");
+        return this->Matricula;
+    } else 
+    {
+       PermissaoNegada GerarLog = PermissaoNegada(Date::dateNow(), Logado::getInstancia().GetNome(), "Funcionario", "Matricula", "Você não possui autorização para acessar essa informação");
+       return "Credenciais inválidas para operação";
+    };
+
 }
 
 string Funcionario::GetEndereco() {

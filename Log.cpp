@@ -10,8 +10,8 @@ string Log::GetEntidade() {
     return this->Entidade;
 }
 
-Pessoa Log::GetUsuario() {
-    return this->Usuario;
+string Log::GetNome() {
+    return this->Nome;
 }
 
 void Log::SetData(Date Data) {
@@ -22,6 +22,6 @@ void Log::SetEntidade(string Entidade) {
     this->Entidade = Entidade;
 }
 
-void Lote::SetUsuario(Pessoa usuário) {
-    this->Usuario = usuario;
+void Log::SetNome(string Nome) {
+    this->Nome = Nome;
 }
