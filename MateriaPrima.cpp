@@ -23,10 +23,6 @@ list<Lote> MateriaPrima::GetLotes() {
     return this->Lotes;
 }
 
-/*list<Orcamento> MateriaPrima::GetCompras(){
-    return this->Compras;
-}*/
-
 float MateriaPrima::GetMedida(){
     return this->Medida;
 }
@@ -35,7 +31,7 @@ string MateriaPrima::GetUnidadeMedida(){
     return this->UnidadeMedida;
 }
 
-int MateriaPrima::GetLoteAtual(){
+float MateriaPrima::GetLoteAtual(){
     return this->LoteAtual;
 }
 
@@ -47,14 +43,14 @@ void MateriaPrima::SetNome(string Nome) {
     this->Nome = Nome;
 }
 
-void MateriaPrima::SetLotes(int Quantidade, Date DataProducao, float ValorDeCompra){
+void MateriaPrima::SetLotes(float Quantidade, Date DataProducao, float ValorDeCompra){
     SetLoteAtual();
     
     Lote NovoLote(Quantidade, DataProducao, GetLoteAtual(), ValorDeCompra);
     this->Lotes.push_back(NovoLote);
 }
 
-void MateriaPrima::SetEstoqueAtual(int EstoqueAtual) {
+void MateriaPrima::SetEstoqueAtual(float EstoqueAtual) {
     this->EstoqueAtual += EstoqueAtual;
 }
 
@@ -76,13 +72,13 @@ void MateriaPrima::SetEstoqueMinimo(string EstoqueMinimo) {
             valorQtd += (float) cEstoqueMinimo[i] - 48;
         }
     }
-    cout << "ESTOQUE: " << valorQtd << estoqueMinimoQtd << endl;
+    //cout << "ESTOQUE: " << valorQtd << estoqueMinimoQtd << endl;
     if(estoqueMinimoQtd == "cm2" || estoqueMinimoQtd == "cm" || estoqueMinimoQtd == "g" || estoqueMinimoQtd == "unidades") this->EstoqueMinimo = valorQtd;
     else if(estoqueMinimoQtd == "m2") this->EstoqueMinimo = valorQtd * 10000.0;
     else if(estoqueMinimoQtd == "m") this->EstoqueMinimo = valorQtd * 100.0;
     else if(estoqueMinimoQtd == "kg" || estoqueMinimoQtd == "Kg") this->EstoqueMinimo = valorQtd * 1000.0;
 
-    cout <<  this->EstoqueMinimo << "\n\n";
+    //cout <<  this->EstoqueMinimo << "\n\n";
 }
 
 void MateriaPrima::SetMedida(string Medida) {

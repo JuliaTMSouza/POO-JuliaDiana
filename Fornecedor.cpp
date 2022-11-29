@@ -8,34 +8,31 @@ float Fornecedor::RequerirOrcamento(string MateriasPrima, float Quantidade){
     list<Valor>::iterator positValor = this->PrecoMateriais.begin();
 
     for(; positValor != this->PrecoMateriais.end(); positValor++){
+        //cout << positValor->GetValor() << endl;
         precoTotal += positValor->GetValor();
+        positValor->SetValor(positValor->GetValor() * 1.05);
     }
 
     return precoTotal;
 }
 
 void Fornecedor::AtualizaPrecoMateriais(/*MateriaPrima MateriasPrima, Valor PrecoMateriais*/ Date Data){
-    /*list<MateriaPrima>::iterator positMaterial = this->MateriasPrima.begin();
+
+    //cout << "ATUALIZA PRECOS" << endl;
+    //list<MateriaPrima>::iterator positMaterial = this->MateriasPrima.begin();
     list<Valor>::iterator positValor = this->PrecoMateriais.begin();
 
-    for(; positMaterial != this->MateriasPrima.end(); positMaterial++){
-        if(positMaterial->GetNome() == MateriasPrima.GetNome()){
-            positValor->SetValor(PrecoMateriais.GetValor());
-            positValor->SetData(PrecoMateriais.GetData());
-        }
-        positValor++;
-    }*/
+    float atualizando;
+    for(; positValor != this->PrecoMateriais.end(); positValor++){
 
-    cout << "era pra tar atualizando preco";
-    list<MateriaPrima>::iterator positMaterial = this->MateriasPrima.begin();
-    list<Valor>::iterator positValor = this->PrecoMateriais.begin();
-    cout << " forn" << endl;
-    for(float atualizando; positValor != this->PrecoMateriais.end(); positValor++){
-        atualizando = (positValor->GetValor()) * 1.05;
-        cout << "atualizando: " << atualizando;
+        atualizando = positValor->GetValor();
+        atualizando *= 1.05;
+        //cout << "atualizando: " << atualizando << " " << endl;
         positValor->SetValor(atualizando);
-        positValor->SetData(Data);
+        //positValor->SetData(Data);
     }
+    //cout << "";
+
 }
 
 list<MateriaPrima> Fornecedor::GetMateriasPrima(){

@@ -7,7 +7,6 @@
   #include <iostream>
   #include "Lote.hpp"
   #include "Date.hpp"
-  //#include "Orcamento.hpp"
 
   using namespace std;
 
@@ -33,11 +32,11 @@
       float GetEstoqueMinimo();
       float GetMedida();
       string GetUnidadeMedida();
-      int GetLoteAtual();
+      float GetLoteAtual();
 
       void SetNome(string Nome);
-      void SetLotes(int Quantidade, Date DataProducao, float ValorDeCompra);
-      void SetEstoqueAtual(int EstoqueAtual);
+      void SetLotes(float Quantidade, Date DataProducao, float ValorDeCompra);
+      void SetEstoqueAtual(float EstoqueAtual);
       void SetEstoqueMinimo(string EstoqueMinimo);
       void SetMedida(string Medida);
 
