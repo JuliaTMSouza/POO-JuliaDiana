@@ -11,9 +11,10 @@
       string InformacaoAcessada;
 
     public:
-      string GetInformacAoacessada();
+      string GetInformacaoAcessada();
       void SetInformacaoAcessada(string InformacaoAcessada);
-      Leitura(Date, string, Pessoa, string);
+      Leitura(Date, string, string, string);
+
   };
 
 #endif

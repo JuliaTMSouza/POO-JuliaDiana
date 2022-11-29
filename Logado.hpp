@@ -9,7 +9,7 @@
     protected:
       Logado() = default;
       Permissao Permissoes;
-      
+      string Nome;
 
     public:
       
@@ -25,7 +25,9 @@
       Logado& operator=(Logado&&) = delete;
 
       Permissao GetPermissoes();
+      string GetNome();
       void SetPermissoes(Permissao Permissoes);
+      void SetNome(string Nome);
       int VerificarPermissao(string NomeMetodo);
   };
 
