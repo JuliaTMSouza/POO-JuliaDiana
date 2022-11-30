@@ -31,8 +31,12 @@ list<Produto> Empresa::GetProdutos() {
     return this->Produtos;
 }
 
-list<Vendas> Empresa::GetVendas() {
+list<Orcamento> Empresa::GetVendas() {
     return this->listaVendas;
+}
+
+list<Veiculo> Empresa::GetVeiculos() {
+    return this->Veiculos;
 }
 
 void Empresa::SetDepartamentos(Departamento Departamentos) {
@@ -59,14 +63,20 @@ void Empresa::SetEstoques(Estoque Estoques) {
     this->Estoques.push_back(Estoques);
 }
 
-void Empresa::SetProdutos(Produto Produtos) {
-    this->Produtos.push_back(Produtos);
+void Empresa::SetProdutos(list<Produto> *Produtos) {
+    //this->Produtos.push_back(Produtos);
+
+    this->Produtos = *Produtos;
 }
 
-void Empresa::SetVendas(Vendas NovaVenda) {
-    this->listaVendas.push_back(NovaVenda);
+void Empresa::SetVendas(Orcamento Compras) {
+    this->listaVendas.push_back(Compras);
 }
 
 void Empresa::SetCompras(Orcamento Compras){
     this->Compras.push_back(Compras);
+}
+
+void Empresa::SetVeiculos(Veiculo Veiculos){
+    this->Veiculos.push_back(Veiculos);
 }

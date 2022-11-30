@@ -2,6 +2,13 @@
 
 using namespace std;
 
+Turno::Turno(){}
+
+Turno::Turno(int Periodo, int HorarioPartida){
+    this->Periodo = Periodo;
+    this->HorarioPartida = HorarioPartida;
+}
+
 int Turno::GetPeriodo() {
     return this->Periodo;
 }

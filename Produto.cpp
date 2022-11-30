@@ -167,7 +167,8 @@ void Produto::SetEstoqueMinimo(int EstoqueMinimo) {
 
 void Produto::SetEstoqueAtual(int EstoqueAtual) {
     this->EstoqueAtual += EstoqueAtual;
-    //cout << this->EstoqueAtual ;
+    cout << " /" << this->EstoqueAtual << " /"  ;
+    cout << this->GetEstoqueAtual() << " ";
 }
 
 void Produto::SetLote(int Quantidade, Date Data, float ValorDeCompra) {

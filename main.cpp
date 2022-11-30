@@ -45,18 +45,7 @@ float denSort = 100;
         e minúsculo para outras variáveis
         */
 
-int strparaint(string valor){
-    char cvalor[5];
-    float ivalor = 0;
-    strcpy(cvalor, valor.c_str());
-
-    for(int i = 0; i < valor.length(); i++){
-        ivalor *= 10;
-        ivalor += (int) cvalor[i] - 48;
-    }
-
-    return ivalor;
-}
+list<Produto> produtosCriados;
 
 void cadastrarPessoas(Empresa *empresa){
 
@@ -65,7 +54,7 @@ void cadastrarPessoas(Empresa *empresa){
 void cadastrarMaterial(Produto *produto, Date data){
     MateriaPrima novoMaterial;
     list<Fornecedor> listaFornecedores;
-    string auxString, nome = "", unEstoque = "", vlEstoque = "", estoque = "", unMedida = "", vlMedida = "", medida = "";
+    string auxString = "", nome = "", unEstoque = "", vlEstoque = "", estoque = "", unMedida = "", vlMedida = "", medida = "";
 
     float numeroSorteado, vlProduto = 0;
     string novo = "S";
@@ -146,7 +135,8 @@ void cadastrarMaterial(Produto *produto, Date data){
         //cout << auxInt;
         novoProduto.SolicitarNovoLote(auxInt, data);
         //cout << "hum";
-        empresa->SetProdutos(novoProduto);
+        //empresa->SetProdutos(novoProduto);
+        produtosCriados.push_back(novoProduto);
         //cout << "total de mesas produzidas no final do trem: " << novoProduto.GetEstoqueAtual();
 
         novo = "";
@@ -172,13 +162,50 @@ void cadastrarFornecedores(list<Fornecedor> *fornecedor){
     fornecedor->push_back(novoFornecedor);
 }
 
+Rota cadastrarRotas(){
+    list<Funcionario> residentes; //TROCAR PELO Q ELA CRIAR
+
+    Rota novaRota(residentes);
+    int horario;
+    
+    cout << "  Para qual periodo deseja cadastrar a rota?\n"
+    << "  '1' para matutino\n"
+    << "  '2' para vespetino\n"
+    << "  '3' para noturno\n" << endl;
+
+    cin >> horario;
+
+    if (horario == 1) novaRota.SetTurnos(Turno(1, 8));
+    if (horario == 2) novaRota.SetTurnos(Turno(2, 13));
+    if (horario == 3) novaRota.SetTurnos(Turno(3, 19));
+
+    novaRota.SetRotaRealizada();
+
+    return novaRota;
+}
+
 void cadastrarVeiculos(Empresa *empresa){
+    Veiculo novoVeiculo;
+    string auxString = "";
 
+    cout << "  Qual tipo de veiculo deseja cadastrar?\n"
+    << "  '1' para onibus\n"
+    << "  '2' para van\n" << endl;
+    cin >> auxString;
+
+    if(auxString == "1") novoVeiculo.SetTipo("onibus");
+    if(auxString == "2") novoVeiculo.SetTipo("van");
+
+    cout << "  Insira a placa do veiculo: ";
+    cin >> auxString;
+
+    novoVeiculo.SetPlaca(auxString);
+    
+    novoVeiculo.SetRotas(cadastrarRotas());
+
+    empresa->SetVeiculos(novoVeiculo);
 }
 
-void cadastrarRotas(Empresa *empresa){
-
-}
 
 void gestaoCadastros(Empresa *empresa){
 
@@ -191,29 +218,43 @@ void compra(Empresa *empresa, Date data, list<Fornecedor> *fornecedores){
     //cout << "\n\n\n";
     //cout << empresa->GetProdutos().begin()->GetEstoqueAtual() << " " << testeOrcamento.GetQuantidade() << " " << empresa->GetProdutos().begin()->GetEstoqueMinimo();
     //cout << "\n\n\n";
-    if((empresa->GetProdutos().begin()->GetEstoqueAtual() - testeOrcamento.GetQuantidade()) < empresa->GetProdutos().begin()->GetEstoqueMinimo()){
+    if((produtosCriados.begin()->GetEstoqueAtual() - testeOrcamento.GetQuantidade()) < produtosCriados.begin()->GetEstoqueMinimo()){
         cout << "Estoque insuficiente. Avisaremos quando tiver novos produtos." << endl;
         //list<Fornecedor>::iterator positFornecedores = fornecedores->begin()
-        /*int i = 0;
-        list<Fornecedor>::iterator positFornecedores = empresa->GetProdutos().begin()->GetFornecedores().begin();
-        for(; positFornecedores != empresa->GetProdutos().begin()->GetFornecedores().end(); positFornecedores++){
+        int i = 0;
+        /*list<Fornecedor>::iterator positFornecedores = produtosCriados.begin()->GetFornecedores().begin();
+        for(; positFornecedores != produtosCriados.begin()->GetFornecedores().end(); positFornecedores++){
+            cout << i << "\n   " << positFornecedores->GetPrecoMateriais().begin()->GetValor();
             positFornecedores->AtualizaPrecoMateriais(data);
-            positFornecedores->RealizarOrcamento //VER OQ Q ROLA COM ESSE AQUI
-            i ++;
+            //i ++;
+            cout << " - \n" << positFornecedores->GetPrecoMateriais().begin()->GetValor();
+        }*/
+
+        list<Fornecedor>::iterator positFornecedores = produtosCriados.begin()->GetFornecedores().begin();
+        for(; positFornecedores != produtosCriados.begin()->GetFornecedores().end(); positFornecedores++){
+            cout << i << "\n   " << positFornecedores->GetPrecoMateriais().begin()->GetValor();
+            positFornecedores->AtualizaPrecoMateriais(data);
+            //i ++;
+            cout << " - \n" << positFornecedores->GetPrecoMateriais().begin()->GetValor();
         }
-        empresa->GetProdutos().begin()->SetFornecedores(fornecedores);*/
-        float novoValor = empresa->GetProdutos().begin()->GetValor().GetValor();
 
-        empresa->GetProdutos().begin()->SetValor(Valor((novoValor * 1.05), data));
+        //produtosCriados.begin()->SetFornecedores(fornecedores);
 
-        empresa->GetProdutos().begin()->SolicitarNovoLote(testeOrcamento.GetQuantidade(), data);
+        float novoValor = produtosCriados.begin()->GetValor().GetValor();
+
+        produtosCriados.begin()->SetValor(Valor((novoValor * 1.05), data));
+
+        produtosCriados.begin()->SolicitarNovoLote(testeOrcamento.GetQuantidade(), data);
         cout << "O produto que voce deseja esta disponivel em estoque, mas seu valor foi atualizado. Realize um novo orcamento." << endl;
-        empresa->GetProdutos().begin()->SetEstoqueAtual(testeOrcamento.GetQuantidade());
-        //cout << empresa->GetProdutos().begin()->GetEstoqueAtual();
+        cout << produtosCriados.begin()->GetEstoqueAtual() << " ";
+        //produtosCriados.begin()->SetEstoqueAtual(testeOrcamento.GetQuantidade());
+        produtosCriados.begin()->SetEstoqueAtual(testeOrcamento.GetQuantidade());
+        cout << produtosCriados.begin()->GetEstoqueAtual() << endl;
 
         //cout << "\n\n\n";
     }
     else{
+        empresa->SetVendas(testeOrcamento);
         cout << "Pedido adquirido. Obrigado pela preferencia!" << endl;
     }
 
@@ -223,22 +264,23 @@ bool orcamento(Empresa *empresa, Date data, list<Fornecedor> fornecedores){ //tr
     int quantidade;
     string comprar = "";
 
-    cout << "Qual quantia de " << empresa->GetProdutos().begin()->GetNomeProduto() << " voce deseja comprar? ";
+    cout << "Qual quantia de ";
+    cout << produtosCriados.begin()->GetNomeProduto() << " voce deseja comprar? ";
     cin >> quantidade;
 
     Produto produtoAtual;
-    produtoAtual.SetCategoria(empresa->GetProdutos().begin()->GetCategoria());
-    Date dataLote(empresa->GetProdutos().begin()->GetLote().GetDataProducao().getAno(), empresa->GetProdutos().begin()->GetLote().GetDataProducao().getMes(), empresa->GetProdutos().begin()->GetLote().GetDataProducao().getDia());
-    produtoAtual.SetLote(empresa->GetProdutos().begin()->GetLote().GetQuantidade(), dataLote, empresa->GetProdutos().begin()->GetLote().GetValorDeCompra());
-    produtoAtual.SetEstoqueAtual(empresa->GetProdutos().begin()->GetEstoqueAtual());
-    produtoAtual.SetValor(empresa->GetProdutos().begin()->GetValor());
+    produtoAtual.SetCategoria(produtosCriados.begin()->GetCategoria());
+    Date dataLote(produtosCriados.begin()->GetLote().GetDataProducao().getAno(), produtosCriados.begin()->GetLote().GetDataProducao().getMes(), produtosCriados.begin()->GetLote().GetDataProducao().getDia());
+    produtoAtual.SetLote(produtosCriados.begin()->GetLote().GetQuantidade(), dataLote, produtosCriados.begin()->GetLote().GetValorDeCompra());
+    produtoAtual.SetEstoqueAtual(produtosCriados.begin()->GetEstoqueAtual());
+    produtoAtual.SetValor(produtosCriados.begin()->GetValor());
     produtoAtual.SetFornecedores(&fornecedores);
 
     Orcamento novoOrcamento(produtoAtual, quantidade, data);
 
     testeOrcamento = novoOrcamento;
 
-    cout << "O pedido de " << quantidade << " " << empresa->GetProdutos().begin()->GetNomeProduto() << "(s) ficara em R$"
+    cout << "O pedido de " << quantidade << " " << produtosCriados.begin()->GetNomeProduto() << "(s) ficara em R$"
     << novoOrcamento.GetValorTotal() << ".\nDeseja finalizar a compra? (S/N) ";
     cin >> comprar;
 
@@ -271,12 +313,12 @@ int main()
     // Jorge.SetNome("Jorge");
     // Jorge.SetEmail("jorge@gmail.com.br");
     // Jorge.SetPermissoes(PermissaoJorge1);
-    Jorge.SetMatricula("JorgeLima");
+    //Jorge.SetMatricula("JorgeLima");
     // Jorge.SetEndereco("Rua entre as árvores, 47");
     // Jorge.SetCPF_CNPJ("13873357666", 1);
     // cout << Jorge.GetNome() << endl;
     // cout << Jorge.GetEmail() << endl;
-    cout << Jorge.GetMatricula() << endl;
+    //cout << Jorge.GetMatricula() << endl;
     // cout << Jorge.GetEndereco() << endl;
     // cout << Jorge.GetCPF_CNPJ() << endl;
 
@@ -614,7 +656,22 @@ int main()
 
     bool gestaoDesbloqueada = false, orcamentoDesbloqueado = false, compraDesbloqueada = false;
     Empresa &Colchobel = Empresa::getInstancia();
+    Colchobel.SetProdutos(&produtosCriados);
     // Como provar q isso foi feito e deu certo?
+    
+    /*Produto produtoTeste;
+    cout << produtoTeste.GetEstoqueAtual() << " ";
+    produtoTeste.SetEstoqueAtual(10);
+    MateriaPrima materiaTeste;
+    produtoTeste.SetMateriasPrima(materiaTeste);
+    Colchobel.SetProdutos(produtoTeste);
+    Colchobel.GetProdutos().begin()->SetMateriasPrima(materiaTeste);
+    cout << Colchobel.GetProdutos().begin()->GetMateriasPrima().begin()->GetEstoqueAtual() << " ";
+    Colchobel.GetProdutos().begin()->SetMateriasPrima(materiaTeste);
+    Colchobel.GetProdutos().begin()->GetMateriasPrima().begin()->SetEstoqueAtual(5);
+    cout << Colchobel.GetProdutos().begin()->GetMateriasPrima().begin()->GetEstoqueAtual();
+    
+    cout << "\n\n";*/
 
     list<Fornecedor> fornecedores;
     Date data(2022, 11, 25);
@@ -645,7 +702,7 @@ int main()
             cadastrarVeiculos(&Colchobel);
             break;
         case 4: // CADASTRA ROTAS
-            cadastrarRotas(&Colchobel);
+            cadastrarRotas();
             break;
         case 5: // GESTÃO DE CADASTROS (ATUALIZAR E EXCLUIR)
             if(gestaoDesbloqueada) gestaoCadastros(&Colchobel);
@@ -667,6 +724,7 @@ int main()
             cout << "Comando não encontrado. Tente novamente:\n";
             break;
         }
+
         cout << "\n-> Selecione: \n"
         << "'1' para Cadastro de pessoas\n"
         << "'2' para Cadastro de materiais e produtos\n"

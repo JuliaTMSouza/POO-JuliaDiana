@@ -13,8 +13,8 @@
     public:
       string GetMensagem();
       void SetMensagem(string Mensagem);
-      Logado(Logado&&) = delete;
-      PermissaoNegada(Date, string, string, string, string);
+      //Logado(Logado&&) = delete;
+      //PermissaoNegada(Date, string, string, string, string);
   };
 
 #endif

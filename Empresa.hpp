@@ -14,6 +14,7 @@
   #include "Produto.hpp"
   #include "Vendas.hpp"
   #include "Orcamento.hpp"
+  #include "Veiculo.hpp"
 
   using namespace std;
 
@@ -28,8 +29,9 @@
       list<Categoria> Categorias;
       list<Estoque> Estoques;
       list<Produto> Produtos;
-      list<Vendas> listaVendas;
+      list<Orcamento> listaVendas;
       list<Orcamento> Compras; //colocar informações de compras de materiais?
+      list<Veiculo> Veiculos;
 
     public:
 
@@ -51,7 +53,8 @@
       list<Categoria> GetCategorias();
       list<Estoque> GetEstoques();
       list<Produto> GetProdutos();
-      list<Vendas> GetVendas();
+      list<Orcamento> GetVendas();
+      list<Veiculo> GetVeiculos();
 
       void SetDepartamentos(Departamento Departamentos);
       void SetCargos(Cargo Cargos);
@@ -59,9 +62,12 @@
       void SetClientes(Cliente Clientes);
       void SetCategorias(Categoria Categorias);
       void SetEstoques(Estoque Estoques);
-      void SetProdutos(Produto Produtos);
-      void SetVendas(Vendas NovaVenda);
+      void SetProdutos(list<Produto> *Produtos);
+      void SetVendas(Orcamento Compras);
       void SetCompras(Orcamento Compras);
+      void SetVeiculos(Veiculo Veiculos);
+
+      Produto AtualizaProdutos();
   };
 
 #endif
