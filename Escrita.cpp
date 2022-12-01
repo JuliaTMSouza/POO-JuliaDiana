@@ -17,3 +17,11 @@ void Escrita::SetAtributoAnterior(string AtributoAnterior) {
 void Escrita::SetAtributoAtual(string AtributoAtual) {
     this->AtributoAtual = AtributoAtual;
 }
+
+Escrita::Escrita(Date Data, string Nome, string Entidade, string informacaoAtual, string informacaoAnterior) {
+    this->Data = Data;
+    this->Nome = Nome;
+    this->Entidade = Entidade;
+    this->AtributoAtual = informacaoAtual;
+    this->AtributoAnterior = informacaoAnterior;
+}

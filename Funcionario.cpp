@@ -4,31 +4,26 @@
 using namespace std;
 
 string Funcionario::GetMatricula() {
-    if (Logado::getInstancia().VerificarPermissao("GetMatricula") == 0) 
+    int Permissao = Logado::getInstancia().VerificarPermissaoLeitura("Funcionario", "NomeMetodo");
+    if (Permissao == 0) 
     {
-        Leitura LogLeitura = Leitura(Date::dateNow(), Logado::getInstancia().GetNome(), "Funcionario", "Matricula");
         return this->Matricula;
-    } else 
-    {
-       PermissaoNegada GerarLog = PermissaoNegada(Date::dateNow(), Logado::getInstancia().GetNome(), "Funcionario", "Matricula", "Você não possui autorização para acessar essa informação");
-       return "Credenciais inválidas para operação";
-    };
-
+    }
 }
 
 string Funcionario::GetEndereco() {
     return this->Endereco;
 }
 
-Date* Funcionario::GetNascimento() {
+Date Funcionario::GetNascimento() {
     return this->Nascimento;
 }
 
-Departamento* Funcionario::GetDepartamentoAtual() {
+Departamento Funcionario::GetDepartamentoAtual() {
     return this->DepartamentoAtual;
 }
 
-Cargo* Funcionario::GetCargoAtual() {
+Cargo Funcionario::GetCargoAtual() {
     return this->CargoAtual;
 }
 
@@ -41,22 +36,26 @@ list<Salario> Funcionario::GetSalarios() {
 }
 
 void Funcionario::SetMatricula(string Matricula) {
-    this->Matricula = Matricula;
+    int Permissao = Logado::getInstancia().VerificarPermissaoEscrita("GetMatricula", "Funcionario", Matricula, this->Matricula);
+    if (Permissao == 0) 
+    {
+        this->Matricula = Matricula;
+    }
 }
 
 void Funcionario::SetEndereco(string Endereco) {
     this->Endereco = Endereco;
 }
 
-void Funcionario::SetNascimento(Date *Nascimento) {
+void Funcionario::SetNascimento(Date Nascimento) {
     this->Nascimento = Nascimento;
 }
 
-void Funcionario::SetDepartamentoAtual(Departamento *DepartamentoAtual) {
+void Funcionario::SetDepartamentoAtual(Departamento DepartamentoAtual) {
     this->DepartamentoAtual = DepartamentoAtual;
 }
 
-void Funcionario::SetCargoAtual(Cargo *CargoAtual) {
+void Funcionario::SetCargoAtual(Cargo CargoAtual) {
     this->CargoAtual = CargoAtual;
 }
 

@@ -1,19 +1,21 @@
 #ifndef PermissaoNegada_H
 #define PermissaoNegada_H
 
-  #include "Leitura.hpp"
+  #include "Log.hpp"
   #include <string>
 
   using namespace std;
 
-  class PermissaoNegada: public Leitura{
+  class PermissaoNegada: public Log{
     protected:
+    protected:
+      string InformacaoAcessada;
       string Mensagem;
-
     public:
+      string GetInformacaoAcessada();
       string GetMensagem();
+      void SetInformacaoAcessada(string InformacaoAcessada);
       void SetMensagem(string Mensagem);
-      Logado(Logado&&) = delete;
       PermissaoNegada(Date, string, string, string, string);
   };
 

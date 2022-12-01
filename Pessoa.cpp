@@ -118,7 +118,7 @@ string Pessoa::GetEmail() {
     return this->Email;
 }
 
-Permissao* Pessoa::GetPermissoes() {
+Permissao Pessoa::GetPermissoes() {
     return this->Permissoes;
 }
 
@@ -135,6 +135,6 @@ void Pessoa::SetCPF_CNPJ(string CPF_CNPJ, bool Tipo) {
     if(valid) this->CPF_CNPJ = CPF_CNPJ;
 }
 
-void Pessoa::SetPermissoes(Permissao *Permissoes) {
+void Pessoa::SetPermissoes(Permissao Permissoes) {
     this->Permissoes = Permissoes;
 }

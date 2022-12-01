@@ -9,7 +9,6 @@
   class Leitura: public Log{
     protected:
       string InformacaoAcessada;
-
     public:
       string GetInformacaoAcessada();
       void SetInformacaoAcessada(string InformacaoAcessada);
