@@ -9,6 +9,9 @@
       int HorarioPartida;
 
     public:
+      Turno();
+      Turno(int Periodo, int HorarioPartida);
+
       int GetPeriodo();
       int GetHorarioPartida();
       

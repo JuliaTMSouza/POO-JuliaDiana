@@ -2,7 +2,7 @@
 
 using namespace std;
 
-int Veiculo::GetPlaca() {
+string Veiculo::GetPlaca() {
     return this->Placa;
 }
 
@@ -26,7 +26,7 @@ void Veiculo::SetRotas(Rota Rotas) {
     this->Rotas.push_back(Rotas);
 }
 
-void Veiculo::SetPlaca(int Placa) {
+void Veiculo::SetPlaca(string Placa) {
     this->Placa = Placa;
 }
 

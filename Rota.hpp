@@ -5,35 +5,38 @@
   #include <list>
 
   #include "Turno.hpp"
-  /*#include "Funcionario.hpp"*/
+  #include "Funcionario.hpp"
 
   using namespace std;
 
   class Rota {
     private:
-      float DistanciaResidencia();
+      list<Funcionario> OrdenaResidencias(list<Funcionario> Residentes);
       //depois conferir como vai ser isso aqui...
 
     protected:
-      /*Funcionario Residentes;*/
+      list<Funcionario> Residentes;
       list<string> RotaRealizada;
       Turno Turnos;
-      int TempoPercurso;
-      int TempoEmbarque;
+      float TempoPercurso;
+      list<float> TempoEmbarque;
+
+      void SetTempoEmbarque();
 
     public:
 
-      /*Funcionario GetResidentes();*/
+      Rota();
+      Rota(list<Funcionario> Residentes);
+      float calculaDistancia (float x1, float y1, float x2, float y2);
+
       Turno GetTurnos();
       list<string> GetRotaRealizada();
-      int GetTempoPercurso();
-      int GetTempoEmbarque();
+      float GetTempoPercurso();
+      list<float> GetTempoEmbarque();
 
-      /*void SetResidentes(Funcionario Residentes);*/
       void SetTurnos(Turno Turnos);
-      void SetRotaRealizada(string RotaRealizada);
-      void SetTempoPercurso(int TempoPercurso);
-      void SetTempoEmbarque(int TempoEmbarque);
+      void SetRotaRealizada();
+      
 
   };
 

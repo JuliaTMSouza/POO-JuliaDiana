@@ -12,17 +12,17 @@
     protected:
       list<Rota> Rotas;
       /*Funcionario Motoristas;*/
-      int Placa;
+      string Placa;
       string Tipo;
 
     public:
       
-      int GetPlaca();
+      string GetPlaca();
       /*Funcionario GetMotoristas();*/
       list<Rota> GetRotas();
       string GetTipo();
 
-      void SetPlaca(int Placa);
+      void SetPlaca(string Placa);
       /*void SetMotoristas(Funcionario Motoristas);*/
       void SetRotas(Rota Rotas);
       void SetTipo(string Tipo);

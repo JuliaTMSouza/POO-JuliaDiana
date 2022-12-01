@@ -1,0 +1,263 @@
+
+int strparaint(string valor){
+    char cvalor[5];
+    float ivalor = 0;
+    strcpy(cvalor, valor.c_str());
+
+    for(int i = 0; i < valor.length(); i++){
+        ivalor *= 10;
+        ivalor += (int) cvalor[i] - 48;
+    }
+
+    return ivalor;
+}
+
+void cadastrarPessoas(Empresa *empresa){
+
+}
+
+void cadastrarMaterial(Produto *produto, Date data){
+    MateriaPrima novoMaterial;
+    list<Fornecedor> listaFornecedores;
+    string auxString = "", nome = "", unEstoque = "", vlEstoque = "", estoque = "", unMedida = "", vlMedida = "", medida = "";
+
+    float numeroSorteado, vlProduto = 0;
+    string novo = "S";
+
+    while( !(novo == "N" || novo == "n") ){
+        //cout << novo << endl;
+        
+        listaFornecedores = produto->GetFornecedores();
+
+        cout << "  Nome do Material: "; cin >> nome;
+        novoMaterial.SetNome(nome);
+
+        cout << "  Estoque minimo: "; cin >> vlEstoque; cin >> unEstoque;
+        estoque = vlEstoque + " " + unEstoque;
+        novoMaterial.SetEstoqueMinimo(estoque);
+        //cout << estoque << " " << novoMaterial.GetEstoqueMinimo() << endl;
+
+        cout << "  Medida: "; cin >> vlMedida; cin >> unMedida;
+        medida = vlMedida + " " + unMedida;
+        novoMaterial.SetMedida(medida);
+        //cout << medida << " " << novoMaterial.GetMedida() << endl;
+
+        float maior, menor;
+        for(list<Fornecedor>::iterator positFornecedor = listaFornecedores.begin(); positFornecedor != listaFornecedores.end(); positFornecedor++){
+            srand(denSort);
+            denSort++;
+            if(novoMaterial.GetUnidadeMedida() == "unidade") {
+                maior = 50;
+                menor = 0.4;
+            }
+            else {
+                maior = 20;
+                menor = 10;
+            }
+
+            numeroSorteado = (rand() / denSort);
+            while(numeroSorteado < menor || numeroSorteado > maior) numeroSorteado = (rand() / denSort);
+            positFornecedor->SetMateriasPrima(novoMaterial, Valor(numeroSorteado, data));
+            
+        }
+        produto->SetFornecedores(&listaFornecedores);
+        //cout << "tamanho fornecedores out " << listaFornecedores.size() << endl;
+        //cout << "->" << produto->GetFornecedores().begin()->GetPrecoMateriais().begin()->GetValor() << endl;
+        novo = "";
+        cout << "Cadastrar novo material? (S/N) "; cin >> novo;
+        //cout << novo << endl;
+        novoMaterial.SetEstoqueAtual(0);
+        produto->SetMateriasPrima(novoMaterial);
+        //produto->SetEstoqueAtual(0);
+    }
+}
+
+ void cadastrarProdutos(Empresa *empresa, Date data, list<Fornecedor> fornecedores){
+     Produto novoProduto;
+     string auxString, novo = "S";
+     float auxFloat;
+     int auxInt;
+     bool auxBool;
+
+     while( !(novo == "N" || novo == "n") ){
+        novo = "";
+        cout << "Nome do produto: "; cin >> auxString;
+        novoProduto.SetNomeProduto(auxString);
+
+        cout << "Categoria do produto: (como fazer?)" << endl;
+        //novoProduto.SetCategoria();
+
+        cout << "Estoque minimo: "; cin >> auxFloat;
+        novoProduto.SetEstoqueMinimo(auxFloat);
+
+        novoProduto.SetFornecedores(&fornecedores);
+
+        cout << "Cadastrar materias primas:\n";
+        cadastrarMaterial(&novoProduto, data);
+        //cout << fornecedores.size() << "\nfinalizou";
+        
+        auxInt = (int) auxFloat;
+        //cout << auxInt;
+        novoProduto.SolicitarNovoLote(auxInt, data);
+        //cout << "hum";
+        empresa->SetProdutos(novoProduto);
+        //cout << "total de mesas produzidas no final do trem: " << novoProduto.GetEstoqueAtual();
+
+        novo = "";
+        cout << "-> Cadastrar novo produto? (S/N) "; cin >> novo;
+        //cout << "\n\nfinalizou";
+    }
+
+}
+
+void cadastrarFornecedores(list<Fornecedor> *fornecedor){
+    Fornecedor novoFornecedor;
+
+    novoFornecedor.SetNome("Fornecedor 1");
+    fornecedor->push_back(novoFornecedor);
+
+    novoFornecedor.SetNome("Fornecedor 2");
+    fornecedor->push_back(novoFornecedor);
+
+    novoFornecedor.SetNome("Fornecedor 3");
+    fornecedor->push_back(novoFornecedor);
+
+    novoFornecedor.SetNome("Fornecedor 4");
+    fornecedor->push_back(novoFornecedor);
+}
+
+void cadastrarVeiculos(Empresa *empresa){
+
+}
+
+void cadastrarRotas(Empresa *empresa){
+
+}
+
+void gestaoCadastros(Empresa *empresa){
+
+}
+
+Orcamento testeOrcamento;
+
+void compra(Empresa *empresa, Date data, list<Fornecedor> *fornecedores){
+
+    //cout << "\n\n\n";
+    //cout << empresa->GetProdutos().begin()->GetEstoqueAtual() << " " << testeOrcamento.GetQuantidade() << " " << empresa->GetProdutos().begin()->GetEstoqueMinimo();
+    //cout << "\n\n\n";
+    if((empresa->GetProdutos().begin()->GetEstoqueAtual() - testeOrcamento.GetQuantidade()) < empresa->GetProdutos().begin()->GetEstoqueMinimo()){
+        cout << "Estoque insuficiente. Avisaremos quando tiver novos produtos." << endl;
+        //list<Fornecedor>::iterator positFornecedores = fornecedores->begin()
+        int i = 0;
+        /*list<Fornecedor>::iterator positFornecedores = empresa->GetProdutos().begin()->GetFornecedores().begin();
+        for(; positFornecedores != empresa->GetProdutos().begin()->GetFornecedores().end(); positFornecedores++){
+            cout << i << "\n   " << positFornecedores->GetPrecoMateriais().begin()->GetValor();
+            positFornecedores->AtualizaPrecoMateriais(data);
+            //i ++;
+            cout << " - \n" << positFornecedores->GetPrecoMateriais().begin()->GetValor();
+        }*/
+
+        list<Fornecedor>::iterator positFornecedores = empresa->AtualizaProdutos().GetFornecedores().begin();
+
+        for(; positFornecedores != empresa->GetProdutos().begin()->GetFornecedores().end(); positFornecedores++){
+            cout << i << "\n   " << positFornecedores->GetPrecoMateriais().begin()->GetValor();
+            positFornecedores->AtualizaPrecoMateriais(data);
+            //i ++;
+            cout << " - \n" << positFornecedores->GetPrecoMateriais().begin()->GetValor();
+        }
+
+        cout << "fun";
+        //empresa->GetProdutos().begin()->SetFornecedores(fornecedores);
+
+        float novoValor = empresa->GetProdutos().begin()->GetValor().GetValor();
+
+        empresa->GetProdutos().begin()->SetValor(Valor((novoValor * 1.05), data));
+
+        empresa->GetProdutos().begin()->SolicitarNovoLote(testeOrcamento.GetQuantidade(), data);
+        cout << "O produto que voce deseja esta disponivel em estoque, mas seu valor foi atualizado. Realize um novo orcamento." << endl;
+        cout << empresa->GetProdutos().begin()->GetEstoqueAtual() << " ";
+        //empresa->GetProdutos().begin()->SetEstoqueAtual(testeOrcamento.GetQuantidade());
+        empresa->AtualizaProdutos().SetEstoqueAtual(testeOrcamento.GetQuantidade());
+        cout << empresa->GetProdutos().begin()->GetEstoqueAtual() << endl;
+
+        //cout << "\n\n\n";
+    }
+    else{
+        cout << "Pedido adquirido. Obrigado pela preferencia!" << endl;
+    }
+
+}
+
+bool orcamento(Empresa *empresa, Date data, list<Fornecedor> fornecedores){ //trocar a entrada pela pessoa logada
+    int quantidade;
+    string comprar = "";
+
+    cout << "Qual quantia de " << empresa->GetProdutos().begin()->GetNomeProduto() << " voce deseja comprar? ";
+    cin >> quantidade;
+
+    Produto produtoAtual;
+    produtoAtual.SetCategoria(empresa->GetProdutos().begin()->GetCategoria());
+    Date dataLote(empresa->GetProdutos().begin()->GetLote().GetDataProducao().getAno(), empresa->GetProdutos().begin()->GetLote().GetDataProducao().getMes(), empresa->GetProdutos().begin()->GetLote().GetDataProducao().getDia());
+    produtoAtual.SetLote(empresa->GetProdutos().begin()->GetLote().GetQuantidade(), dataLote, empresa->GetProdutos().begin()->GetLote().GetValorDeCompra());
+    produtoAtual.SetEstoqueAtual(empresa->GetProdutos().begin()->GetEstoqueAtual());
+    produtoAtual.SetValor(empresa->GetProdutos().begin()->GetValor());
+    produtoAtual.SetFornecedores(&fornecedores);
+
+    Orcamento novoOrcamento(produtoAtual, quantidade, data);
+
+    testeOrcamento = novoOrcamento;
+
+    cout << "O pedido de " << quantidade << " " << empresa->GetProdutos().begin()->GetNomeProduto() << "(s) ficara em R$"
+    << novoOrcamento.GetValorTotal() << ".\nDeseja finalizar a compra? (S/N) ";
+    cin >> comprar;
+
+    if(comprar == "S" || comprar == "s") return true;
+    if(comprar == "N" || comprar == "n") cout << "Volte sempre!" << endl;
+
+    return false;
+}
+
+
+
+    
+    //cout << "\n\n\n";
+    //cout << empresa->GetProdutos().begin()->GetEstoqueAtual() << " " << testeOrcamento.GetQuantidade() << " " << empresa->GetProdutos().begin()->GetEstoqueMinimo();
+    //cout << "\n\n\n";
+    /*if((produtosCriados.begin()->GetEstoqueAtual() - testeOrcamento.GetQuantidade()) < produtosCriados.begin()->GetEstoqueMinimo()){
+        cout << "Estoque insuficiente. Avisaremos quando tiver novos produtos." << endl;
+        //list<Fornecedor>::iterator positFornecedores = fornecedores->begin()
+        int i = 0;
+        /*list<Fornecedor>::iterator positFornecedores = produtosCriados.begin()->GetFornecedores().begin();
+        for(; positFornecedores != produtosCriados.begin()->GetFornecedores().end(); positFornecedores++){
+            cout << i << "\n   " << positFornecedores->GetPrecoMateriais().begin()->GetValor();
+            positFornecedores->AtualizaPrecoMateriais(data);
+            //i ++;
+            cout << " - \n" << positFornecedores->GetPrecoMateriais().begin()->GetValor();
+        }*/
+
+        //list<Fornecedor>::iterator positFornecedores = produtosCriados.begin()->GetFornecedores().begin();
+        /*for(; positFornecedores != produtosCriados.begin()->GetFornecedores().end(); positFornecedores++){
+            cout << i << "\n   " << positFornecedores->GetPrecoMateriais().begin()->GetValor();
+            positFornecedores->AtualizaPrecoMateriais(data);
+            //i ++;
+            cout << " - \n" << positFornecedores->GetPrecoMateriais().begin()->GetValor();
+        }*/
+
+        //produtosCriados.begin()->SetFornecedores(fornecedores);
+
+        /*float novoValor = produtosCriados.begin()->GetValor().GetValor();
+
+        produtosCriados.begin()->SetValor(Valor((novoValor * 1.05), data));
+
+        produtosCriados.begin()->SolicitarNovoLote(testeOrcamento.GetQuantidade(), data);
+        cout << "O produto que voce deseja esta disponivel em estoque, mas seu valor foi atualizado. Realize um novo orcamento." << endl;
+        cout << empresa->GetProdutos().begin()->GetEstoqueAtual() << " ";
+        //produtosCriados.begin()->SetEstoqueAtual(testeOrcamento.GetQuantidade());
+        produtosCriados.begin()->SetEstoqueAtual(testeOrcamento.GetQuantidade());
+        cout << empresa->GetProdutos().begin()->GetEstoqueAtual() << endl;
+
+        //cout << "\n\n\n";
+    }
+    else{
+        cout << "Pedido adquirido. Obrigado pela preferencia!" << endl;
+    }*/
